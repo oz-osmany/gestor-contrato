@@ -1,0 +1,284 @@
+@charset "UTF-8";
+
+body {
+    background-color: #dfdfe2;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    color: #333; }
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.site-header {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    background-color: rgba(80, 108, 239, 0.8); }
+.site-header__logo {
+    position: absolute;
+    top: 0;
+    z-index: 12;
+    left: 10px; }
+.site-header__logo img {
+    height: 95px;
+    width: 95px;
+    margin-top: -10px; }
+.site-header__icon-menu {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    z-index: 30; }
+
+.site-header .buscador {
+    height: 50px;
+    width: 40%;
+    display: inline;
+    margin-right: auto;
+    margin-left: 75px;
+}
+
+.container {
+    width: 97%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end; }
+
+.container__flex {
+    position: relative;
+    top: 50px;
+    display: flex; }
+.catalogo {
+    position: relative;
+    top: 20px;
+    min-height: 900px; }
+.catalogo__cuerpo {
+    width: 100%; }
+
+.title__name{
+    display: flex;
+    margin-top: 15px;
+}
+.title__name-dercha{
+    justify-content: flex-end;
+}
+.titulo-top{
+    padding-top: 7px;
+}
+#reductions{
+    width: 10px;
+    float: right;
+    margin-right: 55px;
+}
+#suplements{
+    width: 10px;
+    float: right;
+    margin-right: 25px;
+}
+.supl{
+    margin-right: 10px;
+    margin-left: 5px;
+}
+.bloque{
+    display: block;
+    margin-top: 15px;
+    margin-left: 100px;
+}
+.fecha{
+    position: relative;
+    top: 20px;
+
+}
+
+#red_select{
+    width: 10px;
+    float: right;
+    margin-right: 25px;
+}
+i{
+    color: red;
+}
+input[type=checkbox]{
+
+    width: 16px;
+    height: 16px;
+
+}
+textarea{
+    position: relative;
+    left: 150px;
+    line-height: 20px;
+    font-size: 16px;
+
+}
+input{
+    position: relative;
+    left: 150px;
+}
+#reduccion{
+    position: relative;
+    left: 0;
+}
+#servicios{
+    position: relative;
+    left: 0;
+}
+#fechas{
+    left: 0;
+}
+.titulo-start{
+    position: relative;
+    left: 0;
+}
+.rad_izquierda{
+    left: 0;
+}
+.encabezado{
+    position: relative;
+    left: 150px;
+}
+.encabezado-iz{
+    display: block;
+    width: 150px;
+}
+.ch_service{
+    margin-top: 4px;
+
+}
+.ch_reduction{
+    margin-top: 4px;
+
+}
+.titulo{
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    top: 450px;
+}
+.red{
+
+    margin-right: 15px;
+}
+
+.linea{
+    display: block;
+}
+.linea__flex{
+    display: flex;
+}
+.ch_exception{
+    left:0;
+}
+td{
+//border: 2px solid black;
+    border-top: 2px solid #000000;
+    border-left: 1px solid #000000;
+    border-right: 2px solid #000000;
+}
+
+.habitacion{
+    width: 300px;
+}
+.hotel{
+    row-span: 3;
+
+}
+.nombre{
+    height: 80px;
+}
+#peli-container{
+    display: none;
+}
+.boton {
+    width: 180px;
+    height: 30px;
+    background-color: #94b9ef;
+    color: black;
+}
+.buttom_r{
+    position: relative;
+    left: 300px;
+}
+.mtop{
+    margin-top: 20px;
+}
+
+.incorrecto {
+    position: relative;
+    top: 50px;
+    left: 150px;
+    color: white; }
+a {
+    color: #000d64;
+    text-decoration: none;
+
+
+}
+#todo{
+    display: none;
+}
+#cen_ch{
+    display: none;
+}
+.mueve-derecha{
+    margin-left: 150px;
+}
+
+
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 360px;
+    background-color: #555;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 8px 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
