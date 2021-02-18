@@ -1,6 +1,7 @@
-/*let ocultar=document.getElementById("tblData");
-ocultar.style.display="none";*/
-
+let ocultar=document.getElementById("tblData");
+ocultar.style.display="none";
+let ocultar_cost=document.getElementById("tblData_cost");
+ocultar_cost.style.display="none";
 
 //Habilitar y deshabilitar Mup
 const check_mup=document.querySelector("#rad_mup");

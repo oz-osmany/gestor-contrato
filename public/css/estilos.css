@@ -87,7 +87,7 @@ body {
 .bloque{
     display: block;
     margin-top: 15px;
-    margin-left: 100px;
+    margin-left: 70px;
 }
 .fecha{
     position: relative;
@@ -111,14 +111,14 @@ input[type=checkbox]{
 }
 textarea{
     position: relative;
-    left: 150px;
+    left: 115px;
     line-height: 20px;
     font-size: 16px;
 
 }
 input{
     position: relative;
-    left: 150px;
+    left: 115px;
 }
 #reduccion{
     position: relative;
@@ -140,11 +140,11 @@ input{
 }
 .encabezado{
     position: relative;
-    left: 150px;
+    left: 115px;
 }
 .encabezado-iz{
     display: block;
-    width: 150px;
+    width: 115px;
 }
 .ch_service{
     margin-top: 4px;
@@ -153,6 +153,16 @@ input{
 .ch_reduction{
     margin-top: 4px;
 
+}
+#rad_map{
+    left: 140px;
+}
+.encabezado-map{
+    position: relative;
+    left: 140px;
+}
+#map{
+    left: 140px;
 }
 .titulo{
     display: flex;
@@ -203,6 +213,10 @@ td{
 .buttom_r{
     position: relative;
     left: 300px;
+}
+.buttom_rr{
+    position: relative;
+    left: 370px;
 }
 .mtop{
     margin-top: 20px;
@@ -272,6 +286,7 @@ a {
     animation: fadeIn 1s
 }
 
+
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
     from {opacity: 0;}
@@ -281,4 +296,32 @@ a {
 @keyframes fadeIn {
     from {opacity: 0;}
     to {opacity:1 ;}
+}
+
+.btn-3d {
+    padding: .6rem 1rem;
+    border: 1px solid #995309;
+    border-radius: 4px;
+    background-color: #0b57d9;
+    color: #fff;
+    //d9750b e76a00
+    font-size: 1.5rem;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+    box-shadow: 0 1px 0 rgba(255,255,255,.5) inset,
+    0 1px 3px rgba(0,0,0,.2);
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(10%,#377df1),to(#377df1));
+    background-image: linear-gradient(#377df1 10%,#377df1 100%);
+}
+
+.btn-3d:hover, .btn-3d:focus {
+    background-color: #1b91e0;
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(10%,#1b91e0),to(#1b91e0));
+    background-image: linear-gradient(#1b91e0 10%,#1b91e0 100%);
+}
+
+.btn-3d:active {
+    background-color: #022a5d;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,.2) inset;
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(10%,#022a5d),to(#022a5d));
+    background-image: linear-gradient(#022a5d 10%,#022a5d 100%);
 }

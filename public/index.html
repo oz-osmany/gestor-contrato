@@ -36,14 +36,14 @@
                 <div class="encabezado-dr">
                     <div class="title__name"><p class="titulo-start"><i>*</i>Seasons(dd/mm/aa)</p>
                         <div class="popup"><a class="icon-help-circled-alt" href="#" id="id_fecha"></a>
-                            <span class="popuptext" id="myPopup">Las fechas deben ponerse con el formato indicado. En la primera fila solo Fecha de inicio y la segunda Fecha final. NO DEJAR FILAS EN BLANCO DESPUES DE LAS FECHAS.</span>
+                            <span class="popuptext" id="myPopup"></span>
                         </div>
                     </div><textarea name="fechas" id="fechas" cols="110" rows="3" required></textarea></div>
 
             </div>
             <div class="linea">
-                <div class="title__name"><input type="checkbox" id="rad_mup"><p class="encabezado">Mup</p></div><input type="text" name="mup" id="mup" size="2" disabled>
-                <div class="title__name"><input type="checkbox" id="rad_map"><p class="encabezado">MAP</p></div><input type="text" name="map" id="map" size="2" disabled>
+                <div class="title__name"><input type="checkbox" id="rad_mup"><p class="encabezado">Mup</p><input type="checkbox" id="rad_map"><p class="encabezado-map">MAP</p></div><input type="text" name="mup" id="mup" size="2" disabled><input type="text" name="map" id="map" size="2" disabled>
+                <div class="title__name"></div>
             </div>
             <div class="linea"><div class="title__name"><input type="checkbox" id="rad_release"><p class="encabezado">Release</p></div><input type="text" name="release" id="release" disabled></div>
             <div class="linea"><div class="title__name"><input type="checkbox" id="rad_cupos"><p class="encabezado">Cupos / Allotment</p></div><textarea name="cupos" id="cupos" cols="110" rows="1" disabled></textarea></div>
@@ -52,7 +52,7 @@
                         <div class="title__name title__name-dercha">
                             <p class="red">Red</p>
                             <div class="popup"><a class="icon-help-circled-alt" href="#" id="id_exceps"></a>
-                                <span class="popuptext" id="exceps">Aquí se seleccionan los tipos de habitaciones que serán excepciones para los suplementos y reducciones, segun el contrato.</span>
+                                <span class="popuptext" id="exceps"></span>
                             </div>
                             <p class="supl"> Supl</p>
                         </div>
@@ -64,20 +64,20 @@
                 <div class="encabezado-dr">
                     <div class="title__name"><p class="titulo-start"><i>*</i>Estancias / Stays</p>
                         <div class="popup"><a class="icon-help-circled-alt" href="#" id="id_stay"></a>
-                        <span class="popuptext" id="stay">Poner "/" después del nombre. Seleccionar nombre en un solo idioma. Dejar espacio entre "/" , el Plan y los números. NO DEJAR FILAS EN BLANCO DESPUES DE LOS NÚMEROS.</span>
+                        <span class="popuptext" id="stay"></span>
                     </div>
                     </div><textarea name="servicios" id="servicios" cols="110" rows="20" required></textarea>
                 </div>
             </div>
             <div class="linea"><div class="title__name"><input type="checkbox" id="rad_single"><p class="encabezado">Habitacione sencilla / Single Use</p>
                 <div class="popup"><a class="icon-help-circled-alt mueve-derecha" href="#" id="id_single"></a>
-                    <span class="popuptext" id="single">Aqui es donde van los detalles</span>
+                    <span class="popuptext" id="single"></span>
                 </div>
             </div> <textarea name="hab_single" id="hab_single" cols="110" rows="1" disabled></textarea></div>
-            
+
             <div class="linea"><div class="title__name"><input type="checkbox" id="rad_grupos"><p class="encabezado">Grupos o Familia con descuentos</p>
                 <div class="popup"><a class="icon-help-circled-alt mueve-derecha" href="#" id="id_grupo"></a>
-                    <span class="popuptext" id="grupo">Aqui es donde van los detalles</span>
+                    <span class="popuptext" id="grupo"></span>
                 </div>
                 </div>
                 <div id="todo">
@@ -94,13 +94,13 @@
 
             <div class="linea"><div class="title__name"><input type="checkbox" id="rad_suplementos"><p class="encabezado">Suplementos de alojamiento / Acommodation Supplements</p>
                 <div class="popup"><a class="icon-help-circled-alt mueve-derecha" href="#" id="id_supl"></a>
-                    <span class="popuptext" id="supl">Aqui es donde van los detalles</span>
+                    <span class="popuptext" id="supl"></span>
                 </div>
             </div> <textarea name="suplementos" id="suplementos" cols="110" rows="1" disabled></textarea></div>
             <div class="linea">
                 <div class="title__name"><input type="checkbox" id="rad_suplementos_eventos"><p class="encabezado">Suplemento de eventos/Events Suplement</p>
                     <div class="popup"><a class="icon-help-circled-alt mueve-derecha" href="#" id="id_event"></a>
-                    <span class="popuptext" id="event">Aqui es donde van los detalles</span>
+                    <span class="popuptext" id="event"></span>
                      </div>
                 </div>
                 <textarea name="eventos" id="eventos" cols="110" rows="1" disabled></textarea>
@@ -108,7 +108,7 @@
             <div class="linea">
                 <div class="title__name"><input type="checkbox" id="rad_cenas"><p class="encabezado">Suplementos de Plan Alimenticio / F&B Supplements</p>
                     <div class="popup"><a class="icon-help-circled-alt mueve-derecha" href="#" id="id_diner"></a>
-                        <span class="popuptext" id="diner">Aqui es donde van los detalles</span>
+                        <span class="popuptext" id="diner"></span>
                     </div>
                 </div>
                <div id="cen_ch">
@@ -125,7 +125,7 @@
                     <div class="title__name title__name-dercha">
                         <p class="supl"> Excepction</p>
                         <div class="popup"><a class="icon-help-circled-alt" href="#" id="id_red_except"></a>
-                            <span class="popuptext" id="red_except">Aqui es donde van los detalles</span>
+                            <span class="popuptext" id="red_except"></span>
                         </div>
                     </div>
                     <div class="ch_reduction">
@@ -135,22 +135,22 @@
                 <div class="encabezado-dr">
                     <div class="title__name"><input type="checkbox" id="rad_reduccion" class="rad_izquierda"><p class="titulo-start">Reducciones / Reductions</p>
                         <div class="popup"><a class="icon-help-circled-alt" href="#" id="id_red"></a>
-                            <span class="popuptext" id="red">Aqui es donde van los detalles</span>
+                            <span class="popuptext" id="red"></span>
                         </div>
                     </div><textarea name="reduccion" id="reduccion" cols="110" rows="1" disabled></textarea></div>
             </div>
             <div class="linea"><div class="title__name"><input type="checkbox" id="rad_ventas"><p class="encabezado">Venta anticipada / Advanced Offer</p>
                 <div class="popup"><a class="icon-help-circled-alt mueve-derecha" href="#" id="id_venta"></a>
-                    <span class="popuptext" id="venta">Aqui es donde van los detalles</span>
+                    <span class="popuptext" id="venta"></span>
                 </div>
             </div><textarea name="ventas" id="ventas" cols="110" rows="1" disabled></textarea></div>
             <div class="linea linea__flex mtop" >
-                <div class="buttom_l"><input type="button" value="Send" class="boton" id="bSubmit"></div>
+                <div class="buttom_l"><input type="button" value="Send" class="btn-3d" id="bSubmit"></div>
                 <div class="buttom_r">
-                    <button  onclick="exportTableToExcel('tblData')" class="boton" id="export_sell">Sell Table</button>
+                    <button  onclick="exportTableToExcel('tblData')" class="btn-3d" id="export_sell">Sell Table</button>
                 </div>
-                <div class="buttom_r">
-                    <button  onclick="exportTableToExcel('tblData_cost')" class="boton" id="export_cost">Cost Table</button>
+                <div class="buttom_rr">
+                    <button  onclick="exportTableToExcel('tblData_cost')" class="btn-3d" id="export_cost">Cost Table</button>
                 </div>
             </div>
 
