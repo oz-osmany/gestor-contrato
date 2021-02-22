@@ -246,10 +246,24 @@ a {
 #cen_ch{
     display: none;
 }
+#cen_adult{
+    display: none;
+}
+#t-ch{
+    display: none;
+}
+#t-adult{
+    display: none;
+}
 .mueve-derecha{
     margin-left: 115px;
 }
-
+.margen-dr{
+    margin-right: 40px;
+}
+.margen-dr-title{
+    margin-right: 75px;
+}
 
 /* Popup container */
 .popup {
