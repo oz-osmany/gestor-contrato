@@ -1,10 +1,12 @@
 const express=require("express");
 const bodyParser=require("body-parser");
+const compression=require("compression");
 const path=require("path");
 const fs=require("fs");
 const pdfparse=require("pdf-parse");
 //@import url(leer_archivos/node_modules/normalize.css);
 const app=express();
+app.use(compression());
 //app.set("view engine","ejs");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extends:true}));
@@ -727,7 +729,11 @@ app.post("/new",(req,resp)=> {
                                 }else{
                                     if(reduct[i]==="100"){
                                         reducc[ii]+="Free ";
-                                    }else {
+                                    }
+                                    if (reduct[i]==="N/A"){
+                                        reducc[ii]+="N/A ";
+                                    }
+                                    //else {
                                         if(reduct[i]==="50"){
                                             reducc[ii]+=Math.round((ser*reduct[i]/100)*(1+mups))+" ";
                                         }else{
@@ -735,7 +741,7 @@ app.post("/new",(req,resp)=> {
 
                                         }
 
-                                    }
+                                    //}
                                 }
                             }
                         }else {

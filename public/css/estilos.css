@@ -42,7 +42,7 @@ body {
 }
 
 .container {
-    width: 97%;
+    //width: 97%;
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -73,7 +73,7 @@ body {
 #reductions{
     width: 10px;
     float: right;
-    margin-right: 55px;
+    margin-right: 45px;
 }
 #suplements{
     width: 10px;
@@ -172,7 +172,7 @@ input{
 }
 .red{
 
-    margin-right: 15px;
+    margin-right: 2px;
 }
 
 .linea{
@@ -183,6 +183,13 @@ input{
 }
 .ch_exception{
     left:0;
+}
+.footer{
+   position: relative;
+    width: 100%;
+    margin-top: 20px;
+    height: 100px;
+    background-color: #333333;
 }
 td{
 //border: 2px solid black;
@@ -219,7 +226,7 @@ td{
     left: 370px;
 }
 .mtop{
-    margin-top: 20px;
+    margin: 20px;
 }
 
 .incorrecto {
@@ -240,7 +247,7 @@ a {
     display: none;
 }
 .mueve-derecha{
-    margin-left: 150px;
+    margin-left: 115px;
 }
 
 
