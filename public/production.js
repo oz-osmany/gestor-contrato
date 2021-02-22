@@ -10,7 +10,6 @@ check_mup.addEventListener("change", ()=>{
     let mup=document.querySelector("#mup");
     if (check_mup.checked==true){
         mup.disabled=false;
-
     }
     else {
         mup.disabled=true;
@@ -83,17 +82,26 @@ check_supl.addEventListener("change", ()=>{
 
 });
 
-//Habilitar y deshabilitar cenas
+//Habilitar y deshabilitar cenas children
 const check_cena=document.querySelector("#rad_cenas");
 check_cena.addEventListener("change", ()=>{
 
-    let cenas=document.getElementById("cen_ch");
+    let cenas_ch=document.getElementById("cen_ch");
+    let cenas_adult=document.getElementById("cen_adult");
+    let t_adult=document.getElementById("t-adult");
+    let t_ch=document.getElementById("t-ch");
     if (check_cena.checked==true){
-        cenas.style.display="block";
+        cenas_ch.style.display="block";
+        cenas_adult.style.display="block";
+        t_adult.style.display="block";
+        t_ch.style.display="block";
         //cenas.setAttribute("rows" ,"10");
     }
     else {
-        cenas.style.display="none";
+        cenas_ch.style.display="none";
+        cenas_adult.style.display="none";
+        t_adult.style.display="none";
+        t_ch.style.display="none";
         /*cenas.value="";
         cenas.setAttribute("rows" ,"1");*/
     }
@@ -316,6 +324,8 @@ const submit= document.querySelector("#bSubmit");
                 let suplements=document.querySelector("#suplementos").value;
                 let diner24=document.querySelector("#v24").value;
                 let diner31=document.querySelector("#v31").value;
+                let diner24_ad=document.querySelector("#av24").value;
+                let diner31_ad=document.querySelector("#av31").value;
                 let reduction=document.querySelector("#reduccion").value;
                 let ventas=document.querySelector("#ventas").value;
                 let eventos=document.querySelector("#eventos").value;
@@ -344,8 +354,9 @@ const submit= document.querySelector("#bSubmit");
                     method: "POST",
                     headers: {"Content-type":"application/json"},
                     body:JSON.stringify({name,fechas,releases,service
-                        ,suplements,diner24,diner31,reduction,ventas,supl_num
-                        ,red_num,red_sel_num,eventos,cupo,mups,rates,singles,red_3,red_4,red_5,red_6,map})
+                        ,suplements,diner24,diner31,diner24_ad,diner31_ad,reduction,ventas,supl_num
+                        ,red_num,red_sel_num,eventos,cupo,mups,rates,singles
+                        ,red_3,red_4,red_5,red_6,map})
                 })
                     .then(resp =>resp.text())
                     .then(data =>{

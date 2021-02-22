@@ -45,6 +45,8 @@ app.post("/new",(req,resp)=> {
     let suplements = req.body.suplements;
    let diner24 = req.body.diner24;
     let diner31 = req.body.diner31;
+    let diner24_ad = req.body.diner24_ad;
+    let diner31_ad = req.body.diner31_ad;
     let reduction = req.body.reduction;
     let venta = req.body.ventas;
     let ch_red=req.body.red_num;
@@ -206,7 +208,6 @@ app.post("/new",(req,resp)=> {
             fch++;
         }
 
-        //console.log(t[a]);
     }
 
     let release = new Array(8);
@@ -295,7 +296,7 @@ app.post("/new",(req,resp)=> {
         corrige[cont]="";
         corrige1[cont]="";
         corrige2[cont]="";
-        if(diner24!="" || diner31!=""){
+        if(diner24_ad!="" || diner31_ad!=""){
             //Se dividen en tres parte la cadena para insertar los valores segun las nuevas fechas
             if(fch>0){
 
@@ -347,13 +348,13 @@ app.post("/new",(req,resp)=> {
             }
 
             st[ii]+=service[i][ii]+" ";
-            if(diner24!="" ||diner31!=""){
+            if(diner24_ad!="" || diner31_ad!=""){
                 if (ii===2){
-                    st_mup[ii]+=Math.round((parseInt(service[i][ii])+parseInt(diner24))*(1+mups))+" ";
+                    st_mup[ii]+=Math.round((parseInt(service[i][ii])+parseInt(diner24_ad))*(1+mups))+" ";
 
                 }else{
                     if (ii===4){
-                        st_mup[ii]+=Math.round((parseInt(service[i][ii])+parseInt(diner31))*(1+mups))+" ";
+                        st_mup[ii]+=Math.round((parseInt(service[i][ii])+parseInt(diner31_ad))*(1+mups))+" ";
                     }else{
                         st_mup[ii]+=Math.round(parseInt(service[i][ii])+(service[i][ii]*mups))+" ";
                     }
@@ -440,7 +441,7 @@ app.post("/new",(req,resp)=> {
             corrige1[cont] = "";
             corrige2[cont] = "";
             //Se dividen en tres parte la cadena para insertar los valores segun las nuevas fechas
-            if(diner24!="" || diner31!=""){
+            if(diner24_ad!="" || diner31_ad!=""){
                 if (fch > 0) {
 
                     for (let e = 2; e < service.length; e++) {
@@ -493,13 +494,13 @@ app.post("/new",(req,resp)=> {
                     if (suply[e].match("%")) {
                         supls[ii] += Math.round((ser + (ser * sup / 100))) + " ";
                         //Seguir con esto para poner los precios por cenas segun la fecha
-                        if (diner24!="" || diner31!=""){
+                        if(diner24_ad!="" || diner31_ad!=""){
                             if (ii === 2) {
-                                supl_mup[ii] += Math.round(((ser + (ser * sup / 100)) + parseInt(diner24)) * (1 + mups)) + " ";
+                                supl_mup[ii] += Math.round(((ser + (ser * sup / 100)) + parseInt(diner24_ad)) * (1 + mups)) + " ";
 
                             } else {
                                 if (ii === 4) {
-                                    supl_mup[ii] += Math.round(((ser + (ser * sup / 100)) + parseInt(diner31)) * (1 + mups)) + " ";
+                                    supl_mup[ii] += Math.round(((ser + (ser * sup / 100)) + parseInt(diner31_ad)) * (1 + mups)) + " ";
                                 } else {
                                     supl_mup[ii] += Math.round((ser + (ser * sup / 100)) * (1 + mups)) + " ";
                                 }
@@ -515,7 +516,7 @@ app.post("/new",(req,resp)=> {
                         if (suply[e].match("%")) {
                             supls[ii] += Math.round((ser + (ser * sup / 100))) + " ";
                             //para poner los precios por cenas segun la fecha
-                            if(diner24!="" ||diner31!=""){
+                            if(diner24_ad!="" || diner31_ad!=""){
                                 if (ii === 2) {
                                     supl_mup[ii] += Math.round(((sup + ser) + parseInt(diner24)) * (1 + mups)) + " ";
 
@@ -717,25 +718,61 @@ app.post("/new",(req,resp)=> {
                         reduc[ii] += Math.round(((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+" ";
                         let reemp=((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3;
                         //Para recoger los valores para cenas segun la fecha
-                        if(diner24!="" ||diner31!=""){
+                        if(diner24_ad!="" || diner31_ad!=""){
                             if (ii===2){
-                                reducc[ii]+=Math.round(((((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+(parseInt(diner24)))*(1+mups))+" ";
+                                if (cont===0){
+                                    //Para las cenas de los niños
+                                    reducc[ii]+=Math.round(((ser*reduct[i]/100)+(parseInt(diner24)))*(1+mups))+" ";
+                                    //reducc[ii]+=Math.round(((((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+(parseInt(diner24)))*(1+mups))+" ";
+                                }else{
+                                    //Para las cenas de los adultos
+                                    reducc[ii]+=Math.round(((((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+(parseInt(diner24_ad)))*(1+mups))+" ";
+
+                                }
 
                             }else{
                                 if (ii===4){
-                                    reducc[ii]+=Math.round(((((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+(parseInt(diner31)))*(1+mups))+" ";
+                                    if (cont===0){
+                                        //Para las cenas de los niños
+                                        reducc[ii]+=Math.round(((ser*reduct[i]/100)+(parseInt(diner31)))*(1+mups))+" ";
+                                        //reducc[ii]+=Math.round(((((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+(parseInt(diner31)))*(1+mups))+" ";
+                                    }else{
+                                        //Para las cenas de los adultos
+                                        reducc[ii]+=Math.round(((((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+(parseInt(diner31_ad)))*(1+mups))+" ";
+
+                                    }
+
                                 }else{
-                                    if(reduct[i]==="100"){
+                                    switch (reduct[i]){
+                                        case "100":
+                                            reducc[ii]+="Free ";
+                                            break;
+                                        case "50":
+                                            reducc[ii]+=Math.round((ser*reduct[i]/100)*(1+mups))+" ";
+                                            break;
+                                        case "N/A":
+                                            reducc[ii]+="N/A ";
+                                            break;
+                                        default:
+                                            reducc[ii]+=Math.round((((ser * 2) + (ser - (reduct[i] * ser) / 100)) *(1+mups))/ 3)+" ";
+
+                                    }
+                                    /*if(reduct[i]==="100"){
                                         reducc[ii]+="Free ";
                                     }else {
                                         if(reduct[i]==="50"){
                                             reducc[ii]+=Math.round((ser*reduct[i]/100)*(1+mups))+" ";
+                                        }
+                                        if(reduct[i]==="N/A"){
+                                            reducc[ii]+="N/A ";
                                         }else{
                                             reducc[ii]+=Math.round((((ser * 2) + (ser - (reduct[i] * ser) / 100)) *(1+mups))/ 3)+" ";
 
                                         }
+                                    }*/
 
-                                    }
+
+
                                 }
                             }
                         }else {
@@ -803,14 +840,16 @@ app.post("/new",(req,resp)=> {
 
                         if (red_6!=""){
                             divide=6;
-                            if(diner24!="" || diner31!=""){
+                            if(diner24_ad!="" || diner31_ad!=""){
                                 if(e===2){
-                                    child[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4)))+(gr[i]-(gr[i]*red_5))+(gr[i]-(gr[i]*red_6)))+((parseInt(diner24))*6))*(1+mups))/divide);
-                                    child_cost[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4)))+(gr[i]-(gr[i]*red_5))+(gr[i]-(gr[i]*red_6)))+((parseInt(diner24))*6)))/divide);
+
+
+                                    child[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4)))+(gr[i]-(gr[i]*red_5))+(gr[i]-(gr[i]*red_6)))+((parseInt(diner24_ad))*6))*(1+mups))/divide);
+                                    child_cost[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4)))+(gr[i]-(gr[i]*red_5))+(gr[i]-(gr[i]*red_6)))+((parseInt(diner24_ad))*6)))/divide);
                                 }else{
                                     if (e===4){
-                                        child[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4)))+(gr[i]-(gr[i]*red_5))+(gr[i]-(gr[i]*red_6)))+((parseInt(diner31))*6))*(1+mups))/divide);
-                                        child_cost[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4)))+(gr[i]-(gr[i]*red_5))+(gr[i]-(gr[i]*red_6)))+((parseInt(diner31))*6)))/divide);
+                                        child[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4)))+(gr[i]-(gr[i]*red_5))+(gr[i]-(gr[i]*red_6)))+((parseInt(diner31_ad))*6))*(1+mups))/divide);
+                                        child_cost[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4)))+(gr[i]-(gr[i]*red_5))+(gr[i]-(gr[i]*red_6)))+((parseInt(diner31_ad))*6)))/divide);
                                     }
                                     else{
                                         child[e][i]=""+Math.round(((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4)))+(gr[i]-(gr[i]*red_5))+(gr[i]-(gr[i]*red_6)))*(1+mups))/divide);
@@ -827,14 +866,14 @@ app.post("/new",(req,resp)=> {
                         }
                         if(red_5!=""){
                             divide=5;
-                            if(diner24!="" || diner31!=""){
+                            if(diner24_ad!="" || diner31_ad!=""){
                                 if(e===2){
-                                  adult[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4)))+(gr[i]-(gr[i]*red_5)))+((parseInt(diner24))*5))*(1+mups))/divide);
-                                  adult_cost[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4)))+(gr[i]-(gr[i]*red_5)))+((parseInt(diner24))*5)))/divide);
+                                  adult[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4)))+(gr[i]-(gr[i]*red_5)))+((parseInt(diner24_ad))*5))*(1+mups))/divide);
+                                  adult_cost[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4)))+(gr[i]-(gr[i]*red_5)))+((parseInt(diner24_ad))*5)))/divide);
                                 }else{
                                     if (e===4){
-                                        adult[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4)))+(gr[i]-(gr[i]*red_5)))+((parseInt(diner31))*5))*(1+mups))/divide);
-                                        adult_cost[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4)))+(gr[i]-(gr[i]*red_5)))+((parseInt(diner31))*5)))/divide);
+                                        adult[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4)))+(gr[i]-(gr[i]*red_5)))+((parseInt(diner31_ad))*5))*(1+mups))/divide);
+                                        adult_cost[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4)))+(gr[i]-(gr[i]*red_5)))+((parseInt(diner31_ad))*5)))/divide);
                                     }
                                     else{
                                         adult[e][i]=""+Math.round(((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4)))+(gr[i]-(gr[i]*red_5)))*(1+mups))/divide);
@@ -849,14 +888,14 @@ app.post("/new",(req,resp)=> {
                         }
                         if(red_4!=""){
                             divide=4;
-                            if(diner24!="" || diner31!=""){
+                            if(diner24_ad!="" || diner31_ad!=""){
                                 if(e===2){
-                                    supl_mup[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4))))+((parseInt(diner24))*4))*(1+mups))/divide);
-                                    supls[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4))))+((parseInt(diner24))*4)))/divide);
+                                    supl_mup[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4))))+((parseInt(diner24_ad))*4))*(1+mups))/divide);
+                                    supls[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4))))+((parseInt(diner24_ad))*4)))/divide);
                                 }else{
                                     if (e===4){
-                                        supl_mup[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4))))+((parseInt(diner31))*4))*(1+mups))/divide);
-                                        supls[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4))))+((parseInt(diner31))*4)))/divide);
+                                        supl_mup[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4))))+((parseInt(diner31_ad))*4))*(1+mups))/divide);
+                                        supls[e][i]=""+Math.round((((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4))))+((parseInt(diner31_ad))*4)))/divide);
                                     }
                                     else{
                                         supl_mup[e][i]=""+Math.round((((gr[i]*2)+(gr[i]-(gr[i]*red_3))+(gr[i]-(gr[i]*red_4)))*(1+mups))/divide);
@@ -871,14 +910,14 @@ app.post("/new",(req,resp)=> {
                         }
                         if(red_3!=""){
                             divide=3;
-                            if(diner24!="" || diner31!=""){
+                            if(diner24_ad!="" || diner31_ad!=""){
                                 if(e===2){
-                                    st_mup[e][i]=""+Math.round(((((gr[i]*2)+(gr[i]-(gr[i]*red_3)))+((parseInt(diner24))*4))*(1+mups))/divide);
-                                    st[e][i]=""+Math.round(((((gr[i]*2)+(gr[i]-(gr[i]*red_3)))+((parseInt(diner24))*4)))/divide);
+                                    st_mup[e][i]=""+Math.round(((((gr[i]*2)+(gr[i]-(gr[i]*red_3)))+((parseInt(diner24_ad))*4))*(1+mups))/divide);
+                                    st[e][i]=""+Math.round(((((gr[i]*2)+(gr[i]-(gr[i]*red_3)))+((parseInt(diner24_ad))*4)))/divide);
                                 }else{
                                     if (e===4){
-                                        st_mup[e][i]=""+Math.round(((((gr[i]*2)+(gr[i]-(gr[i]*red_3)))+((parseInt(diner31))*4))*(1+mups))/divide);
-                                        st[e][i]=""+Math.round(((((gr[i]*2)+(gr[i]-(gr[i]*red_3)))+((parseInt(diner31))*4)))/divide);
+                                        st_mup[e][i]=""+Math.round(((((gr[i]*2)+(gr[i]-(gr[i]*red_3)))+((parseInt(diner31_ad))*4))*(1+mups))/divide);
+                                        st[e][i]=""+Math.round(((((gr[i]*2)+(gr[i]-(gr[i]*red_3)))+((parseInt(diner31_ad))*4)))/divide);
                                     }
                                     else{
                                         st_mup[e][i]=""+Math.round((((gr[i]*2)+(gr[i]-(gr[i]*red_3)))*(1+mups))/divide);
