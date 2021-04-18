@@ -1,0 +1,51 @@
+.h3, h3 {
+    font-size: 1.75rem;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin-bottom: .5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: inherit;
+}
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: .5rem;
+}
+h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+.text-center {
+    text-align: center!important;
+}
+.title__name{
+    display: flex;
+    margin-top: 15px;
+}
+.title__name-dercha{
+    justify-content: flex-end;
+}
+.titulo-top{
+    padding-top: 7px;
+}
+.encabezado{
+    position: relative;
+    left: 2px;
+}
+.encabezado-iz{
+    display: block;
+    width: 115px;
+}
+#titulo-start-v{
+    display: none;
+}
+i {
+    font-style: italic;
+    color: red;
+}

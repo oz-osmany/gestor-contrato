@@ -1,0 +1,870 @@
+{{#if message}}
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-md-4 mx-auto">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/if}}
+<div class="container container__flex">
+
+    <div class="cuerpo">
+       
+      <div class="linea linea__flex">
+            <div class="encabezado-iz">
+            </div>
+            <div class="encabezado-dr">
+                <div class="mar-top50">
+                    <div>
+                        <h6 class="encabezado"><i>*</i>Name</h6>
+                    </div>
+                    
+                    <div class="encabezado-float-name">
+                        <h6 class="encabezado"><i>*</i>Rates</h6>
+                    </div>
+                    
+                </div>
+                <div class="linea linea__flex">
+                    <div>
+                      <input type="text" name="nombre" id="nombre" required>  
+                    </div>
+                    <div class="encabezado-float-r">
+                         <input type="text" name="rates" id="rates" size="40" required>
+                    </div>
+                   
+                </div>
+
+            </div>
+        </div>
+        <!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Aqui estan las fechas xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+        <div class="linea linea__flex mar-top">
+            <div class="encabezado-iz">
+                <div class="bloque">
+                    <h6 class="fecha"> From:</h6>
+                    <h6 class="fecha"> To:</h6>
+                </div>
+            </div>
+            <div class="encabezado-dr">
+                <div class="title__name"><h6 class="titulo-start"><i>*</i>Seasons(dd/mm/aa)</h6>
+                    <div class="popup"><a class="icon-help-circled-alt" href="#" id="id_fecha"></a>
+                        <span class="popuptext" id="myPopup"></span>
+                    </div>
+                </div><textarea name="fechas" id="fechas" cols="110" rows="3" required></textarea></div>
+
+        </div>
+        <!--xxxxxxxxxxxxxxxxxxxxxxxxxx Aqui estan los planes y el MUP xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+        <div class="linea linea__flex mar-top">
+            <div class="encabezado-iz"></div>
+            <div class="encabezado-dr linea__flex">
+                <div class="bloque-iz">
+                    <div class="linea__flex mar-top">
+                        <input type="checkbox" id="rad_mup" name="rad_mup" class="radio_plan_map"><h6 class="encabezado">Mup</h6>
+
+                    </div>
+                    <input type="text" name="mup" id="mup"  size="2" class="encabezado-bl" disabled>
+                </div>
+                
+                <div class="bloque-cent">
+                    <div class="linea__flex mar-top">
+                        <input type="checkbox" id="rad_ti" class="radio_plan"><h6 class="encabezado">TI</h6>
+                        <input type="checkbox" id="rad_cp" class="radio_plan_cp"><h6 class="encabezado">CP</h6>
+                        <input type="checkbox" id="rad_eb" class="radio_plan_cp"><h6 class="encabezado">EP</h6>
+
+                    </div>
+                        <!--<input type="text" name="map" id="ti" class="encabezado-map" size="2" disabled>
+                        <input type="text" name="map" id="cp" class="encabezado-map" size="2" disabled>
+                        <input type="text" name="map" id="eb" class="encabezado-map" size="2" disabled>-->
+                        <h6 class="text-center mar-top30">Basic Plan</h6>
+                </div>
+                <div class="bloque-dr">
+                    <div class="linea__flex mar-top">
+                        <input type="checkbox" id="rad_map" class="radio_plan_map"><h6 class="encabezado">MAP</h6>
+                        <input type="checkbox" id="rad_fb" class="radio_plan_fb"><h6 class="encabezado">FB</h6>
+
+                    </div>
+                        <input type="text" name="map" id="map" class="encabezado-bl" size="2" disabled>
+                        <input type="text" name="map" id="fb" class="encabezado-bl" size="2" disabled>
+                        <h6 class="text-center mar-top5">Middle Plan</h6>
+                </div>
+
+            </div>
+
+        </div>
+        <!--xxxxxxxxxxxxxxxxxxxxxxxx Aqui va release y cupos xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+
+        
+        <div class="linea linea__flex">
+            <div class="encabezado-iz"></div>
+            <div class="encabezado-dr">
+                <div class="title__name">
+                    <input type="checkbox" id="rad_release"><h6 class="encabezado">Release</h6>
+                </div><input type="text" name="release" id="release" disabled>
+            </div>
+            </div>
+
+        <div class="linea linea__flex">
+            <div class="encabezado-iz"></div>
+            <div class="encabezado-dr">
+                <div class="title__name">
+                    <input type="checkbox" id="rad_cupos"><h6 class="encabezado">Cupos / Allotment</h6>
+                </div>
+                <div class="linea">
+                    <textarea name="cupos" id="cupos" cols="110" rows="1" disabled></textarea>
+                </div>
+
+            </div>
+
+        </div>
+        <!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxx Aqui empieza la parte de las habitaciones xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+        <div class="linea linea__flex">
+            <div class="encabezado-iz"></div>
+            <div class="encabezado-dr">
+                <div class="mar-top">
+
+                    <input type="radio" id="nom_hab"
+                           name="contact" value="Rooms" class="mar-iz" checked>
+                    <label for="nom_hab" >Rooms</label>
+                    <input type="radio" id="val_hab"
+                           name="contact" value="Rooms" class="mar-iz">
+                    <label for="val_hab" >Values</label>
+                </div>
+            </div>
+
+        </div>
+        <div class="linea linea__flex">
+            <div class="encabezado-iz" >
+                <div class="title__name title__name-dercha">
+                    <h6 class="red" id="red">Red</h6>
+                    <div class="popup"><a class="icon-help-circled-alt" href="#" id="id_exceps"></a>
+                        <span class="popuptext" id="exceps"></span>
+                    </div>
+                    <h6 class="supl" id="supl"> Supl</h6>
+                </div>
+                <div class="ch_service">
+                    <div id="suplements"></div>
+                    <div id="reductions"></div>
+                </div>
+            </div>
+
+
+            <div >
+
+                <div class="encabezado-dr ">
+                    <div class="title__name"><h6 id="titulo-start-n"><i>*</i>Nombre de las habitaciones</h6>
+                        <h6 id="titulo-start-v"><i>*</i>Valores de las habitaciones</h6>
+                        <div class="popup">
+                            <a class="icon-help-circled-alt" href="#" id="id_stay_n"></a>
+                            <a class="icon-help-circled-alt" href="#" id="id_stay_v"></a>
+                            <span class="popuptext" id="stay_n"></span>
+                        </div>
+                    </div><textarea name="servicios" id="servicios" cols="110" rows="15" required></textarea>
+                </div>
+                <div class="encabezado-dr">
+
+
+                    <table id="tabla_hab" class="tablaStyle" size="2">
+                        <thead>
+                        <tr id="dates">
+
+                        </tr>
+                        </thead>
+                        <tbody id="body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <!--xxxxxxxxxxxxxxxxxxxxxxxxxxxx Aqui estan las habitaciones sencillas xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+        <div class="linea linea__flex">
+            <div class="encabezado-iz"></div>
+            <div class="encabezado-dr">
+                <div class="title__name">
+                    <input type="checkbox" id="rad_single"><h6 class="encabezado">Habitacion sencilla / Single Use</h6>
+                    <div class="popup"><a class="icon-help-circled-alt mueve-derecha" href="#" id="id_single"></a>
+                        <span class="popuptext" id="single"></span>
+                    </div>
+                </div>
+                <div class="linea">
+                    <textarea name="hab_single" id="hab_single" cols="110" rows="1" disabled></textarea>
+
+                </div>
+            </div>
+
+        </div>
+        <!--xxxxxxxxxxxxxxxxxxxxxxxxxx Aqui estas los descuentos para las familias o grupos xxxxxxxxxxxxxxxxxxxxx-->
+        <div class="linea linea__flex">
+            <div class="encabezado-iz"></div>
+            <div class="encabezado-dr">
+                <div class="title__name">
+                    <input type="checkbox" id="rad_grupos"><h6 class="encabezado">Grupos o Familia con descuentos</h6>
+                    <div class="popup">
+                        <a class="icon-help-circled-alt mueve-derecha" href="#" id="id_grupo"></a>
+                        <span class="popuptext" id="grupo"></span>
+                    </div>
+                </div>
+                <div id="todo">
+                    <div class="linea">
+                        <input type="text" size="1" value="3" id="cap_3"><input type="text" size="1" value="4" id="cap_4"><input type="text" size="1" value="5" id="cap_5"><input type="text" size="1" value="6" id="cap_6">
+                    </div>
+                    <div class="linea">
+                        <input type="text" size="1" id="red_3"><input type="text" size="1" id="red_4"><input type="text" size="1" id="red_5"><input type="text" size="1" id="red_6">
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <!--xxxxxxxxxxxxxxxxxxxx Aqui estan los suplementos de alojamiento xxxxxxxxxxxxxxxxxxxx-->
+        <div class="linea linea__flex">
+            <div class="encabezado-iz"></div>
+            <div class="encabezado-dr">
+                <div class="title__name">
+                    <input type="checkbox" id="rad_suplementos"><h6 class="encabezado">Suplementos de alojamiento / Acommodation Supplements</h6>
+                    <div class="popup"><a class="icon-help-circled-alt mueve-derecha" href="#" id="id_supl"></a>
+                        <span class="popuptext" id="supl_ayuda"></span>
+                    </div>
+                </div>
+                <div class="linea">
+                   <!-- <textarea name="suplementos" id="suplementos" cols="115" rows="1" disabled></textarea>-->
+                    <table id="tabla_supl" class="tablaStyle" size="2">
+                        <thead>
+                        <tr id="dates_supl">
+
+                        </tr>
+                        </thead>
+                        <tbody id="body_supl">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <!--xxxxxxxxxxxxxxxxxxxxxxxx Aqui estan los suplementos de eventos xxxxxxxxxxxxxxxxxxx-->
+        <div class="linea linea__flex">
+            <div class="encabezado-iz"></div>
+            <div class="encabezado-dr">
+                <div class="title__name">
+                    <input type="checkbox" id="rad_suplementos_eventos"><h6 class="encabezado">Suplemento de eventos/Events Suplement</h6>
+                    <div class="popup"><a class="icon-help-circled-alt mueve-derecha" href="#" id="id_event"></a>
+                        <span class="popuptext" id="event"></span>
+                    </div>
+                </div>
+                <div class="linea">
+                    <textarea name="eventos" id="eventos" cols="110" rows="1" disabled></textarea>
+
+                </div>
+            </div>
+
+        </div>
+        <!--xxxxxxxxxxxx Aqui estan los suplementos de alimentacion xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+        <div class="linea linea__flex">
+            <div class="encabezado-iz"></div>
+            <div class="encabezado-dr">
+                <div class="title__name">
+                    <input type="checkbox" id="rad_cenas"><h6 class="encabezado">Suplementos de Plan Alimenticio / F&B Supplements</h6>
+                    <div class="popup"><a class="icon-help-circled-alt mueve-derecha" href="#" id="id_diner"></a>
+                        <span class="popuptext" id="diner"></span>
+                    </div>
+                </div>
+                <div class="title__name">
+                    <h6 id="t-adult" class="encabezado margen-dr-title">Adults</h6>
+                    <h6 id="t-ch" class="encabezado">Children</h6>
+                </div>
+                <div class="linea__flex">
+                    <div id="cen_adult" class="margen-dr">
+                        <div class="linea">
+                            <input type="text" size="1" name="ac24" value="24/12" id="ac24" disabled><input type="text" size="1" value="31/12" name="c31" id="ac31" disabled>
+                        </div>
+                        <div class="linea">
+                            <input type="text" size="1" name="av24" id="av24"><input type="text" size="1" name="v31" id="av31">
+                        </div>
+                    </div>
+                    <div id="cen_ch">
+                        <div class="linea">
+                            <input type="text" size="1" name="c24" value="24/12" id="c24" disabled><input type="text" size="1" value="31/12" name="c31" id="c31" disabled>
+                        </div>
+                        <div class="linea">
+                            <input type="text" size="1" name="v24" id="v24"><input type="text" size="1" name="v31" id="v31">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="linea linea__flex">
+            <div class="encabezado-iz">
+                <div class="title__name title__name-dercha">
+                    <h6 > Excepction</h6>
+                    <div class="popup"><a class="icon-help-circled-alt" href="#" id="id_red_except"></a>
+                        <span class="popuptext" id="red_except"></span>
+                    </div>
+                </div>
+                <div class="ch_reduction">
+                    <div id="red_select"></div>
+                </div>
+            </div>
+            <!--xxxxxxxxxxxxxx Aqui estan las reducciones xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+            <div class="encabezado-dr">
+                <div class="title__name"><input type="checkbox" id="rad_reduccion" class="rad_izquierda"><h6 class="titulo-start">Reducciones / Reductions</h6>
+                    <div class="popup"><a class="icon-help-circled-alt" href="#" id="id_red_ayuda"></a>
+                        <span class="popuptext" id="red_ayuda"></span>
+                    </div>
+                </div><textarea name="reduccion" id="reduccion" cols="110" rows="1" disabled></textarea></div>
+        </div>
+        <!--xxxxxxxxxxxxxxxxxxxxxx Aqui estan los EB xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+        <div class="linea linea__flex">
+            <div class="encabezado-iz"></div>
+            <div class="encabezado-dr">
+                <div class="title__name">
+                    <input type="checkbox" id="rad_ventas"><h6 class="encabezado">Venta anticipada1 / Advanced Offer</h6>
+                    <div class="popup"><a class="icon-help-circled-alt mueve-derecha" href="#" id="id_venta"></a>
+                        <span class="popuptext" id="venta"></span>
+                    </div>
+                </div>
+                <div class="linea">
+                    <textarea name="ventas" id="ventas" cols="110" rows="1" disabled></textarea>
+
+                </div>
+            </div>
+
+        </div>
+        <!--xxxxxxxxxxxxxxxxxxxxxxx Aqui van las descripciones opcionales xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+        <div class="linea linea__flex">
+            <div class="encabezado-iz"></div>
+            <div class="encabezado-dr">
+                <div class="title__name">
+                    <input type="checkbox" id="rad_description"><h6 class="encabezado">Descripciones opcionales / Optional descriptions</h6>
+                    <div class="popup"><a class="icon-help-circled-alt mueve-derecha" href="#" id="id_description"></a>
+                        <span class="popuptext" id="description"></span>
+                    </div>
+                </div>
+                <div class="linea">
+                    <textarea name="ventas" id="descriptions" cols="110" rows="1" disabled></textarea>
+
+                </div>
+            </div>
+
+        </div>
+        <!--xxxxxxxxxxxxxxx Aqui se ponen los impuestos xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+        <div class="linea linea__flex">
+            <div class="encabezado-iz"></div>
+            <div class="encabezado-dr">
+                <div class="title__name">
+                    <input type="checkbox" id="rad_iva" ><h6 class="encabezado">IVA</h6>
+                    <input type="checkbox" id="rad_ish" class="radio_plan_imp"><h6 class="encabezado">ISH</h6>
+                    <input type="checkbox" id="rad_is" class="radio_plan_imp"><h6 class="encabezado">IS</h6>
+                </div>
+                <div class="linea__flex">
+                    <input type="text" name="map" id="iva"  size="2" disabled>
+                    <input type="text" name="map" id="ish" class="encabezado-imp" size="2" disabled>
+                    <input type="text" name="map" id="is" class="encabezado-imp" size="2" disabled>
+                </div>
+
+
+                <div class="title__name"></div>
+            </div>
+
+        </div>
+        <div class="linea linea__flex mtop" >
+            <div class="encabezado-iz"></div>
+            <div class="encabezado-dr linea__flex">
+                <div class="buttom_l"><input type="button" value="Send" class="btn-3d" id="bSubmit"></div>
+                <!--<div class="buttom_r">
+                    <button  onclick="exportTableToExcel('tblData')" class="btn-3d" id="export_sell">Sell Table</button>
+                </div>-->
+                <div class="buttom_rr">
+
+                    <button  class="btn-3d" id="export_cost" >To export</button>
+<!--                    onclick="exportarExcelv2()"-->
+
+                </div>
+            </div>
+<!--  exportarExcelv2();          exportTableToExcel('tblData_cost')-->
+        </div>
+
+        <!--        </form>-->
+    </div>
+    <!--    onclick="exportTableToExcel('tblData')"-->
+</div>
+<div class="footer">
+
+</div>
+<table id="tabla_sell">
+    <tr>
+        <td  colspan=5 rowspan=6 height="224" align="center" valign=middle><font face="Brush Script MT" size=7 ><br></font></td>
+        <td id="titulo_hotel" colspan=12 rowspan=2 align="center" valign=middle><b><font face="Trebuchet MS" size=5>HOTEL SOL PALMERAS (4*)</font></b></td>
+        <td  colspan=5 rowspan=7 align="left" valign=bottom><font face="Trebuchet MS"><br></font></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+        <td colspan=12 align="center" valign=middle><b><font face="Trebuchet MS" size=5 >SPECIAL OFFER</font></b></td>
+    </tr>
+    <tr>
+        <td id="rate_hotel" colspan=12 rowspan=2 align="center" valign=middle><b><font face="Trebuchet MS" size=4> RATES Winter 2021/22+ Summer 2022</font></b></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+        <td colspan=12 align="center" valign=bottom><b><font face="Trebuchet MS" size=4>All Rates per night per person in USD</font></b></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr id="stays">
+        <td height="32" align="center" valign=middle><b><font face="Trebuchet MS" size=3>HOTEL</font></b></td>
+        <td align="center" valign=bottom><b><font face="Trebuchet MS" size=3>Cat.</font></b></td>
+
+    </tr>
+    <tr>
+        <td id="name_hotel" rowspan=4 height="120" align="center" valign=middle><b><font face="Trebuchet MS" size=3>SOL PALMERAS</font></b></td>
+        <td  rowspan=4 align="center" valign=middle><b><font face="Trebuchet MS">4*</font></b></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr id="rate_p_night">
+
+    </tr>
+    <tr id="tipo_habitacion">
+
+    </tr>
+
+    <tr>
+        <td  rowspan=2 height="58" align="center" valign=middle style="background-color: #0b57d9"><b><font face="Trebuchet MS" size=3></font></b></td>
+
+    </tr>
+    <tr>
+
+    </tr>
+    <tr>
+        <td  height="29" align="left" valign=bottom><b><font face="Trebuchet MS"><br></font></b></td>
+
+    </tr>
+    <tr id="usd_1">
+        <td  height="31" align="left" valign=bottom><b><font face="Trebuchet MS" size=3>Winter 2021/22</font></b></td>
+        <td  align="left" valign=bottom><b><font face="Trebuchet MS" size=3><br></font></b></td>
+
+    </tr>
+
+    <tr>
+        <td  height="31" align="left" valign=bottom><font face="Trebuchet MS" size=3><br></font></td>
+
+    </tr>
+
+    <tr>
+        <td  height="31" align="left" valign=bottom><font face="Trebuchet MS" size=3><br></font></td>
+
+    </tr>
+    <tr id="half">
+        <td  height="31" align="left" valign=bottom><b><font face="Trebuchet MS" size=3>Halfboard Sup.</font></b></td>
+        <td  align="center" valign=bottom><b><font face="Trebuchet MS" size=3><br></font></b></td>
+
+    </tr>
+    <tr>
+        <td  height="32" align="left" valign=bottom><b><font face="Trebuchet MS" size=3>Children</font></b></td>
+        <td  align="center" valign=bottom><b><font face="Trebuchet MS" size=3><br></font></b></td>
+        <td  colspan=10 align="left" valign=bottom><font face="Trebuchet MS" size=3> </font></td>
+
+    </tr>
+    <tr>
+        <td  height="31" align="left" valign=bottom ><b><font face="Trebuchet MS" size=3>Notes:  </font></b></td>
+        <td  align="left" valign=bottom><font face="Arial" size=3><br></font></td>
+        <td  align="left" valign=bottom sdnum="3082;0;@" colspan="20"  id="notes"><font face="Trebuchet MS" size=3><br></font></td>
+        
+    </tr>
+    <tr>
+        <td  height="31" align="left" valign=bottom ><b><font face="Trebuchet MS" size=3>  </font></b></td>
+        <td  align="left" valign=bottom><font face="Arial" size=3 id="pos_eb">EB<br></font></td>
+        <td  align="left" valign=bottom sdnum="3082;0;@" colspan="20"  id="descripcion"><font face="Trebuchet MS" size=3><br></font></td>
+
+    </tr>
+
+</table>
+
+<table id="tabla_cost">
+    <tr>
+        <td  colspan=5 rowspan=6 height="224" align="center" valign=middle><font face="Brush Script MT" size=7 ><br></font></td>
+        <td id="titulo_hotel_c" colspan=12 rowspan=2 align="center" valign=middle><b><font face="Trebuchet MS" size=5></font></b></td>
+        <td  colspan=5 rowspan=7 align="left" valign=bottom><font face="Trebuchet MS"><br></font></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+        <td colspan=12 align="center" valign=middle><b><font face="Trebuchet MS" size=5 >SPECIAL OFFER</font></b></td>
+    </tr>
+    <tr>
+        <td id="rate_hotel_c" colspan=12 rowspan=2 align="center" valign=middle><b><font face="Trebuchet MS" size=4> </font></b></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+        <td colspan=12 align="center" valign=bottom><b><font face="Trebuchet MS" size=4>All Rates per night per person in USD</font></b></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr id="stays_c">
+        <td height="32" align="center" valign=middle><b><font face="Trebuchet MS" size=3>HOTEL</font></b></td>
+
+
+    </tr>
+    <tr>
+        <td id="name_hotel_c" rowspan=4 height="120" align="center" valign=middle><b><font face="Trebuchet MS" size=3></font></b></td>
+        <td  rowspan=4 align="center" valign=middle><b><font face="Trebuchet MS">4*</font></b></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr id="rate_p_night_c">
+
+    </tr>
+    <tr id="tipo_habitacion_c">
+
+    </tr>
+
+    <tr>
+        <td  rowspan=2 height="58" align="center" valign=middle ><b><font face="Trebuchet MS" size=3></font></b></td>
+
+    </tr>
+    <tr>
+        <td  align="left" valign=bottom><b><font face="Trebuchet MS"><br></font></b></td>
+
+    </tr>
+    <tr>
+        <td  height="29" align="left" valign=bottom><b><font face="Trebuchet MS"><br></font></b></td>
+        <td  align="left" valign=bottom><b><font face="Trebuchet MS"><br></font></b></td>
+
+    </tr>
+    <tr id="usd_1_c">
+        <td  height="31" align="left" valign=bottom><b><font face="Trebuchet MS" size=3>Winter 2021/22</font></b></td>
+        <!--<td  align="left" valign=bottom><b><font face="Trebuchet MS" size=3><br></font></b></td>-->
+
+    </tr>
+
+    <tr>
+        <td  height="31" align="left" valign=bottom><font face="Trebuchet MS" size=3><br></font></td>
+
+    </tr>
+
+    <tr>
+        <td  height="31" align="left" valign=bottom><font face="Trebuchet MS" size=3><br></font></td>
+
+    </tr>
+
+    <tr>
+        <td  height="31" align="left" valign=bottom><font face="Trebuchet MS" size=3><br></font></td>
+        <td  height="31" align="left" valign=bottom><font face="Trebuchet MS" size=3><br></font></td>
+
+    </tr>
+
+    <tr id="half_c">
+        <td  height="31" align="left" valign=bottom><b><font face="Trebuchet MS" size=3>Halfboard Sup.</font></b></td>
+        <td  align="center" valign=bottom><b><font face="Trebuchet MS" size=3><br></font></b></td>
+
+    </tr>
+    <tr>
+        <td  height="32" align="left" valign=bottom><b><font face="Trebuchet MS" size=3>Children</font></b></td>
+        <td  align="center" valign=bottom><b><font face="Trebuchet MS" size=3><br></font></b></td>
+        <td  colspan=10 align="left" valign=bottom><font face="Trebuchet MS" size=3>Rates for 1 child 2 to 13 years (incl.) sharing with 2 adults in extra bed. </font></td>
+        <td  align="center" valign=bottom><font face="Trebuchet MS" size=3><br></font></td>
+
+    </tr>
+    <tr>
+        <td  height="31" align="left" valign=bottom><b><font face="Trebuchet MS" size=3>Notes:  </font></b></td>
+        <td  align="left" valign=bottom><font face="Arial" size=3><br></font></td>
+        <td  align="left" valign=bottom sdnum="3082;0;@"><font face="Trebuchet MS" size=3><br></font></td>
+
+        <td  align="center" valign=bottom><b><font face="Trebuchet MS" size=3><br></font></b></td>
+    </tr>
+
+</table>
+<table id="tabla_eb1">
+    <tr>
+        <td  colspan=5 rowspan=6 height="224" align="center" valign=middle><font face="Brush Script MT" size=7 ><br></font></td>
+        <td id="titulo_hotel_eb" colspan=12 rowspan=2 align="center" valign=middle><b><font face="Trebuchet MS" size=5></font></b></td>
+        <td  colspan=5 rowspan=7 align="left" valign=bottom><font face="Trebuchet MS"><br></font></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+        <td colspan=12 align="center" valign=middle><b><font face="Trebuchet MS" size=5 >SPECIAL OFFER</font></b></td>
+    </tr>
+    <tr>
+        <td id="rate_hotel_eb" colspan=12 rowspan=2 align="center" valign=middle><b><font face="Trebuchet MS" size=4> </font></b></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+        <td colspan=12 align="center" valign=bottom><b><font face="Trebuchet MS" size=4>Price per night per person in USD</font></b></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr id="stays_eb">
+        <td height="32" align="center" valign=middle><b><font face="Trebuchet MS" size=3>HOTEL</font></b></td>
+        <!--<td align="center" valign=bottom><b><font face="Trebuchet MS" size=3>Cat.</font></b></td>-->
+
+    </tr>
+    <tr>
+        <td id="name_hotel_eb" rowspan=4 height="120" align="center" valign=middle><b><font face="Trebuchet MS" size=3></font></b></td>
+        <td  rowspan=4 align="center" valign=middle><b><font face="Trebuchet MS">4*</font></b></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr id="rate_p_night_eb">
+
+    </tr>
+    <tr id="tipo_habitacion_eb">
+
+    </tr>
+
+    <tr>
+        <td  rowspan=2 height="58" align="center" valign=middle ><b><font face="Trebuchet MS" size=3></font></b></td>
+
+    </tr>
+    <tr>
+        <td  align="left" valign=bottom><b><font face="Trebuchet MS"><br></font></b></td>
+
+    </tr>
+    <tr>
+        <td  height="29" align="left" valign=bottom><b><font face="Trebuchet MS"><br></font></b></td>
+        <td  align="left" valign=bottom><b><font face="Trebuchet MS"><br></font></b></td>
+
+    </tr>
+    <tr id="usd_1_eb">
+        <td  height="31" align="left" valign=bottom><b><font face="Trebuchet MS" size=3>Winter 2021/22</font></b></td>
+
+    </tr>
+
+    <tr>
+        <td  height="31" align="left" valign=bottom><font face="Trebuchet MS" size=3><br></font></td>
+
+    </tr>
+
+    <tr>
+        <td  height="31" align="left" valign=bottom><font face="Trebuchet MS" size=3><br></font></td>
+
+    </tr>
+
+    <tr>
+        <td  height="31" align="left" valign=bottom><font face="Trebuchet MS" size=3><br></font></td>
+        <td  height="31" align="left" valign=bottom><font face="Trebuchet MS" size=3><br></font></td>
+
+    </tr>
+
+    <tr id="half_eb">
+        <td  height="31" align="left" valign=bottom><b><font face="Trebuchet MS" size=3>Halfboard Sup.</font></b></td>
+        <td  align="center" valign=bottom><b><font face="Trebuchet MS" size=3><br></font></b></td>
+
+    </tr>
+    <tr>
+        <td  height="32" align="left" valign=bottom><b><font face="Trebuchet MS" size=3>Children</font></b></td>
+        <td  align="center" valign=bottom><b><font face="Trebuchet MS" size=3><br></font></b></td>
+        <td  colspan=10 align="left" valign=bottom><font face="Trebuchet MS" size=3>Rates for 1 child 2 to 13 years (incl.) sharing with 2 adults in extra bed. </font></td>
+        <td  align="center" valign=bottom><font face="Trebuchet MS" size=3><br></font></td>
+
+    </tr>
+    <tr>
+        <td  height="31" align="left" valign=bottom><b><font face="Trebuchet MS" size=3>Notes:  </font></b></td>
+        <td  align="left" valign=bottom><font face="Arial" size=3><br></font></td>
+        <td  align="left" valign=bottom sdnum="3082;0;@"><font face="Trebuchet MS" size=3><br></font></td>
+
+        <td  align="center" valign=bottom><b><font face="Trebuchet MS" size=3><br></font></b></td>
+    </tr>
+
+</table>
+<table id="tabla_eb2">
+    <tr>
+        <td  colspan=5 rowspan=6 height="224" align="center" valign=middle><font face="Brush Script MT" size=7 ><br></font></td>
+        <td id="titulo_hotel_eb1" colspan=12 rowspan=2 align="center" valign=middle><b><font face="Trebuchet MS" size=5></font></b></td>
+        <td  colspan=5 rowspan=7 align="left" valign=bottom><font face="Trebuchet MS"><br></font></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+        <td colspan=12 align="center" valign=middle><b><font face="Trebuchet MS" size=5 >SPECIAL OFFER</font></b></td>
+    </tr>
+    <tr>
+        <td id="rate_hotel_eb1" colspan=12 rowspan=2 align="center" valign=middle><b><font face="Trebuchet MS" size=4> </font></b></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+        <td colspan=12 align="center" valign=bottom><b><font face="Trebuchet MS" size=4>Price per night per person in USD</font></b></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr id="stays_eb1">
+        <td height="32" align="center" valign=middle><b><font face="Trebuchet MS" size=3>HOTEL</font></b></td>
+        <!--<td align="center" valign=bottom><b><font face="Trebuchet MS" size=3>Cat.</font></b></td>-->
+
+    </tr>
+    <tr>
+        <td id="name_hotel_eb1" rowspan=4 height="120" align="center" valign=middle><b><font face="Trebuchet MS" size=3></font></b></td>
+        <td  rowspan=4 align="center" valign=middle><b><font face="Trebuchet MS">4*</font></b></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr id="rate_p_night_eb1">
+
+    </tr>
+    <tr id="tipo_habitacion_eb1">
+
+    </tr>
+
+    <tr>
+        <td  rowspan=2 height="58" align="center" valign=middle ><b><font face="Trebuchet MS" size=3></font></b></td>
+
+    </tr>
+    <tr>
+        <td  align="left" valign=bottom><b><font face="Trebuchet MS"><br></font></b></td>
+
+    </tr>
+    <tr>
+        <td  height="29" align="left" valign=bottom><b><font face="Trebuchet MS"><br></font></b></td>
+        <td  align="left" valign=bottom><b><font face="Trebuchet MS"><br></font></b></td>
+
+    </tr>
+    <tr id="usd_1_eb1">
+        <td  height="31" align="left" valign=bottom><b><font face="Trebuchet MS" size=3>Winter 2021/22</font></b></td>
+        <!--<td  align="left" valign=bottom><b><font face="Trebuchet MS" size=3><br></font></b></td>-->
+
+    </tr>
+
+    <tr>
+        <td  height="31" align="left" valign=bottom><font face="Trebuchet MS" size=3><br></font></td>
+
+    </tr>
+
+    <tr>
+        <td  height="31" align="left" valign=bottom><font face="Trebuchet MS" size=3><br></font></td>
+
+    </tr>
+
+    <tr>
+        <td  height="31" align="left" valign=bottom><font face="Trebuchet MS" size=3><br></font></td>
+        <td  height="31" align="left" valign=bottom><font face="Trebuchet MS" size=3><br></font></td>
+
+    </tr>
+
+    <tr id="half_eb1">
+        <td  height="31" align="left" valign=bottom><b><font face="Trebuchet MS" size=3>Halfboard Sup.</font></b></td>
+        <td  align="center" valign=bottom><b><font face="Trebuchet MS" size=3><br></font></b></td>
+
+    </tr>
+    <tr>
+        <td  height="32" align="left" valign=bottom><b><font face="Trebuchet MS" size=3>Children</font></b></td>
+        <td  align="center" valign=bottom><b><font face="Trebuchet MS" size=3><br></font></b></td>
+        <td  colspan=10 align="left" valign=bottom><font face="Trebuchet MS" size=3>Rates for 1 child 2 to 13 years (incl.) sharing with 2 adults in extra bed. </font></td>
+        <td  align="center" valign=bottom><font face="Trebuchet MS" size=3><br></font></td>
+
+    </tr>
+    <tr>
+        <td  height="31" align="left" valign=bottom><b><font face="Trebuchet MS" size=3>Notes:  </font></b></td>
+        <td  align="left" valign=bottom><font face="Arial" size=3><br></font></td>
+        <td  align="left" valign=bottom sdnum="3082;0;@"><font face="Trebuchet MS" size=3><br></font></td>
+
+        <td  align="center" valign=bottom><b><font face="Trebuchet MS" size=3><br></font></b></td>
+    </tr>
+
+</table>
+<table id="tabla_eb3">
+    <tr>
+        <td  colspan=5 rowspan=6 height="224" align="center" valign=middle><font face="Brush Script MT" size=7 ><br></font></td>
+        <td id="titulo_hotel_eb2" colspan=12 rowspan=2 align="center" valign=middle><b><font face="Trebuchet MS" size=5></font></b></td>
+        <td  colspan=5 rowspan=7 align="left" valign=bottom><font face="Trebuchet MS"><br></font></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+        <td colspan=12 align="center" valign=middle><b><font face="Trebuchet MS" size=5 >SPECIAL OFFER</font></b></td>
+    </tr>
+    <tr>
+        <td id="rate_hotel_eb2" colspan=12 rowspan=2 align="center" valign=middle><b><font face="Trebuchet MS" size=4> </font></b></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+        <td colspan=12 align="center" valign=bottom><b><font face="Trebuchet MS" size=4>Price per night per person in USD</font></b></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr id="stays_eb2">
+        <td height="32" align="center" valign=middle><b><font face="Trebuchet MS" size=3>HOTEL</font></b></td>
+        <!--<td align="center" valign=bottom><b><font face="Trebuchet MS" size=3>Cat.</font></b></td>-->
+
+    </tr>
+    <tr>
+        <td id="name_hotel_eb2" rowspan=4 height="120" align="center" valign=middle><b><font face="Trebuchet MS" size=3></font></b></td>
+        <td  rowspan=4 align="center" valign=middle><b><font face="Trebuchet MS">4*</font></b></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr id="rate_p_night_eb2">
+
+    </tr>
+    <tr id="tipo_habitacion_eb2">
+
+    </tr>
+
+    <tr>
+        <td  rowspan=2 height="58" align="center" valign=middle ><b><font face="Trebuchet MS" size=3></font></b></td>
+
+    </tr>
+    <tr>
+        <td  align="left" valign=bottom><b><font face="Trebuchet MS"><br></font></b></td>
+
+    </tr>
+    <tr>
+        <td  height="29" align="left" valign=bottom><b><font face="Trebuchet MS"><br></font></b></td>
+        <td  align="left" valign=bottom><b><font face="Trebuchet MS"><br></font></b></td>
+
+    </tr>
+    <tr id="usd_1_eb2">
+        <td  height="31" align="left" valign=bottom><b><font face="Trebuchet MS" size=3>Winter 2021/22</font></b></td>
+        <!--<td  align="left" valign=bottom><b><font face="Trebuchet MS" size=3><br></font></b></td>-->
+
+    </tr>
+
+    <tr>
+        <td  height="31" align="left" valign=bottom><font face="Trebuchet MS" size=3><br></font></td>
+
+    </tr>
+
+    <tr>
+        <td  height="31" align="left" valign=bottom><font face="Trebuchet MS" size=3><br></font></td>
+
+    </tr>
+
+    <tr>
+        <td  height="31" align="left" valign=bottom><font face="Trebuchet MS" size=3><br></font></td>
+        <td  height="31" align="left" valign=bottom><font face="Trebuchet MS" size=3><br></font></td>
+
+    </tr>
+
+    <tr id="half_eb2">
+        <td  height="31" align="left" valign=bottom><b><font face="Trebuchet MS" size=3>Halfboard Sup.</font></b></td>
+        <td  align="center" valign=bottom><b><font face="Trebuchet MS" size=3><br></font></b></td>
+
+    </tr>
+    <tr>
+        <td  height="32" align="left" valign=bottom><b><font face="Trebuchet MS" size=3>Children</font></b></td>
+        <td  align="center" valign=bottom><b><font face="Trebuchet MS" size=3><br></font></b></td>
+        <td  colspan=10 align="left" valign=bottom><font face="Trebuchet MS" size=3>Rates for 1 child 2 to 13 years (incl.) sharing with 2 adults in extra bed. </font></td>
+        <td  align="center" valign=bottom><font face="Trebuchet MS" size=3><br></font></td>
+
+    </tr>
+    <tr>
+        <td  height="31" align="left" valign=bottom><b><font face="Trebuchet MS" size=3>Notes:  </font></b></td>
+        <td  align="left" valign=bottom><font face="Arial" size=3><br></font></td>
+        <td  align="left" valign=bottom sdnum="3082;0;@"><font face="Trebuchet MS" size=3><br></font></td>
+
+        <td  align="center" valign=bottom><b><font face="Trebuchet MS" size=3><br></font></b></td>
+    </tr>
+
+</table>

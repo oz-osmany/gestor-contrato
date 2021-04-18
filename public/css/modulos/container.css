@@ -1,0 +1,261 @@
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+   
+}
+.container {
+    max-width: 1140px;
+}
+/*
+.container {
+//width: 97%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end; }
+*/
+
+.container__flex {
+    position: relative;
+    top: 50px;
+    display: flex;
+    background-color: rgba(224, 204, 174, 0.788);
+}
+.cuerpo {
+    position: relative;
+    min-height: 900px;
+    width: 100%;
+}
+.linea{
+    display: block;
+}
+.linea__flex{
+    display: flex;
+}
+#fechas{
+    left: 0;
+}
+#reductions{
+    width: 10px;
+    float: right;
+    margin-right: 45px;
+    margin-top: 5px;
+}
+#suplements{
+    width: 10px;
+    float: right;
+    margin-right: 25px;
+    margin-top: 5px;
+
+}
+.encabezado{
+    position: relative;
+    left: 115px;
+}
+.encabezado-iz{
+    display: block;
+    width: 115px;
+}
+.encabezado-dr{
+    width: 100%;
+}
+.encabezado-float-r{
+    position: relative;
+    left: 290px;
+}
+.encabezado-bl{
+    position: relative;
+    left:25px;
+    margin-right: 20px;
+}
+.encabezado-float-name{
+    position: relative;
+    left: 415px;
+}
+.mtop{
+    margin: 20px;
+}
+.mar-iz{
+    margin-left: 20px;
+}
+.mar-top{
+    margin-top: 15px;
+}
+.mar-top5{
+    margin-top: 5px;
+}
+.mar-top20{
+    margin-top: 20px;
+}
+.mar-top25{
+    margin-top: 25px;
+}
+.mar-top30{
+    margin-top: 30px;
+}
+.mar-top50{
+    display: flex;
+    margin-top: 50px;
+}
+.bloque {
+    display: block;
+    margin-top: 15px;
+    margin-left: 65px;
+}
+.fecha {
+    position: relative;
+    top: 30px;
+}
+.radio_plan{
+    margin-left: 115px;
+}
+.radio_plan_imp{
+    margin-left: 55px;
+}
+.radio_plan_map{
+    margin-left: 25px;
+}
+.radio_plan_fb{
+    margin-left: 30px;
+}
+.radio_plan_eb{
+    margin-left: 45px;
+}
+.radio_plan_cp{
+    margin-left: 70px;
+}
+
+.encabezado-map{
+    position: relative;
+    margin-left: 40px;
+    left: 75px;
+}
+.encabezado-imp{
+    position: relative;
+    margin-left: 40px;
+}
+/*#rad_map{
+    position: relative;
+    left: 45px;
+}*/
+.supl {
+    margin-right: 10px;
+    margin-left: 5px;
+}
+.red {
+    margin-right: 2px;
+}
+.ch_exception {
+    left: 0;
+
+}
+#red_select {
+    width: 10px;
+    float: right;
+    margin-right: 25px;
+    margin-top: 5px;
+}
+#cen_ch {
+    display:none;
+}
+#cen_adult {
+    display : none;
+}
+#t-adult{
+    display : none;
+}
+#t-ch{
+    display : none;
+    left: 80px;
+}
+#tabla_supl{
+    display: none;
+}
+#todo{
+    display : none;
+}
+.hotel{
+    row-span: 3;
+
+}
+.nombre{
+    height: 80px;
+}
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.bloque-iz{
+    width: 130px;
+    height: 100px;
+    background-color:#f0ddb5a8;
+    border-radius: 4px;
+    border-style: double;
+}
+.bloque-cent{
+    width: 465px;
+    height: 100px;
+    background-color: #f0ddb5a8;
+    border-radius: 4px;
+    border-style: double;
+}
+.bloque-dr{
+    width: 200px;
+    height: 100px;
+    background-color: #f0ddb5a8;
+    border-radius: 4px;
+    border-style: double;
+}
+.mr-auto, .mx-auto {
+    margin-right: auto!important;
+}
+.ml-auto, .mx-auto {
+    margin-left: auto!important;
+}
+.m-2 {
+    margin: .5rem!important;
+}
+.w-50 {
+    width: 50%!important;
+}
+.p-4 {
+    padding: 1.5rem!important;
+}
+.col-md-4 {
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+}
+.rounded-circle {
+    border-radius: 50%!important;
+}
+form {
+    display: block;
+    margin-top: 0em;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}

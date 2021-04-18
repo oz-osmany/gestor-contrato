@@ -1,0 +1,28 @@
+input[type=checkbox]{
+
+    width: 16px;
+    height: 16px;
+    
+
+}
+textarea{
+    position: relative;    
+    line-height: 24px;
+    font-size: 16px;
+    background-color: rgb(248, 241, 217);
+
+}
+input{
+    background-color: rgb(248, 241, 217);
+}
+
+#c24,#v24 {
+    margin-left: 30px;
+}
+#mup,#map,#ti,#cp,#fb,#eb{
+    height: 25px;
+}
+/*#map {
+    position: relative;
+    left: 40px;
+}*/

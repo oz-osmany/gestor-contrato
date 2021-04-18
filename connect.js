@@ -1,10 +1,10 @@
    const mysql = require("mysql");
     module.exports = () =>{
     return mysql.createConnection({
-            host: "localhost",
-            user: "root",
-            password: "",
-            database: "contratos"
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'oz-tools'
         });
     };
 
