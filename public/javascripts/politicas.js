@@ -2,6 +2,7 @@
 
 //const user=sessionStorage.getItem('user');
 //function cargartabla(){
+
     const rand=sessionStorage.getItem('user');
 
     fetch("/session",
@@ -19,6 +20,8 @@
             let cena= data.casillas[0].casillas.supl_cena;
             let grupos= data.casillas[0].casillas.grupos;
             let description= data.casillas[0].casillas.description;
+            let calculo=data.casillas[0].casillas.id_calculo;
+            let exp=data.casillas[0].casillas.id_export;
             const release=document.getElementById("cont_release");
             if (rel===0){
                 release.style.display="none";
@@ -67,15 +70,18 @@
             }else{
                 fam.style.display="block";
             }
+            //Gestionar como se calcula segun la empresa
+            //Se pone el tipo de calculo que se usara en la session
+            sessionStorage.setItem('calculo', calculo);
+            //Gestionar como se va a exportar la informacion
+            //Se pone cual modo de export se usara
+            sessionStorage.setItem('export', exp);
         })
 
 
-//Gestionar como se calcula segun la empresa
-let calculo=0;
-//Se pone el tipo de alculo que se usara en la session
-sessionStorage.setItem('calculo', calculo);
 
-//Gestionar como se va a exportar la informacion
-//Se pone cual modo de export se usara
-let exporta=0;
-sessionStorage.setItem('export', exporta);
+
+
+
+
+

@@ -5,7 +5,7 @@ const { isLoggedIn } = require('../lib/auth');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Gestor de contratos' });
+  res.render('index', { title: 'Oz-Tools' });
 });
 
 router.post("/session",(req,resp)=>{
@@ -100,6 +100,7 @@ router.post("/new",(req,resp)=> {
   let ish=req.body.ish;
   let iss=req.body.iss;
   let description=req.body.description;
+  let calculo=req.body.calculo;
 
 
   red_3=red_3/100;
