@@ -2,8 +2,9 @@
     <div class="container p-4">
         <div class="row">
             <div class="col-md-4 mx-auto">
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" >
                     {{message}}
+
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -99,18 +100,19 @@
         <!--xxxxxxxxxxxxxxxxxxxxxxxx Aqui va release y cupos xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
 
         
-        <div class="linea linea__flex">
-            <div class="encabezado-iz"></div>
-            <div class="encabezado-dr">
+        <div class="linea linea__flex" id="cont_release">
+            <!--<div class="encabezado-iz"></div>-->
+            <div class="encabezado-dr lef115">
                 <div class="title__name">
                     <input type="checkbox" id="rad_release"><h6 class="encabezado">Release</h6>
-                </div><input type="text" name="release" id="release" disabled>
+                </div>
+                <input type="text" name="release" id="release" disabled>
             </div>
-            </div>
+        </div>
 
-        <div class="linea linea__flex">
-            <div class="encabezado-iz"></div>
-            <div class="encabezado-dr">
+        <div class="linea linea__flex" id="cont_cupos">
+            <!--<div class="encabezado-iz"></div>-->
+            <div class="encabezado-dr lef115">
                 <div class="title__name">
                     <input type="checkbox" id="rad_cupos"><h6 class="encabezado">Cupos / Allotment</h6>
                 </div>
@@ -199,9 +201,9 @@
 
         </div>
         <!--xxxxxxxxxxxxxxxxxxxxxxxxxx Aqui estas los descuentos para las familias o grupos xxxxxxxxxxxxxxxxxxxxx-->
-        <div class="linea linea__flex">
+        <div class="linea linea__flex" id="cont_family">
             <div class="encabezado-iz"></div>
-            <div class="encabezado-dr">
+            <div class="encabezado-dr lef115">
                 <div class="title__name">
                     <input type="checkbox" id="rad_grupos"><h6 class="encabezado">Grupos o Familia con descuentos</h6>
                     <div class="popup">
@@ -248,9 +250,9 @@
 
         </div>
         <!--xxxxxxxxxxxxxxxxxxxxxxxx Aqui estan los suplementos de eventos xxxxxxxxxxxxxxxxxxx-->
-        <div class="linea linea__flex">
+        <div class="linea linea__flex" id="cont_event">
             <div class="encabezado-iz"></div>
-            <div class="encabezado-dr">
+            <div class="encabezado-dr lef115">
                 <div class="title__name">
                     <input type="checkbox" id="rad_suplementos_eventos"><h6 class="encabezado">Suplemento de eventos/Events Suplement</h6>
                     <div class="popup"><a class="icon-help-circled-alt mueve-derecha" href="#" id="id_event"></a>
@@ -265,9 +267,9 @@
 
         </div>
         <!--xxxxxxxxxxxx Aqui estan los suplementos de alimentacion xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
-        <div class="linea linea__flex">
+        <div class="linea linea__flex" id="cont_cena">
             <div class="encabezado-iz"></div>
-            <div class="encabezado-dr">
+            <div class="encabezado-dr lef115">
                 <div class="title__name">
                     <input type="checkbox" id="rad_cenas"><h6 class="encabezado">Suplementos de Plan Alimenticio / F&B Supplements</h6>
                     <div class="popup"><a class="icon-help-circled-alt mueve-derecha" href="#" id="id_diner"></a>
@@ -338,9 +340,9 @@
 
         </div>
         <!--xxxxxxxxxxxxxxxxxxxxxxx Aqui van las descripciones opcionales xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
-        <div class="linea linea__flex">
+        <div class="linea linea__flex" id="cont_description">
             <div class="encabezado-iz"></div>
-            <div class="encabezado-dr">
+            <div class="encabezado-dr lef115">
                 <div class="title__name">
                     <input type="checkbox" id="rad_description"><h6 class="encabezado">Descripciones opcionales / Optional descriptions</h6>
                     <div class="popup"><a class="icon-help-circled-alt mueve-derecha" href="#" id="id_description"></a>
@@ -355,9 +357,9 @@
 
         </div>
         <!--xxxxxxxxxxxxxxx Aqui se ponen los impuestos xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
-        <div class="linea linea__flex">
+        <div class="linea linea__flex" id="cont_impuestos">
             <div class="encabezado-iz"></div>
-            <div class="encabezado-dr">
+            <div class="encabezado-dr lef115">
                 <div class="title__name">
                     <input type="checkbox" id="rad_iva" ><h6 class="encabezado">IVA</h6>
                     <input type="checkbox" id="rad_ish" class="radio_plan_imp"><h6 class="encabezado">ISH</h6>

@@ -8,7 +8,14 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Gestor de contratos' });
 });
 
+router.post("/session",(req,resp)=>{
+  let sess = req.body.rand;
+  let file=fs.readFileSync("./session/"+sess+".json","utf-8");
+  resp.setHeader("Content-type","text/json");
+  resp.send(file);
 
+
+});
 
 
 router.post("/get-tabla-sell",(req,resp)=>{
@@ -562,7 +569,7 @@ router.post("/new",(req,resp)=> {
 
 
 
-  const dbConnection= require("../connect");
+  const dbConnection= require("../public/javascripts/connect");
   const connection = dbConnection();
   /* let sql="CREATE TABLE "+name+" (id INT AUTO_INCREMENT PRIMARY KEY,nombre_hotel varchar(100),"+create+" )";
    connection.query(sql,function (err,result) {
