@@ -101,6 +101,7 @@ router.post("/new",(req,resp)=> {
   let iss=req.body.iss;
   let description=req.body.description;
   let calculo=req.body.calculo;
+  let exporta=req.body.exporta;
 
 
   red_3=red_3/100;

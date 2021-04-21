@@ -301,6 +301,7 @@ submit.addEventListener("click",()=>{
         description=description.split("\n")
 
         const calculo=sessionStorage.getItem('calculo');
+        const exporta=sessionStorage.getItem('export');
         //mandar solicitud POST a new
         fetch("/new",{
             method: "POST",
@@ -308,7 +309,7 @@ submit.addEventListener("click",()=>{
             body:JSON.stringify({name,fechas,releases,service,serv_name
                 ,suplements,diner24,diner31,diner24_ad,diner31_ad,reduction,ventas,supl_num
                 ,red_num,red_sel_num,eventos,cupo,mups,rates,singles
-                ,red_3,red_4,red_5,red_6,map,fb,sup_map,sup_fb,plan,iva,ish,iss,description,calculo})
+                ,red_3,red_4,red_5,red_6,map,fb,sup_map,sup_fb,plan,iva,ish,iss,description,calculo,exporta})
         })
             .then(resp =>resp.text())
             .then(data =>{
