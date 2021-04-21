@@ -42,8 +42,8 @@ let ventas=(mups,service,red_3,red_4,supls,supl_mup,supls_cs,venta,cont_fecha,
                 ventas[i]=venta[i].slice(position+2);
                 name_ventas[i]=venta[i].slice(0,position);
             }
-            venta[i]=ventas[i].split(" ");
-            ventas[i]=venta[i];
+            venta[i]=venta[i].split(" ");
+            //ventas[i]=venta[i];
             //console.log(ventas[i]);
             corrige[cont] = "";
             corrige1[cont] = "";

@@ -34,7 +34,7 @@ let reduccion=(reduction,cont_fecha,fech_c,ffcha,service,diner24_ad,diner31_ad,m
 
             reduct[i]="";
             //Saber si la reduccion es N/A
-            if(reduction[i].match("N/A")){
+            /*if(reduction[i].match("N/A")){
                 pos=reduction[i].indexOf("N/A");
                 name_red[i]=reduction[i].slice(0,pos);
                 reduct[i]=reduction[i].slice(pos);
@@ -53,11 +53,11 @@ let reduccion=(reduction,cont_fecha,fech_c,ffcha,service,diner24_ad,diner31_ad,m
                     position=name_red[i].indexOf("/");
                     name_red[i] = reduction[i].slice(0, position);
                 }
-            }
+            }*/
 
 
 
-            reduct[i]=reduct[i].split(" ");
+            reduct[i]=reduction[i].split(" ");
             reduction[i]=reduct[i];
             //console.log(reduction[i]);
             corrige[cont]="";

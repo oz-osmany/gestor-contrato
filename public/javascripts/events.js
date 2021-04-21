@@ -9,12 +9,12 @@ let event=(evento,cont_fecha,service,resul_sup,ish,iss,iva,mups)=>{
     let valor=new Array(10);
     if (evento != "") {
         for (let i=0;i<evento.length;i++){
-            if (evento[i].match("/")){
+            /*if (evento[i].match("/")){
                 let position=evento[i].indexOf("/");
                 eventos[i]=evento[i].slice(position+2);
                 name_evento[i]=evento[i].slice(0,position);
-            }
-            evento[i]=eventos[i].split(" ");
+            }*/
+            evento[i]=evento[i].split(" ");
 
         }
         for (let i=0;i<service.length;i++){
