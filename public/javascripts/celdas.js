@@ -249,7 +249,7 @@ celda90.onpaste=(event)=>{
 */
 
 //Para las filas de las habitaciones
-/*celda01.onpaste=(event)=>{
+celda01.onpaste=(event)=>{
     let cel=event.clipboardData.getData('text/plain');
     //Pregunta si hay columnas
     let c=1;
@@ -266,7 +266,7 @@ celda90.onpaste=(event)=>{
         //cel=n_cel
     }
     return false;
-}*/
+}
 celda02.onpaste=(event)=>{
     let cel=event.clipboardData.getData('text/plain');
     //Pregunta si hay columnas
