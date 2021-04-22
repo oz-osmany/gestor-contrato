@@ -87,7 +87,13 @@ let services=(service,cont_fecha,diner24_ad,diner31_ad,mups,fech_c,ffcha,ish,iss
             //Si los valores vienen con $delante que se lo quite
             let pos=service[i][ii].indexOf("$");
             if (pos>=0){
-                service[i][ii]=service[i][ii].slice(1);
+                if (pos===0){
+                    service[i][ii]=service[i][ii].slice(1);
+                }else {
+                    //El $ eata al final
+                    service[i][ii]=service[i][ii].slice(0,pos);
+                }
+
             }
             if (service[i][ii].match(",")){
                 service[i][ii]=service[i][ii].replace(",","");

@@ -264,10 +264,40 @@ submit.addEventListener("click",()=>{
         let releases=document.querySelector("#release").value;
         let serv_name=document.querySelector("#servicios").value;
         //let suplements=document.querySelector("#suplementos").value;
-        let diner24=document.querySelector("#v24").value;
-        let diner31=document.querySelector("#v31").value;
-        let diner24_ad=document.querySelector("#av24").value;
-        let diner31_ad=document.querySelector("#av31").value;
+        let diner=new Array(8);
+        let fd=new Array(8);
+        for (let i=0;i<4;i++){
+            diner[i]="";
+
+            diner[i]=document.getElementById("v"+(i+1)).value;
+            diner[i+4]=document.getElementById("av"+(i+1)).value;
+
+        }
+        for (let i=0;i<4;i++){
+
+            fd[i]="";
+
+            fd[i]=document.getElementById("cc"+(i+1)).value;
+            fd[i+4]=document.getElementById("ac"+(i+1)).value;
+        }
+
+        /*let diner1=document.querySelector("#v24").value;
+        let diner2=document.querySelector("#v31").value;
+        let diner3=document.querySelector("#v12").value;
+        let diner4=document.querySelector("#v21").value;
+        let diner5=document.querySelector("#av24").value;
+        let diner6=document.querySelector("#av31").value;
+        let diner7=document.querySelector("#av12").value;
+        let diner8=document.querySelector("#av21").value;
+
+        let fd1=document.querySelector("#c24").value;
+        let fd2=document.querySelector("#c31").value;
+        let fd3=document.querySelector("#c12").value;
+        let fd4=document.querySelector("#c21").value;
+        let fd5=document.querySelector("#ac24").value;
+        let fd6=document.querySelector("#ac31").value;
+        let fd7=document.querySelector("#ac12").value;
+        let fd8=document.querySelector("#ac21").value;*/
         let reduction=document.querySelector("#reduccion").value;
         let ventas=document.querySelector("#ventas").value;
         let eventos=document.querySelector("#eventos").value;
@@ -303,13 +333,16 @@ submit.addEventListener("click",()=>{
         const calculo=sessionStorage.getItem('calculo');
         const exporta=sessionStorage.getItem('export');
         //mandar solicitud POST a new
+        //diner1,diner2,diner3,diner4,diner5,diner6,diner7,diner8,
+        //                 fd1,fd2,fd3,fd4,fd5,fd6,fd7,fd8,
         fetch("/new",{
             method: "POST",
             headers: {"Content-type":"application/json"},
             body:JSON.stringify({name,fechas,releases,service,serv_name
-                ,suplements,diner24,diner31,diner24_ad,diner31_ad,reduction,ventas,supl_num
-                ,red_num,red_sel_num,eventos,cupo,mups,rates,singles
-                ,red_3,red_4,red_5,red_6,map,fb,sup_map,sup_fb,plan,iva,ish,iss,description,calculo,exporta})
+                ,suplements,fd,diner,
+                reduction,ventas,supl_num,red_num,red_sel_num,eventos,cupo,mups,rates,singles
+                ,red_3,red_4,red_5,red_6,map,fb,sup_map,sup_fb,plan,iva,ish,iss,description
+                ,calculo,exporta})
         })
             .then(resp =>resp.text())
             .then(data =>{
@@ -354,7 +387,7 @@ function cargartabla(){
             const usd=document.querySelector("#usd_1");
             const half=document.querySelector("#half");
             const notes=document.querySelector("#notes");
-            const descrip=document.querySelector("#descripcion");
+            const descrip=document.querySelector("#eb");
 
 
 
@@ -367,27 +400,34 @@ function cargartabla(){
 
                 }
             })
-
+            notes.innerHTML=et_notes;
 
             data.description.forEach(descriptions=>{
 
                 if (descriptions.description){
 
-                    let eb_fila=document.createElement("tr");
+                   // let eb_fila=document.createElement("tr");
                     let eb1=document.createElement("td");
+                    let eb2=document.createElement("td");
+                    let eb3=document.createElement("td");
                     let eb_note1=document.createTextNode(descriptions.description);
-                    eb1.appendChild(eb_note1);
-                    eb_fila.appendChild(eb1);
-                    //eb_notes=`<div>  ${descriptions.description }</div>`;
-                    // descrip.innerHTML=eb1;
-                    descrip.appendChild(eb_fila);
+
+                    eb3.appendChild(eb_note1);
+                    descrip.appendChild(eb1);
+                    descrip.appendChild(eb2);
+                    descrip.appendChild(eb3);
+                    let eb_fila=document.createElement("tr");
+
+                   // eb_notes+=`<div>  ${descriptions.description }</div><br>`;
+
+                   descrip.appendChild(eb_fila);
                 }
                 //${description.description[cont] }
             })
+            //descrip.innerHTML=eb_notes;
 
 
 
-            notes.innerHTML=et_notes;
             let html="";
             let html1="";
             let fechita="";

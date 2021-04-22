@@ -73,10 +73,8 @@ router.post("/new",(req,resp)=> {
   let service = req.body.service;
   let serv_name = req.body.serv_name;
   let suplements = req.body.suplements;
-  let diner24 = req.body.diner24;
-  let diner31 = req.body.diner31;
-  let diner24_ad = req.body.diner24_ad;
-  let diner31_ad = req.body.diner31_ad;
+  let diner = req.body.diner;
+  let fd = req.body.fd;
   let reduction = req.body.reduction;
   let venta = req.body.ventas;
   let ch_red=req.body.red_num;
@@ -102,6 +100,9 @@ router.post("/new",(req,resp)=> {
   let description=req.body.description;
   let calculo=req.body.calculo;
   let exporta=req.body.exporta;
+
+
+
 
 
   red_3=red_3/100;
@@ -156,12 +157,16 @@ router.post("/new",(req,resp)=> {
 
   const mifecha=require("../public/javascripts/fechas") ;
   //Aqui se gestionan las fechas
-  let mydate_ini= mifecha.fecha_ini(fechas,diner24_ad,map_saber,sup_fb);
-  let mydate_end= mifecha.fecha_end(fechas,diner24_ad,mydate_ini.diaT,mydate_ini.meT,map_saber,sup_fb);
+
+
+
+
+  let mydate_ini= mifecha.fecha_ini(fechas,diner,fd,map_saber,sup_fb);
+  //let mydate_end= mifecha.fecha_end(fechas,diner,fd,mydate_ini.diaT,mydate_ini.meT,map_saber,sup_fb);
   let f=mydate_ini.f;
-  let t=mydate_end.t;
+  let t=mydate_ini.t;
   let fbd=mydate_ini.fbd;
-  let tbd=mydate_end.tdb;
+  //let tbd=mydate_end.tdb;
   let cont_fecha=mydate_ini.cont_fecha;
   let fech_c=mydate_ini.fech_c;
   let ffcha=mydate_ini.ffcha

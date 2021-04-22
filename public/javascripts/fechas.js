@@ -1,7 +1,8 @@
 //Para extraer las fechas inicio
-let fecha_ini=function (fechas,diner24_ad,map_saber,sup_fb){
+let fecha_ini=function (fechas,diner,fd,map_saber,sup_fb){
     let cont_fecha = 0;//Saber cuantas fechas hay
-    let f = new Array(10);//Para las fechas
+    let f = new Array(10);//Para las fechas iniciales
+    let t=new Array(10);//Para las fechas end
     let fbd = new Array(10);//Para las fechas de la bd
 
 //let extraer = fechas[0].slice(5);
@@ -9,100 +10,445 @@ let fecha_ini=function (fechas,diner24_ad,map_saber,sup_fb){
     let piez= fechas[1].split(" ");
     let p="";
     let pi="";
+
     let fch=0;
     let fech_c=false;//Para saber si hay cenas
     let ffcha=0;
     let diaT = "";
     let meT="";
+    let anT="";
     let f_ini="";
-    for (let a = 0; a < piezas.length; a++) {
-        if (piezas[a].match("/")){
-            p = piezas[a].split("/");
-            pi = piez[a].split("/");
-        }
-        //if (piezas[a].match("."))
-        else{
-            if (piezas[a].match("-")){
-                p = piezas[a].split("-");
-                pi = piez[a].split("-");
-            }else {
-                p = piezas[a].split(".");
-                pi = piez[a].split(".");
-            }
+    let mc="";//Es para el mes de las cenas
+    let dc="";//Para los dias de las cenas
+    let rango=new Array(4);//Para saber cual fecha se uso para cortar
+    let cont=0;//Sirve de iteracion para el rango
+    let cen=new Array(5);//Para comparar los meses.
+    let dia_cen=new Array(5)//Para recoger el dia del mes que se repite
+    //Saber si hay cenas
+    for (let e=0;e<piezas.length;e++){
+        if (piezas[e].match("/")){
 
-        }
-        //console.log(p);
-        let an = p[2];
-        let me = p[1];
-        let dia = p[0];
+            piezas[e]=piezas[e].replace("/","-");
+            piezas[e]=piezas[e].replace("/","-");
 
-
-        if(an.length===2){
-            an="20"+an;
+            piez[e]=piez[e].replace("/","-");
+            piez[e]=piez[e].replace("/","-");
         }
-        if(me.length>2){
-            switch (me){
-                case "Jan":
-                    me="01";
-                    break;
-                case "Feb":
-                    me="02";
-                    break;
-                case "Mar":
-                    me="03";
-                    break;
-                case "Apr":
-                    me="04";
-                    break;
-                case "May":
-                    me="05";
-                    break;
-                case "Jun":
-                    me="06";
-                    break;
-                case "Jul":
-                    me="07";
-                    break;
-                case "Aug":
-                    me="08";
-                    break;
-                case "Sep":
-                    me="09";
-                    break;
-                case "Oct":
-                    me="10";
-                    break;
-                case "Nov":
-                    me="11";
-                    break;
-                default :
-                    me="12";
-                    break;
-            }
-        }
+       /* if (piezas[e].match("-")){
+            piezas[e] = piezas[e].split("-");
 
-        f[fch] = dia + "-" + me + "-" + an;
-        fbd[fch] = an + "-" + me + "-" + dia;
-        //Si no hay MAP entonces la base es CP y no se dividen las fechas
+            piez[e] = piez[e].split("-");
+        }*/
+        if (piezas[e].match(".")){
+            piezas[e]=piezas[e].replace(".","-");
+            piezas[e]=piezas[e].replace(".","-");
+
+            piez[e]=piez[e].replace(".","-");
+            piez[e]=piez[e].replace(".","-");
+        }
+    }
+    if (diner[0]!="" || diner[1]!="" ||diner[2]!="" || diner[3]!=""){
         if (map_saber===0 && sup_fb===0){
-            if (diner24_ad!=""){
-                if (dia==="22"){
-                    diaT = pi[0];
-                    meT=pi[1];
-                    f[fch+1]="24-" + me + "-" +an;
-                    f[fch+2]="25-" + me + "-" +an;
-                    f[fch+3]="31-" + me + "-" +an;
-                    f[fch+4]="01-01-2022";
-                    fbd[fch+1]=an+"-"+me+"-24";
-                    fbd[fch+2]=an+"-"+me+"-25";
-                    fbd[fch+3]=an+"-"+me+"-31";
-                    fbd[fch+4]="2021-01-01";
-                    fch+=5;
-                    fech_c=true;
-                    //f_ini+=f[fch];
-                    //piezas.length+=4;
+            //NO hay Planes opcionales y se dividen las fechas
+            for (let i=0;i<4;i++) {
+                if (fd[i] != "") {
+                    fch=0;
+                    //Extraer mes
+                    let position=fd[i].indexOf("/");
+                    mc=fd[i].slice(position+1);
+                    dc=fd[i].slice(0,position);
+                    cen[i]=mc;
+                    dia_cen[i]=dc;
+                    //Buscar en cual rango cae
+                    for (let e=0;e<piezas.length;e++){
+
+                            if (piezas[e].match("-")){
+                                p = piezas[e].split("-");
+                                pi = piez[e].split("-");
+                            }
+
+                        let an = p[2];
+                        let me = p[1];
+                        let dia = p[0];
+
+                         anT = pi[2];
+                         meT = pi[1];
+                         diaT = pi[0];
+
+                        if(an.length===2){
+                            an="20"+an;
+                        }
+                        if(anT.length===2){
+                            anT="20"+anT;
+                        }
+                        if(me.length>2){
+                            switch (me){
+                                case "Jan":
+                                    me="01";
+                                    break;
+                                case "Feb":
+                                    me="02";
+                                    break;
+                                case "Mar":
+                                    me="03";
+                                    break;
+                                case "Apr":
+                                    me="04";
+                                    break;
+                                case "May":
+                                    me="05";
+                                    break;
+                                case "Jun":
+                                    me="06";
+                                    break;
+                                case "Jul":
+                                    me="07";
+                                    break;
+                                case "Aug":
+                                    me="08";
+                                    break;
+                                case "Sep":
+                                    me="09";
+                                    break;
+                                case "Oct":
+                                    me="10";
+                                    break;
+                                case "Nov":
+                                    me="11";
+                                    break;
+                                default :
+                                    me="12";
+                                    break;
+                            }
+                        }
+                        let me_end=pi[1];
+                        if (mc<=me_end && mc>=me && dc>dia){
+                            //Saber si la fecha de la cena es del mismo mes
+                            if (cen[i]===cen[i-1]){
+                                //Se desplaza
+                                let desp=dc +"-"  + me_end + "-" +an;
+                                let desp1=parseInt(dc)+1 +"-"  + me_end + "-" +an;
+
+                                let desplaza1= parseInt(dc)-1+"-"  + me_end + "-" +an;
+                                let desplaza2=dc +"-"  + me_end + "-" +an;
+                               // let desplaza3=parseInt(dia_cen[i-1])-1 +"-"  + me_end + "-" +an;
+                                e=100;
+
+                                f.splice(rango[0]+1,0,desp,desp1);
+                                t.splice(rango[0],0,desplaza1,desplaza2);
+                            }else {
+                                //Se inserta
+                                //f[fch]
+                                let f1= dia + "-" + me + "-" + an;
+                                let t1= parseInt(dc)-1+"-"+meT+"-"+anT;
+                                //Se tiene el rango
+                                rango[cont]=e;
+
+                                //Se cortan las fechas
+                                //Aqui esta la fecha que se recorta
+                                let f2=dc +"-"  + me_end + "-" +an;
+                                let t2= dc +"-"  + me_end + "-" +anT;
+
+                                let f3=parseInt(dc)+1 +"-"  + me + "-" +an;
+                                let t3= diaT +"-"  + me_end + "-" +anT;
+                                fch+=3;
+                               /* f.splice(rango[0],0,f1,f2,f3);
+                                t.splice(rango[0],0,t1,t2,t3);*/
+                                piezas.splice(rango[0],1,f1,f2,f3);
+                                piez.splice(rango[0],1,t1,t2,t3);
+                                e=100;
+                            }
+
+                        }
+                        else{
+                            //Sino esta en el rango de fechas con cenas
+                            f[fch] = dia + "-" + me + "-" + an;
+                            t[fch]= diaT+"-"+meT+"-"+anT;
+                            fbd[fch] = an + "-" + me + "-" + dia;
+                            fch++;
+
+                        }
+                        cont_fecha = fch;
+                        ffcha=e;
+                    }
+                    /*piezas=f;
+                    piez=t;*/
                 }
+            }
+        }else{
+            //Hay planes opcionales, no se dividen la fechas
+            for (let a = 0; a < piezas.length; a++) {
+                if (piezas[a].match("/")){
+                    p = piezas[a].split("/");
+                    pi = piez[a].split("/");
+                }
+                //if (piezas[a].match("."))
                 else{
+                    if (piezas[a].match("-")){
+                        p = piezas[a].split("-");
+                        pi = piez[a].split("-");
+                    }else {
+                        p = piezas[a].split(".");
+                        pi = piez[a].split(".");
+                    }
+
+                }
+                //console.log(p);
+                let an = p[2];
+                let me = p[1];
+                let dia = p[0];
+
+
+
+
+                if(an.length===2){
+                    an="20"+an;
+                }
+                if(me.length>2){
+                    switch (me){
+                        case "Jan":
+                            me="01";
+                            break;
+                        case "Feb":
+                            me="02";
+                            break;
+                        case "Mar":
+                            me="03";
+                            break;
+                        case "Apr":
+                            me="04";
+                            break;
+                        case "May":
+                            me="05";
+                            break;
+                        case "Jun":
+                            me="06";
+                            break;
+                        case "Jul":
+                            me="07";
+                            break;
+                        case "Aug":
+                            me="08";
+                            break;
+                        case "Sep":
+                            me="09";
+                            break;
+                        case "Oct":
+                            me="10";
+                            break;
+                        case "Nov":
+                            me="11";
+                            break;
+                        default :
+                            me="12";
+                            break;
+                    }
+                }
+                /*let rango=new Array(4);//Para saber cual fecha se uso para cortar
+                let cont=0;//Sirve de iteracion para el rango*/
+                f[fch] = dia + "-" + me + "-" + an;
+                fbd[fch] = an + "-" + me + "-" + dia;
+                fch++;
+                cont_fecha = fch;
+                ffcha=a;
+
+
+                /* let mc="";//Es para el mes de las cenas
+                 let dc="";//Para los dias de las cenas*/
+                //Si no hay MAP entonces la base es CP y no se dividen las fechas
+                /* if (map_saber===0 && sup_fb===0){
+                     if (diner[0]!="" || diner[1]!="" ||diner[2]!="" || diner[3]!=""){
+                         //Saber cuales tienen fecha
+                         for (let i=0;i<4;i++){
+                             if (fd[i]!=""){
+                                 //Extraer mes
+                                 let position=fd[i].indexOf("/");
+                                 mc=fd[i].slice(position+1);
+                                 dc=fd[i].slice(0,position);
+
+                                 //Buscar en cual rango cae
+                                 for (let e=0;e<piezas.length;e++){
+                                     if (piezas[a].match("/")){
+                                         pi = piez[e].split("/");
+                                     }
+                                     if (piezas[a].match("-")){
+                                         pi = piez[e].split("-");
+                                     }
+                                     if (piezas[a].match(".")){
+                                         pi = piez[e].split(".");
+                                     }
+
+                                     let me_end=pi[1];
+                                     if (mc<=me_end){
+                                         //Se tiene el rango
+                                         rango[cont]=e;
+                                         cont++;
+                                         //Se cortan las fechas
+                                         f[fch+1]=dc +"-"  + me_end + "-" +an;
+                                         f[fch+2]=parseInt(dc)+1 +"-"  + me + "-" +an;
+                                     }
+                                 }
+
+                             }
+                             else{
+                                 //Sino esta en el rango de fechas con cenas
+                                 fch++;
+                                 cont_fecha = fch;
+                                 ffcha=a;
+                             }
+                         }
+
+
+
+
+
+                     }else{
+                         fch++;
+                         cont_fecha = fch;
+                         ffcha=a;
+                     }
+                 }else{
+                     fch++;
+                     cont_fecha = fch;
+                     ffcha=a;
+                 }*/
+                /*else{
+                    f_ini+=f[fch];
+                    fch++;
+                }*/
+
+
+                //console.log(f[a]);
+            }
+       }
+
+    }else {
+        for (let a = 0; a < piezas.length; a++) {
+            if (piezas[a].match("/")){
+                p = piezas[a].split("/");
+                pi = piez[a].split("/");
+            }
+            //if (piezas[a].match("."))
+            else{
+                if (piezas[a].match("-")){
+                    p = piezas[a].split("-");
+                    pi = piez[a].split("-");
+                }else {
+                    p = piezas[a].split(".");
+                    pi = piez[a].split(".");
+                }
+
+            }
+            //console.log(p);
+            let an = p[2];
+            let me = p[1];
+            let dia = p[0];
+
+
+
+
+            if(an.length===2){
+                an="20"+an;
+            }
+            if(me.length>2){
+                switch (me){
+                    case "Jan":
+                        me="01";
+                        break;
+                    case "Feb":
+                        me="02";
+                        break;
+                    case "Mar":
+                        me="03";
+                        break;
+                    case "Apr":
+                        me="04";
+                        break;
+                    case "May":
+                        me="05";
+                        break;
+                    case "Jun":
+                        me="06";
+                        break;
+                    case "Jul":
+                        me="07";
+                        break;
+                    case "Aug":
+                        me="08";
+                        break;
+                    case "Sep":
+                        me="09";
+                        break;
+                    case "Oct":
+                        me="10";
+                        break;
+                    case "Nov":
+                        me="11";
+                        break;
+                    default :
+                        me="12";
+                        break;
+                }
+            }
+            /*let rango=new Array(4);//Para saber cual fecha se uso para cortar
+            let cont=0;//Sirve de iteracion para el rango*/
+            f[fch] = dia + "-" + me + "-" + an;
+            fbd[fch] = an + "-" + me + "-" + dia;
+            fch++;
+            cont_fecha = fch;
+            ffcha=a;
+
+
+            /* let mc="";//Es para el mes de las cenas
+             let dc="";//Para los dias de las cenas*/
+            //Si no hay MAP entonces la base es CP y no se dividen las fechas
+           /* if (map_saber===0 && sup_fb===0){
+                if (diner[0]!="" || diner[1]!="" ||diner[2]!="" || diner[3]!=""){
+                    //Saber cuales tienen fecha
+                    for (let i=0;i<4;i++){
+                        if (fd[i]!=""){
+                            //Extraer mes
+                            let position=fd[i].indexOf("/");
+                            mc=fd[i].slice(position+1);
+                            dc=fd[i].slice(0,position);
+
+                            //Buscar en cual rango cae
+                            for (let e=0;e<piezas.length;e++){
+                                if (piezas[a].match("/")){
+                                    pi = piez[e].split("/");
+                                }
+                                if (piezas[a].match("-")){
+                                    pi = piez[e].split("-");
+                                }
+                                if (piezas[a].match(".")){
+                                    pi = piez[e].split(".");
+                                }
+
+                                let me_end=pi[1];
+                                if (mc<=me_end){
+                                    //Se tiene el rango
+                                    rango[cont]=e;
+                                    cont++;
+                                    //Se cortan las fechas
+                                    f[fch+1]=dc +"-"  + me_end + "-" +an;
+                                    f[fch+2]=parseInt(dc)+1 +"-"  + me + "-" +an;
+                                }
+                            }
+
+                        }
+                        else{
+                            //Sino esta en el rango de fechas con cenas
+                            fch++;
+                            cont_fecha = fch;
+                            ffcha=a;
+                        }
+                    }
+
+
+
+
+
+                }else{
                     fch++;
                     cont_fecha = fch;
                     ffcha=a;
@@ -111,24 +457,22 @@ let fecha_ini=function (fechas,diner24_ad,map_saber,sup_fb){
                 fch++;
                 cont_fecha = fch;
                 ffcha=a;
-            }
-        }else{
-            fch++;
-            cont_fecha = fch;
-            ffcha=a;
+            }*/
+            /*else{
+                f_ini+=f[fch];
+                fch++;
+            }*/
+
+
+            //console.log(f[a]);
         }
-        /*else{
-            f_ini+=f[fch];
-            fch++;
-        }*/
-
-
-        //console.log(f[a]);
     }
+            f=piezas;
+            t=piez;
 
-    return {f,cont_fecha,fech_c,ffcha,diaT,meT,fbd};
+    return {f,t,cont_fecha,fech_c,ffcha,diaT,meT,fbd};
 }
-let fecha_end=function (fechas,diner24_ad,diaT,meT,map_saber,sup_fb){
+/*let fecha_end=function (fechas,diner,fd,diaT,meT,map_saber,sup_fb){
 
     //Para extraer las fechas final
     let t = new Array(10);//Para las fechas
@@ -229,10 +573,10 @@ let fecha_end=function (fechas,diner24_ad,diaT,meT,map_saber,sup_fb){
     }
 
     return {t,tdb};
-}
+}*/
 
 
 module.exports={
-    fecha_ini,
-    fecha_end
+    fecha_ini
+
 }

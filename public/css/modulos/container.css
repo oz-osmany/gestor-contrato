@@ -165,6 +165,7 @@
 }
 #cen_ch {
     display:none;
+    margin-left: 100px;
 }
 #cen_adult {
     display : none;
@@ -174,7 +175,7 @@
 }
 #t-ch{
     display : none;
-    left: 80px;
+    left: 230px;
 }
 #tabla_supl{
     display: none;
@@ -218,6 +219,7 @@
     border-radius: 4px;
     border-style: double;
 }
+
 .mr-auto, .mx-auto {
     margin-right: auto!important;
 }
