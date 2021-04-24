@@ -26,6 +26,13 @@ input{
 background-color: #2c6ab7;
     color: white;
     height: 22px;
+    width: 70px;
+    font-size: small;
+}
+.valor-cena{
+
+    height: 25px;
+    width: 70px;
 }
 /*#map {
     position: relative;

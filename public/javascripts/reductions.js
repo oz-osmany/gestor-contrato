@@ -1,4 +1,4 @@
-let reduccion=(reduction,cont_fecha,fech_c,ffcha,service,diner24_ad,diner31_ad,mups,diner31,diner24,map_saber,sup_fb,resul_red,resul_sel,ish,iss,iva)=>{
+let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_red,resul_sel,rango,ish,iss,iva)=>{
     let reductions = new Array(40);
     let reduc = new Array(40);//Para el calculo de cost
     let reducc = new Array(40);//Para el calculo de sell
@@ -6,10 +6,7 @@ let reduccion=(reduction,cont_fecha,fech_c,ffcha,service,diner24_ad,diner31_ad,m
     let reduct = new Array(40);//Para el transpaso
     let name_red = new Array(40);
     let corrige=new Array(10);
-    let corrige1=new Array(10);
-    let corrige2=new Array(10);
-    //let resul_red=new Array(10);
-   // let resul_sel=new Array(10);
+    let saber=false;
     let child = new Array(40);
     let adult = new Array(40);
     let child_cost = new Array(40);
@@ -19,20 +16,18 @@ let reduccion=(reduction,cont_fecha,fech_c,ffcha,service,diner24_ad,diner31_ad,m
     let valor=0;
     let divide=3;
     let cont=0;
-    if(diner24 === ""){
+    let cont1=0;
+   /* if(diner24 === ""){
         diner24=0;
     }
     if(diner31 === ""){
         diner31=0;
-    }
+    }*/
     if (reduction != "") {
-        for (let i=0;i<reduction.length;i++){
-            if(reduction[i]===""){//Para saber si hay espacios vacios
-                reduction.length=reduction.length-1;
-                break
-            }
+       // for (let i=0;i<reduction.length;i++){
 
-            reduct[i]="";
+
+         //   reduct[i]="";
             //Saber si la reduccion es N/A
             /*if(reduction[i].match("N/A")){
                 pos=reduction[i].indexOf("N/A");
@@ -57,37 +52,59 @@ let reduccion=(reduction,cont_fecha,fech_c,ffcha,service,diner24_ad,diner31_ad,m
 
 
 
-            reduct[i]=reduction[i].split(" ");
-            reduction[i]=reduct[i];
+
             //console.log(reduction[i]);
-            corrige[cont]="";
-            corrige1[cont]="";
-            corrige2[cont]="";
+
             //Se dividen en tres parte la cadena para insertar los valores segun las nuevas fechas
-            if(fech_c===true){
+            if(diner[0]!="" || diner[1]!="" || diner[2]!="" || diner[3]!=""){
+                if(fech_c===true){
+                    //Iterar en los servicios
+                    for (let e=0;e<reduction.length;e++){
+                        //Para saber si hay espacios vacios
+                        if(reduction[e]===""){
+                            reduction.length=reduction.length-1;
+                            break
+                        }
+                        reduction[e]=reduction[e].split(" ");
+                        //Saber cuantas divisiones hay segun "rango"
+                        for (let i=0;i<rango.length;i++){
+                            //validar "rango"
+                            if (rango[i]){
+                                //Tomo el valor de service en la posicion de rango
+                                corrige=reduction[e][rango[i]];
+                                //Inserto dos veces ese valor en la posicion de rango
+                                reduction[e].splice(rango[i],0,corrige,corrige);
+                            }
 
-                for (let e=2;e<ffcha+1;e++){
-                    corrige2[cont]+=reduction[i][e]+" ";
-                }
-                for (let e=0;e<2;e++){
-                    corrige[cont]+=reduction[i][e]+" ";
-                }
-                reduction[cont]="";
-                reduction[cont].length=0;
-                for (let s=0;s<4;s++){
-                    corrige1[cont]+=reduct[cont][1]+" ";
-                }
-                reduction[i]=corrige[cont]+corrige1[cont]+corrige2[cont];
+                        }
+                    }
 
-                pto=reduction[i].lastIndexOf(" ");
-                reduction[i]=reduction[i].slice(0,pto);
-                reduction[i]=reduction[i].split(" ");
-                cont++;
+
+
+                   /* for (let e=2;e<ffcha+1;e++){
+                        corrige2[cont]+=reduction[i][e]+" ";
+                    }
+                    for (let e=0;e<2;e++){
+                        corrige[cont]+=reduction[i][e]+" ";
+                    }
+                    reduction[cont]="";
+                    reduction[cont].length=0;
+                    for (let s=0;s<4;s++){
+                        corrige1[cont]+=reduct[cont][1]+" ";
+                    }
+                    reduction[i]=corrige[cont]+corrige1[cont]+corrige2[cont];
+
+                    pto=reduction[i].lastIndexOf(" ");
+                    reduction[i]=reduction[i].slice(0,pto);
+                    reduction[i]=reduction[i].split(" ");
+                    cont++;*/
+                }
             }
-        }
+
+       // }
         cont=0;
         //Se empieza a tomar los valores de reduccion por fechas y calcularlos con las habitaciones.
-        for (let ii = 0; ii < cont_fecha; ii++) {
+        for (let ii = 0; ii < ffcha; ii++) {
             reduc[ii]="";
             reducc[ii]="";
             reducc_s[ii]="";
@@ -123,9 +140,9 @@ let reduccion=(reduction,cont_fecha,fech_c,ffcha,service,diner24_ad,diner31_ad,m
                             //Para los que no se seleccionaron y tienen que calcularse
                             if (map_saber===0 && sup_fb===0){
                                 //Como no hay MAP se dividen las fechas y se suma la cena a su fecha correspondiente
-                                if(diner24_ad!="" || diner31_ad!=""){
+                                if(diner[0]!="" || diner[1]!="" || diner[2]!="" || diner[3]!=""){
                                     //Hay cena para el 24/12
-                                    if (ii===2){
+                                    if (ii===rango[cont1]+1){
                                         //La primera vez que entra es para las cenas de los niños
                                         if (cont===0){
 
@@ -143,9 +160,9 @@ let reduccion=(reduction,cont_fecha,fech_c,ffcha,service,diner24_ad,diner31_ad,m
                                                     reducc_s[ii]+=0+" ";
                                                 }else{
                                                     //Para Cost
-                                                    reduc[ii]+=(((ser*reduct[i]/100)+(parseInt(diner24))))+" ";
+                                                    reduc[ii]+=(((ser*reduct[i]/100)+(parseInt(diner[cont1]))))+" ";
                                                     //Para Sell
-                                                    reducc[ii]+=Math.round(((ser*reduct[i]/100)+(parseInt(diner24)))*(1+mups))+" ";
+                                                    reducc[ii]+=Math.round(((ser*reduct[i]/100)+(parseInt(diner[cont1])))*(1+mups))+" ";
 
                                                 }
 
@@ -162,20 +179,20 @@ let reduccion=(reduction,cont_fecha,fech_c,ffcha,service,diner24_ad,diner31_ad,m
                                                 //Para Cost x Pax
                                                 //reduc[ii] += Math.round(((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+(parseInt(diner24_ad))+" ";
                                                 //Para Sell
-                                                reducc[ii]+=Math.round(((((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+(parseInt(diner24_ad)))*(1+mups))+" ";
+                                                reducc[ii]+=Math.round(((((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+(parseInt(diner[cont+4])))*(1+mups))+" ";
 
                                                 //Para Cost x habitacion
-                                                let temp=((ser * 3) - ((reduct[i] * ser) / 100))+(parseInt(diner24_ad));
+                                                let temp=((ser * 3) - ((reduct[i] * ser) / 100))+(parseInt(diner[cont+4]));
                                                 reduc[ii]+=temp+" ";
                                                 //Para Cost-Sell
-                                                reducc_s[ii]+=Math.round((temp*(1+mups)+parseInt(diner24_ad))/3.0)*3 +" ";
+                                                reducc_s[ii]+=Math.round((temp*(1+mups)+parseInt(diner[cont+4]))/3.0)*3 +" ";
                                             }
 
                                         }
-
+                                        saber=true;
                                     }else{
                                         //Para el dia 31/12
-                                        if (ii===4){
+                                        /*if (ii===4){
                                             if (cont===0){
                                                 //Para las cenas de los niños
                                                 if (reduct[i]==="100"||reduct[i]==="100.00"){
@@ -219,7 +236,7 @@ let reduccion=(reduction,cont_fecha,fech_c,ffcha,service,diner24_ad,diner31_ad,m
                                                 }
                                             }
 
-                                        }else{
+                                        }else{*/
                                             switch (reduct[i]){
                                                 case "100.00":
                                                     reducc[ii]+="Free ";
@@ -285,9 +302,10 @@ let reduccion=(reduction,cont_fecha,fech_c,ffcha,service,diner24_ad,diner31_ad,m
                                                     }
 
                                             }
-
-                                        }
+                                        saber=false;
+                                       // }
                                     }
+                                    cont1++;
                                 }
                                 else{
                                     //No hay cena y NO es MAP
@@ -373,9 +391,9 @@ let reduccion=(reduction,cont_fecha,fech_c,ffcha,service,diner24_ad,diner31_ad,m
                         //Saber si hubo MAP para saber si se le suma la cena al valor de la habitacion
                         if (map_saber===0 && sup_fb===0){
                             //Como no hay MAP se dividen las fechas y se suma la cena a su fecha correspondiente
-                            if(diner24_ad!="" || diner31_ad!=""){
+                            if(diner[0]!="" || diner[1]!="" || diner[2]!="" || diner[3]!=""){
                                 //Hay cena para el 24/12
-                                if (ii===2){
+                                if (ii===rango[cont1]+1){
                                     //La primera vez que entra es para las cenas de los niños
                                     if (cont===0){
 
@@ -393,9 +411,9 @@ let reduccion=(reduction,cont_fecha,fech_c,ffcha,service,diner24_ad,diner31_ad,m
                                                 reducc_s[ii]+=0+" ";
                                             }else{
                                                 //Para Cost
-                                                reduc[ii]+=(((ser*reduct[i]/100)+(parseInt(diner24))))+" ";
+                                                reduc[ii]+=(((ser*reduct[i]/100)+(parseInt(diner[cont1]))))+" ";
                                                 //Para Sell
-                                                reducc[ii]+=Math.round(((ser*reduct[i]/100)+(parseInt(diner24)))*(1+mups))+" ";
+                                                reducc[ii]+=Math.round(((ser*reduct[i]/100)+(parseInt(diner[cont1])))*(1+mups))+" ";
 
                                             }
 
@@ -412,20 +430,20 @@ let reduccion=(reduction,cont_fecha,fech_c,ffcha,service,diner24_ad,diner31_ad,m
                                             //Para Cost x Pax
                                             //reduc[ii] += Math.round(((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+(parseInt(diner24_ad))+" ";
                                             //Para Sell
-                                            reducc[ii]+=Math.round(((((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+(parseInt(diner24_ad)))*(1+mups))+" ";
+                                            reducc[ii]+=Math.round(((((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+(parseInt(diner[cont+4])))*(1+mups))+" ";
 
                                             //Para Cost x habitacion
-                                            let temp=((ser * 3) - ((reduct[i] * ser) / 100))+(parseInt(diner24_ad));
+                                            let temp=((ser * 3) - ((reduct[i] * ser) / 100))+(parseInt(diner[cont+4]));
                                             reduc[ii]+=temp+" ";
                                             //Para Cost-Sell
                                             reducc_s[ii]+=Math.round(temp*(1+mups)/3.0)*3+" ";
                                         }
 
                                     }
-
+                                    saber=true;
                                 }else{
                                     //Para el dia 31/12
-                                    if (ii===4){
+                                    /*if (ii===4){
                                         if (cont===0){
                                             //Para las cenas de los niños
                                             if (reduct[i]==="100"||reduct[i]==="100.00"){
@@ -470,7 +488,7 @@ let reduccion=(reduction,cont_fecha,fech_c,ffcha,service,diner24_ad,diner31_ad,m
                                             }
                                         }
 
-                                    }else{
+                                    }else{*/
                                         switch (reduct[i]){
                                             case "100.00":
                                                 reducc[ii]+="Free ";
@@ -544,9 +562,10 @@ let reduccion=(reduction,cont_fecha,fech_c,ffcha,service,diner24_ad,diner31_ad,m
                                                 }
 
                                         }
-
-                                    }
+                                    saber=false;
+                                    //}
                                 }
+                                cont1++;
                             }
                             else{
                                 //No hay cena y NO es MAP

@@ -158,14 +158,12 @@ router.post("/new",(req,resp)=> {
   const mifecha=require("../public/javascripts/fechas") ;
   //Aqui se gestionan las fechas
 
-
-
-
   let mydate_ini= mifecha.fecha_ini(fechas,diner,fd,map_saber,sup_fb);
   //let mydate_end= mifecha.fecha_end(fechas,diner,fd,mydate_ini.diaT,mydate_ini.meT,map_saber,sup_fb);
   let f=mydate_ini.f;
   let t=mydate_ini.t;
   let fbd=mydate_ini.fbd;
+  let rango=mydate_ini.rango;
   //let tbd=mydate_end.tdb;
   let cont_fecha=mydate_ini.cont_fecha;
   let fech_c=mydate_ini.fech_c;
@@ -177,8 +175,8 @@ router.post("/new",(req,resp)=> {
   }
 
   const mirelease=require("../public/javascripts/release") ;
-  let my_release= mirelease.release(rel,ffcha,diner31_ad,diner24_ad);
-  let my_cups=mirelease.cupos(cupo,mydate_ini.cont_fecha,ffcha,diner31_ad,diner24_ad);
+  let my_release= mirelease.release(rel,ffcha,diner);
+  let my_cups=mirelease.cupos(cupo,mydate_ini.cont_fecha,ffcha,diner);
   let release=my_release.releases;
   let cp=my_cups.cp;
   valor[0]=my_release.valor;
@@ -219,7 +217,7 @@ router.post("/new",(req,resp)=> {
   let name_habit=my_ser_nam.name_habit;
   //Aqui se recogen los nombres y valores de los servicios
   const miservice=require("../public/javascripts/services") ;
-  let my_service= miservice.services(service,cont_fecha,diner24_ad,diner31_ad,mups,fech_c,ffcha,ish,iss,iva);
+  let my_service= miservice.services(service,cont_fecha,diner,mups,fech_c,ffcha,rango,ish,iss,iva);
   //console.log(the_service.st);
   let st=my_service.st;
   let st_mup=my_service.st_mup;
@@ -253,8 +251,8 @@ router.post("/new",(req,resp)=> {
   let supls;
   let no_suple;
   if (suplements!=""){
-    my_suplements=misuplements.suplements(suplements,cont_fecha,diner24_ad,diner31_ad,
-        diner31,diner24,resul_sup,service,mups,fech_c,ffcha,map_saber,sup_fb,total_resul_sup,ish,iss,iva);
+    my_suplements=misuplements.suplements(suplements,diner,resul_sup,service,mups,
+        fech_c,ffcha,map_saber,sup_fb,total_resul_sup,rango,ish,iss,iva);
     supls=my_suplements.supls;
     supls_cs=my_suplements.supls_cs;
     supl_mup=my_suplements.supl_mup;
@@ -263,7 +261,7 @@ router.post("/new",(req,resp)=> {
 
   }
   if (single!=""){
-    my_singles=misingles.singles(single,cont_fecha,mups,service,total_resul_sup);
+    my_singles=misingles.singles(single,fech_c,ffcha,mups,service,total_resul_sup,rango,diner);
     supls=my_singles.supls;
     supls_cs=my_singles.supls_cs;
     supl_mup=my_singles.supl_mup;
@@ -282,8 +280,8 @@ router.post("/new",(req,resp)=> {
   cont = 0;
   //Para recoger las reducciones R*
   const mireduction=require("../public/javascripts/reductions");
-  let my_reduction=mireduction.reduccion(reduction,mydate_ini.cont_fecha,mydate_ini.fech_c,
-      ffcha,service,diner24_ad,diner31_ad,mups,diner31,diner24,map_saber,sup_fb,resul_red,resul_sel,ish,iss,iva);
+  let my_reduction=mireduction.reduccion(reduction,fech_c,mups,
+      ffcha,service,diner,map_saber,sup_fb,resul_red,resul_sel,rango,ish,iss,iva);
   let reductions=my_reduction.reductions;
   let child_cost=my_reduction.child_cost;
   let child=my_reduction.child;
@@ -300,9 +298,8 @@ router.post("/new",(req,resp)=> {
   if(red_3!=""){
     const miredrooms=require("../public/javascripts/red_x_rooms");
     let my_redrooms=miredrooms.redRooms(red_3,service,red_4, red_5,red_6,
-        resul_sup,cont_fecha,diner31_ad,diner24_ad,diner31,diner24,st,
-        supls,st_mup,supl_mup,child,child_cost,
-        adult,adult_cost,mups,supls_cs,adult_cs,st_cs,child_cs,map_saber);
+        resul_sup,ffcha,diner,st,supls,st_mup,supl_mup,child,child_cost,
+        adult,adult_cost,mups,supls_cs,adult_cs,st_cs,child_cs,map_saber,rango);
     child_cost=my_redrooms.child_cost;
     child=my_redrooms.child;
     adult_cost=my_redrooms.adult_cost;
@@ -321,9 +318,9 @@ router.post("/new",(req,resp)=> {
   //Para las ventas anticipadas1
 //if (venta!=""){
   const miventa=require("../public/javascripts/early_bookings");
-  let args=[mups,service,red_3,red_4,supls,supl_mup,supls_cs,venta,cont_fecha,
+  let args=[mups,service,red_3,red_4,supls,supl_mup,supls_cs,venta,rango,
     st,st_mup_cost,st_cs,suplements,single,resul_sup,resul_red,resul_sel,
-    adult_cost,adult,adult_cs,child,child_cost,child_cs,reduction,diner24_ad,diner31_ad,fech_c,ffcha];
+    adult_cost,adult,adult_cs,child,child_cost,child_cs,reduction,diner,fech_c,ffcha];
   let my_ventas=miventa.ventas(...args);
   let ventas_sup=my_ventas.ventas_sup;
   let ventas_sup_cs=my_ventas.ventas_sup_cs;
@@ -535,7 +532,8 @@ router.post("/new",(req,resp)=> {
 
 
 //Para componer todos los valores segun se hayan seleccionado
-  for (let i = 0; i < cont_fecha; i++){
+    //xxxxxxxxxxxxxxxxxxx Revisarxxxxxxxxxxxxx
+  /*for (let i = 0; i < ffcha; i++){
 
     uni="'" + name + "'," + "'" + fbd[i] + "'" + "," + "'" + tbd[i] + "'" + "," + st[i];
     if(valor[0]===1){
@@ -548,9 +546,9 @@ router.post("/new",(req,resp)=> {
     if (valor[2]===1){
       uni+=","+supls[i]+ "";
     }
-    /*if (valor[3]===1){
+    /!*if (valor[3]===1){
       uni+=","+eventos_calc[i]+ "";
-    }*/
+    }*!/
     if (valor[4]===1){
       uni+=","+cenitas[i]+ "";
     }
@@ -571,7 +569,7 @@ router.post("/new",(req,resp)=> {
     }
     une[i]=uni;
 
-  }
+  }*/
 //
 
 
@@ -646,7 +644,7 @@ router.post("/new",(req,resp)=> {
 
 
     cont=0;
-      for (let i=0;i<cont_fecha;i++){
+      for (let i=0;i<ffcha;i++){
         json_sell.servicios.push({"fecha_ini":f[i],"fecha_end":t[i],"servi":st_mup[i],"suple":supl_mup[i],"red_adult":adult[i],"red_child":child[i],"plan":plan});
         json_cost.servicios.push({"fecha_ini":f[i],"fecha_end":t[i],"servi":st[i],"suple":supls[i],"red_adult":adult_cost[i],"red_child":child_cost[i],
           "servi_sell":st_mup_cost[i],"suple_sell":supls_cs[i],"red_adult_sell":adult_cs[i],"red_child_sell":child_cs[i]});
@@ -656,8 +654,8 @@ router.post("/new",(req,resp)=> {
     //Para MUP
     json_cost.mups.push({"mup":mup});
     //Para las ventas anticipadas1
-    let c_s=cont_fecha;//Para saber cuantas habitaiones hay
-    for (let i=0;i<cont_fecha;i++){
+    let c_s=ffcha;//Para saber cuantas habitaiones hay
+    for (let i=0;i<ffcha;i++){
       json_early.servicios.push({"fecha_ini":f[i],"fecha_end":t[i],"servi":ventas_st[i],"suple":ventas_sup[i],"red_adult":ventas_red_ad[i],"red_child":ventas_red_ch[i],
         "servi_sell":ventas_st_cs[i],"suple_sell":ventas_sup_cs[i],"red_adult_sell":ventas_red_ad_sell[i],"red_child_sell":ventas_red_ch_sell[i]});
 

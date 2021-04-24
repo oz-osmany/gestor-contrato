@@ -10,7 +10,9 @@ let fecha_ini=function (fechas,diner,fd,map_saber,sup_fb){
     let piez= fechas[1].split(" ");
     let p="";
     let pi="";
-
+    let an = "";
+    let me = "";
+    let dia = "";
     let fch=0;
     let fech_c=false;//Para saber si hay cenas
     let ffcha=0;
@@ -20,6 +22,7 @@ let fecha_ini=function (fechas,diner,fd,map_saber,sup_fb){
     let f_ini="";
     let mc="";//Es para el mes de las cenas
     let dc="";//Para los dias de las cenas
+    let ac="";//Para los años de las cenas
     let rango=new Array(4);//Para saber cual fecha se uso para cortar
     let cont=0;//Sirve de iteracion para el rango
     let cen=new Array(5);//Para comparar los meses.
@@ -46,6 +49,33 @@ let fecha_ini=function (fechas,diner,fd,map_saber,sup_fb){
             piez[e]=piez[e].replace(".","-");
             piez[e]=piez[e].replace(".","-");
         }
+        if (piezas[e].match("-")){
+            p = piezas[e].split("-");
+            pi = piez[e].split("-");
+        }
+        if (piezas[e].match("-")){
+            p = piezas[e].split("-");
+            pi = piez[e].split("-");
+             an = p[2];
+             me = p[1];
+             dia = p[0];
+
+            anT = pi[2];
+            meT = pi[1];
+            diaT = pi[0];
+
+            if(an.length===2){
+                an="20"+an;
+            }
+            if(anT.length===2){
+                anT="20"+anT;
+            }
+            piezas[e]=dia+"-"+me+"-"+an;
+            piez[e]=diaT+"-"+meT+"-"+anT;
+        }
+
+
+
     }
     if (diner[0]!="" || diner[1]!="" ||diner[2]!="" || diner[3]!=""){
         if (map_saber===0 && sup_fb===0){
@@ -55,8 +85,10 @@ let fecha_ini=function (fechas,diner,fd,map_saber,sup_fb){
                     fch=0;
                     //Extraer mes
                     let position=fd[i].indexOf("/");
-                    mc=fd[i].slice(position+1);
+                    let position1=fd[i].lastIndexOf("/");
+                    mc=fd[i].slice(position+1,position1);
                     dc=fd[i].slice(0,position);
+                    ac=fd[i].slice(position1+1);
                     cen[i]=mc;
                     dia_cen[i]=dc;
                     //Buscar en cual rango cae
@@ -67,9 +99,9 @@ let fecha_ini=function (fechas,diner,fd,map_saber,sup_fb){
                                 pi = piez[e].split("-");
                             }
 
-                        let an = p[2];
-                        let me = p[1];
-                        let dia = p[0];
+                         an = p[2];
+                         me = p[1];
+                         dia = p[0];
 
                          anT = pi[2];
                          meT = pi[1];
@@ -80,6 +112,9 @@ let fecha_ini=function (fechas,diner,fd,map_saber,sup_fb){
                         }
                         if(anT.length===2){
                             anT="20"+anT;
+                        }
+                        if(ac.length===2){
+                            ac="20"+ac;
                         }
                         if(me.length>2){
                             switch (me){
@@ -121,43 +156,99 @@ let fecha_ini=function (fechas,diner,fd,map_saber,sup_fb){
                                     break;
                             }
                         }
-                        let me_end=pi[1];
-                        if (mc<=me_end && mc>=me && dc>dia){
-                            //Saber si la fecha de la cena es del mismo mes
+                        //let me_end=pi[1];
+                        if (ac<anT){
+                            //Entra
                             if (cen[i]===cen[i-1]){
                                 //Se desplaza
-                                let desp=dc +"-"  + me_end + "-" +an;
-                                let desp1=parseInt(dc)+1 +"-"  + me_end + "-" +an;
+                                rango[cont]=e;
+                                let desp=dc +"-"  + meT + "-" +an;
+                                let desp1=parseInt(dc)+1 +"-"  + meT + "-" +an;
 
-                                let desplaza1= parseInt(dc)-1+"-"  + me_end + "-" +an;
-                                let desplaza2=dc +"-"  + me_end + "-" +an;
-                               // let desplaza3=parseInt(dia_cen[i-1])-1 +"-"  + me_end + "-" +an;
+                                let desplaza1= parseInt(dc)-1+"-"  + meT + "-" +an;
+                                let desplaza2=dc +"-"  + meT+ "-" +an;
+                                // let desplaza3=parseInt(dia_cen[i-1])-1 +"-"  + me_end + "-" +an;
                                 e=100;
 
-                                f.splice(rango[0]+1,0,desp,desp1);
-                                t.splice(rango[0],0,desplaza1,desplaza2);
+                               /* f.splice(rango[0]+1,0,desp,desp1);
+                                t.splice(rango[0],0,desplaza1,desplaza2);*/
+                                piezas.splice(rango[cont]+1,0,desp,desp1);
+                                piez.splice(rango[cont],0,desplaza1,desplaza2);
+                                cont++;
                             }else {
                                 //Se inserta
                                 //f[fch]
                                 let f1= dia + "-" + me + "-" + an;
-                                let t1= parseInt(dc)-1+"-"+meT+"-"+anT;
+                                let t1= parseInt(dc)-1+"-"+me+"-"+an;
                                 //Se tiene el rango
                                 rango[cont]=e;
 
                                 //Se cortan las fechas
                                 //Aqui esta la fecha que se recorta
-                                let f2=dc +"-"  + me_end + "-" +an;
-                                let t2= dc +"-"  + me_end + "-" +anT;
+                                let f2=dc +"-"  + me + "-" +an;
+                                let t2= dc +"-"  + me + "-" +an;
 
                                 let f3=parseInt(dc)+1 +"-"  + me + "-" +an;
-                                let t3= diaT +"-"  + me_end + "-" +anT;
+                                let t3= diaT +"-"  + meT + "-" +anT;
                                 fch+=3;
-                               /* f.splice(rango[0],0,f1,f2,f3);
-                                t.splice(rango[0],0,t1,t2,t3);*/
-                                piezas.splice(rango[0],1,f1,f2,f3);
-                                piez.splice(rango[0],1,t1,t2,t3);
+                                /* f.splice(rango[0],0,f1,f2,f3);
+                                 t.splice(rango[0],0,t1,t2,t3);*/
+                                piezas.splice(rango[cont],1,f1,f2,f3);
+                                piez.splice(rango[cont],1,t1,t2,t3);
                                 e=100;
+                                cont++;
                             }
+                        }else{
+                            if (ac<=anT && mc<=meT && dc<diaT){
+                                //entra
+                                if (cen[i]===cen[i-1]){
+                                    //Se desplaza
+                                    let desp=dc +"-"  + me+ "-" +an;
+                                    let desp1=parseInt(dc)+1 +"-"  + meT + "-" +an;
+
+                                    let desplaza1= parseInt(dc)-1+"-"  + me+ "-" +an;
+                                    let desplaza2=dc +"-"  + meT + "-" +an;
+                                    // let desplaza3=parseInt(dia_cen[i-1])-1 +"-"  + me_end + "-" +an;
+                                    e=100;
+
+                                    f.splice(rango[0]+1,0,desp,desp1);
+                                    t.splice(rango[0],0,desplaza1,desplaza2);
+                                }else {
+                                    //Se inserta
+                                    //f[fch]
+                                    let f1= dia + "-" + me + "-" + an;
+                                    let t1= parseInt(dc)-1+"-"+meT+"-"+anT;
+                                    //Se tiene el rango
+                                    rango[cont]=e;
+
+                                    //Se cortan las fechas
+                                    //Aqui esta la fecha que se recorta
+                                    let f2=dc +"-"  + meT + "-" +an;
+                                    let t2= dc +"-"  + meT + "-" +anT;
+
+                                    let f3=parseInt(dc)+1 +"-"  + meT + "-" +an;
+                                    let t3= diaT +"-"  + meT + "-" +anT;
+                                    fch+=3;
+                                    /* f.splice(rango[0],0,f1,f2,f3);
+                                     t.splice(rango[0],0,t1,t2,t3);*/
+                                    piezas.splice(rango[cont],1,f1,f2,f3);
+                                    piez.splice(rango[cont],1,t1,t2,t3);
+                                    e=100;
+                                    cont++;
+                                }
+                            }else{
+                                //No entra en el rango
+                                f[fch] = dia + "-" + me + "-" + an;
+                                t[fch]= diaT+"-"+meT+"-"+anT;
+                                fbd[fch] = an + "-" + me + "-" + dia;
+                                fch++;
+
+                            }
+                        }
+                        /*if ((ac<=anT || mc<=meT ||  dc<diaT)&&(ac>=an || mc>=me ||  dc>dia) ){
+                            //Saber si la fecha de la cena es del mismo mes
+
+
 
                         }
                         else{
@@ -167,9 +258,9 @@ let fecha_ini=function (fechas,diner,fd,map_saber,sup_fb){
                             fbd[fch] = an + "-" + me + "-" + dia;
                             fch++;
 
-                        }
+                        }*/
                         cont_fecha = fch;
-                        ffcha=e;
+                        ffcha=piezas.length;
                     }
                     /*piezas=f;
                     piez=t;*/
@@ -321,7 +412,7 @@ let fecha_ini=function (fechas,diner,fd,map_saber,sup_fb){
                 //console.log(f[a]);
             }
        }
-
+    fech_c=true;
     }else {
         for (let a = 0; a < piezas.length; a++) {
             if (piezas[a].match("/")){
@@ -470,7 +561,7 @@ let fecha_ini=function (fechas,diner,fd,map_saber,sup_fb){
             f=piezas;
             t=piez;
 
-    return {f,t,cont_fecha,fech_c,ffcha,diaT,meT,fbd};
+    return {f,t,cont_fecha,fech_c,ffcha,diaT,meT,fbd,rango};
 }
 /*let fecha_end=function (fechas,diner,fd,diaT,meT,map_saber,sup_fb){
 

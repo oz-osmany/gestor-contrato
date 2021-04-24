@@ -1,7 +1,7 @@
-let ventas=(mups,service,red_3,red_4,supls,supl_mup,supls_cs,venta,cont_fecha,
+let ventas=(mups,service,red_3,red_4,supls,supl_mup,supls_cs,venta,rango,
             st,st_mup_cost,st_cs,suplements,single,resul_sup,resul_red,resul_sel,
             adult_cost,adult,adult_cs,child,child_cost,child_cs,reduction,
-            diner24_ad,diner31_ad,fech_c,ffcha)=>{
+            diner,fech_c,ffcha)=>{
 
     let ventas=new Array(20);
     let name_ventas=new Array(20);
@@ -30,54 +30,36 @@ let ventas=(mups,service,red_3,red_4,supls,supl_mup,supls_cs,venta,cont_fecha,
 
     if (venta != "") {
 
-
-        //Tomo los enunciados
-        for (let i=0;i<venta.length;i++){
-            if(venta[i]===""){//Para saber si hay espacios vacios
-                venta.length=venta.length-1;
-                break
-            }
-            if (venta[i].match("/")){
-                let position=venta[i].indexOf("/");
-                ventas[i]=venta[i].slice(position+2);
-                name_ventas[i]=venta[i].slice(0,position);
-            }
-            venta[i]=venta[i].split(" ");
-            //ventas[i]=venta[i];
-            //console.log(ventas[i]);
-            corrige[cont] = "";
-            corrige1[cont] = "";
-            corrige2[cont] = "";
             /*Se dividen en tres partes la cadena para insertar los valores segun las nuevas fechas
             cuando haya cena*/
-            if(diner24_ad!="" || diner31_ad!=""){
+            if(diner[0]!="" || diner[1]!="" || diner[2]!="" || diner[3]!=""){
                 if (fech_c===true) {
-                    //Se corta despues del 22/12
-                    for (let e = 2; e < ffcha+1; e++) {
-                        corrige2[cont] += venta[i][e] + " ";
-                    }
-                    //Se recoge del 11/12 al 22/12
-                    for (let e = 0; e < 2; e++) {
-                        corrige[cont] += venta[i][e] + " ";
-                    }
-                    venta[cont] = "";
-                    venta[cont].length = 0;
-                    for (let s = 0; s < 4; s++) {
-                        corrige1[cont] += ventas[cont][1] + " ";
-                    }
-                    venta[i] = corrige[cont] + corrige1[cont] + corrige2[cont];
+                    //Iterar en los servicios
+                    for (let e=0;e<venta.length;e++){
+                        //Para saber si hay espacios vacios
+                        if(venta[e]===""){
+                            venta.length=venta.length-1;
+                            break
+                        }
+                        venta[e]=venta[e].split(" ");
+                        //Saber cuantas divisiones hay segun "rango"
+                        for (let i=0;i<rango.length;i++){
+                            //validar "rango"
+                            if (rango[i]){
+                                //Tomo el valor de service en la posicion de rango
+                                corrige=venta[e][rango[i]];
+                                //Inserto dos veces ese valor en la posicion de rango
+                                venta[e].splice(rango[i],0,corrige,corrige);
+                            }
 
-                    let pto = venta[i].lastIndexOf(" ");
-                    venta[i] = venta[i].slice(0, pto);
-                    venta[i] = venta[i].split(" ");
-                    cont++;
+                        }
+                    }
                 }
             }
-        }
-            cont=0;
-        for (let ii = 0; ii < cont_fecha; ii++) {
 
-            let c_s=cont_fecha;//Para saber la cantidad de habitacines
+        for (let ii = 0; ii < ffcha; ii++) {
+
+            let c_s=ffcha;//Para saber la cantidad de habitacines
             for (let v = 0; v < venta.length; v++) {
 
 

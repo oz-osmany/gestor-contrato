@@ -1,71 +1,40 @@
-let services=(service,cont_fecha,diner24_ad,diner31_ad,mups,fech_c,ffcha,ish,iss,iva)=>{
+let services=(service,cont_fecha,diner,mups,fech_c,ffcha,rango,ish,iss,iva)=>{
     let cont = 0;
 
     let pto = 0;//Para recoger los valores
     let st = new Array(40);
-
-    let services = new Array(20);
-    let corrige = new Array(2);
-    let corrige1 = new Array(2);
-    let corrige2 = new Array(2);
-
+    let corrige ="";
     let map=0;//Para saber si hay MAP en las habitaciones
+    let saber=false;
 
-    for (let i=0;i<service.length;i++){
-        if(service[i]===""){//Para saber si hay espacios vacios
-            service.length=service.length-1;
-            break
-        }
-
-
-            service[i]=service[i].split(" ");
-
-
-
-        services[cont]=service[i];
-        corrige[cont]="";
-        corrige1[cont]="";
-        corrige2[cont]="";
-
-
-        if(diner24_ad!="" || diner31_ad!=""){
+        if(diner[0]!="" || diner[1]!="" || diner[2]!="" || diner[3]!=""){
 
             //Se dividen en tres parte la cadena para insertar los valores segun las nuevas fechas
             if(fech_c===true){
+                //Iterar en los servicios
+                for (let e=0;e<service.length;e++){
+                    //Para saber si hay espacios vacios
+                    if(service[e]===""){
+                        service.length=service.length-1;
+                        break
+                    }
+                    service[e]=service[e].split(" ");
+                    //Saber cuantas divisiones hay segun "rango"
+                    for (let i=0;i<rango.length;i++){
+                        //validar "rango"
+                        if (rango[i]){
+                            //Tomo el valor de service en la posicion de rango
+                            corrige=service[e][rango[i]];
+                            //Inserto dos veces ese valor en la posicion de rango
+                            service[e].splice(rango[i],0,corrige,corrige);
+                        }
 
-                for (let e=2;e<ffcha+1;e++){
-                    corrige2[cont]+=service[i][e]+" ";
-
+                    }
                 }
-                for (let e=0;e<2;e++){
-                    corrige[cont]+=service[i][e]+" ";
-
-                }
-
-                service[cont]="";
-                service[cont].length=0;
-                for (let s=0;s<4;s++){
-                    corrige1[cont]+=services[cont][1]+" ";
-
-                }
-                service[i]=corrige[cont]+corrige1[cont]+corrige2[cont];
-
-
-                pto=service[i].lastIndexOf(" ");
-                service[i]=service[i].slice(0,pto);
-                service[i]=service[i].split(" ");
-
-
 
 
             }
         }
-
-
-        cont++;
-        //console.log(service[i]);
-    }
-    cont=0;
 
     //Para recoger las habitaciones de forma vertical H*
     let st_mup=new Array(10);
@@ -73,7 +42,7 @@ let services=(service,cont_fecha,diner24_ad,diner31_ad,mups,fech_c,ffcha,ish,iss
     let st_mup_cost=new Array(10);
     cont=0;
     //ver cont_fecha
-    for (let ii = 0; ii < cont_fecha; ii++) {
+    for (let ii = 0; ii < ffcha; ii++) {
         st[ii]="";
         st_mup[ii]="";
         st_mup_cost[ii]="";
@@ -98,7 +67,7 @@ let services=(service,cont_fecha,diner24_ad,diner31_ad,mups,fech_c,ffcha,ish,iss
             if (service[i][ii].match(",")){
                 service[i][ii]=service[i][ii].replace(",","");
             }
-            if(diner24_ad!="" || diner31_ad!=""){
+            if(diner[0]!="" || diner[1]!="" || diner[2]!="" || diner[3]!=""){
                 if (map===1){
                     //Si ha MAP no se suma la cena a la habitacion
                     //Para los Sell de los manuales
@@ -107,27 +76,30 @@ let services=(service,cont_fecha,diner24_ad,diner31_ad,mups,fech_c,ffcha,ish,iss
                     st_mup_cost[ii]+=Math.round((parseInt(service[i][ii])*(1+mups))*2*((ish*iva)+parseInt(iss))/2.0)*2+" ";
                     //Se multiplica por 2 para Cost
                     st[ii]+=((service[i][ii])*2)*(ish*iva)+parseInt(iss) +" ";
+                    saber=false;
                 }else{
                     //Como no hay MAP se suma el valor de la cena a la habitacion
-                    if (ii===2){
-                        //Para la cena del 24-12
-                        st_mup[ii]+=Math.round(((parseInt(service[i][ii])+parseInt(diner24_ad))*(1+mups))*(ish*iva)+parseInt(iss))+" ";
-                        st_mup_cost[ii]+=Math.round(((parseInt(service[i][ii])+parseInt(diner24_ad))*(1+mups))*2*((ish*iva)+parseInt(iss))/2.0)*2+" ";
-                        st[ii]+=(parseInt(service[i][ii])+parseInt(diner24_ad))*2*(ish*iva)+parseInt(iss) +" ";//Se multiplica por 2 para Cost
+                    if (ii===rango[cont]+1){
+
+                        st_mup[ii]+=Math.round(((parseInt(service[i][ii])+parseInt(diner[cont+4]))*(1+mups))*(ish*iva)+parseInt(iss))+" ";
+                        st_mup_cost[ii]+=Math.round(((parseInt(service[i][ii])+parseInt(diner[cont+4]))*(1+mups))*2*((ish*iva)+parseInt(iss))/2.0)*2+" ";
+                        st[ii]+=(parseInt(service[i][ii])+parseInt(diner[cont+4]))*2*(ish*iva)+parseInt(iss) +" ";//Se multiplica por 2 para Cost
+                        saber=true;//cont++;
                     }else{
-                        if (ii===4){
+                       /* if (ii===4){
                             //Para la cena del 31-12
                             st_mup[ii]+=Math.round(((parseInt(service[i][ii])+parseInt(diner31_ad))*(1+mups))*(ish*iva)+parseInt(iss))+" ";
                             st_mup_cost[ii]+=Math.round((((parseInt(service[i][ii])+parseInt(diner31_ad))*(1+mups)))*2*((ish*iva)+parseInt(iss))/2.0)*2+" ";
                             st[ii]+=(parseInt(service[i][ii])+parseInt(diner31_ad))*2*((ish*iva)+iss) +" ";//Se multiplica por 2 para Cost
-                        }else{
+                        }else{*/
                             //Para Sell de los manuales
                             st_mup[ii]+=Math.round((parseInt(service[i][ii])*(1+mups))*((ish*iva)+parseInt(iss)))+" ";
                             //Para Cost-Sell
                             st_mup_cost[ii]+=Math.round((parseInt(service[i][ii])*(1+mups))*2*((ish*iva)+parseInt(iss))/2.0)*2+" ";
                             //Para Cost
                             st[ii]+=(service[i][ii])*2+" ";//Se multiplica por 2 para Cost
-                        }
+                            saber=false;
+                        //}
                     }
                 }
 
@@ -139,10 +111,13 @@ let services=(service,cont_fecha,diner24_ad,diner31_ad,mups,fech_c,ffcha,ish,iss
 
                 //Se multiplica por 2 para Cost
                 st[ii]+=(service[i][ii])*2 *(ish*iva)+parseInt(iss)+" ";
+                saber=false;
             }
 
         }
-
+        if(saber===true){
+            cont++;
+        }
         let find=st[ii].lastIndexOf(" ");
         st[ii]=st[ii].slice(0,find);
         st[ii]=st[ii].split(" ");
