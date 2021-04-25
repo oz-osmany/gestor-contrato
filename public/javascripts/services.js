@@ -69,7 +69,7 @@ let services=(service,cont_fecha,diner,mups,fech_c,ffcha,rango,ish,iss,iva)=>{
             }
             if(diner[0]!="" || diner[1]!="" || diner[2]!="" || diner[3]!=""){
                 if (map===1){
-                    //Si ha MAP no se suma la cena a la habitacion
+                    //Si hay MAP no se suma la cena a la habitacion
                     //Para los Sell de los manuales
                     st_mup[ii]+=Math.round((parseInt(service[i][ii])*(1+mups))*(ish*iva)+parseInt(iss))+" ";
                     //Para Cost-Sell

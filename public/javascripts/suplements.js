@@ -1,10 +1,12 @@
-let singles=(single,fech_c,ffcha,mups,service,total_resul_sup,rango,diner)=>{
+let singles=(single,fech_c,ffcha,mups,service,total_resul_sup,rango,diner,map,ish,iss,iva)=>{
     let supls_cs=new Array(20);
     let supl_mup=new Array(10);
     let supls=new Array(10);
     let valor=0;
     let no_suple=0;
     let corrige="";
+    let saber=false;
+    let cont=0;
 
     if(diner[0]!="" || diner[1]!="" || diner[2]!="" || diner[3]!=""){
 
@@ -42,9 +44,7 @@ let singles=(single,fech_c,ffcha,mups,service,total_resul_sup,rango,diner)=>{
         //resp.send("Error!!! Deben coincidir la cantidad de suplementos con las habitaciones. Verique si hay excepciones");
         return {no_suple};
     }else{
-       /* for (let e=0;e<single.length;e++){
-            single[e]=single[e].split(" ");
-        }*/
+
         for (let ii = 0; ii < ffcha; ii++) {
             supls[ii]="";
             supl_mup[ii]="";
@@ -55,15 +55,48 @@ let singles=(single,fech_c,ffcha,mups,service,total_resul_sup,rango,diner)=>{
                     single.length=single.length-1;
                     break;
                 }
-                //Para Sell
-                supl_mup[ii]+=Math.round(parseInt(single[i][ii])+(parseInt(single[i][ii])*mups))+" ";
+                if(diner[0]!="" || diner[1]!="" || diner[2]!="" || diner[3]!=""){
+                    if (map===1){
+                        //Si hay MAP no se suma la cena a la habitacion
+                        //Para Sell
+                        supl_mup[ii]+=Math.round((parseInt(single[i][ii])+(parseInt(single[i][ii])*mups))*(ish*iva)+parseInt(iss))+" ";
+                        //Para Cost
+                        supls[ii]+=single[i][ii]*(ish*iva)+parseInt(iss)+" ";
+                        //Para Cost-Sell
+                        supls_cs[ii]+=Math.round((parseInt(single[i][ii])* (1 + mups))*(ish*iva)+parseInt(iss))+ " ";
+                        saber=false;
+                    }else{
+                        //Como no hay MAP se suma el valor de la cena a la habitacion
+                        if (ii===rango[cont]+1){
+                            //Para Sell
+                            supl_mup[ii]+=Math.round(((parseInt(single[i][ii])+ parseInt(diner[cont+4]))+(parseInt(single[i][ii])+ parseInt(diner[cont+4]))*mups)*(ish*iva)+parseInt(iss))+" ";
+                            //Para Cost
+                            supls[ii]+=(parseInt(single[i][ii])+ parseInt(diner[cont+4]))*(ish*iva)+parseInt(iss)+" ";
+                            //Para Cost-Sell
+                            supls_cs[ii]+=Math.round(((parseInt(single[i][ii])+ parseInt(diner[cont+4]))* (1 + mups))*(ish*iva)+parseInt(iss))+ " ";
+                            saber=true;
+                        }else{
+                            supl_mup[ii]+=Math.round((parseInt(single[i][ii])+(parseInt(single[i][ii])*mups))*(ish*iva)+parseInt(iss))+" ";
+                            //Para Cost
+                            supls[ii]+=single[i][ii]*(ish*iva)+parseInt(iss)+" ";
+                            //Para Cost-Sell
+                            supls_cs[ii]+=Math.round((parseInt(single[i][ii])* (1 + mups))*(ish*iva)+parseInt(iss))+ " ";
+                            saber=false;
+                        }
+                    }
+                }else{
+                    //Para Sell
+                    supl_mup[ii]+=Math.round((parseInt(single[i][ii])+(parseInt(single[i][ii])*mups))*(ish*iva)+parseInt(iss))+" ";
+                    //Para Cost
+                    supls[ii]+=single[i][ii]*(ish*iva)+parseInt(iss)+" ";
+                    //Para Cost-Sell
+                    supls_cs[ii]+=Math.round((parseInt(single[i][ii])* (1 + mups))*(ish*iva)+parseInt(iss))+ " ";
+                }
 
-                //Para Cost
-                supls[ii]+=single[i][ii]+" ";
-                //Para Cost-Sell
-                supls_cs[ii]+=Math.round(parseInt(single[i][ii])* (1 + mups))+ " ";
             }
-
+            if(saber===true){
+                cont++;
+            }
             let find=supls[ii].lastIndexOf(" ");
             supls[ii]=supls[ii].slice(0,find);
             supls[ii]=supls[ii].split(" ");
@@ -135,7 +168,7 @@ let suplements=(suplements,diner,resul_sup,service,mups,fech_c,
                 let cero = 0;
                 for (let ii = 0; ii < ffcha; ii++) {//Para recoger despues de cada servicio, por fecha
                     //Suplementos por porciento
-                    cont = 0;
+
                     supls[ii] = "";
                     supl_mup[ii] = "";
                     supls_cs[ii]="";
@@ -282,7 +315,7 @@ let suplements=(suplements,diner,resul_sup,service,mups,fech_c,
 
 
                             }
-                            cont++;
+                            //cont++;
                         }
                     }
                     if(saber===true){

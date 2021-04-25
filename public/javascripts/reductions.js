@@ -24,46 +24,15 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
         diner31=0;
     }*/
     if (reduction != "") {
-       // for (let i=0;i<reduction.length;i++){
-
-
-         //   reduct[i]="";
-            //Saber si la reduccion es N/A
-            /*if(reduction[i].match("N/A")){
-                pos=reduction[i].indexOf("N/A");
-                name_red[i]=reduction[i].slice(0,pos);
-                reduct[i]=reduction[i].slice(pos);
-            }else{
-                //Si hay valores se pregunra por el % para tomar los valores
-                let pos=reduction[i].indexOf("%");
-                reduct[i] = reduction[i].slice(pos-6);
-                //Saber si el valor es un numero
-                let regx=/(\d+)/g;
-                position=reduct[i].indexOf(parseInt(reduct[i].match(regx)));
-                reduct[i]=reduct[i].slice(position);
-
-                name_red[i] = reduction[i].slice(0, pos-6);
-                //Se tiene en nombre pero se toma la parte antes del / que es el enunciado real
-                if (name_red[i].match("/")){
-                    position=name_red[i].indexOf("/");
-                    name_red[i] = reduction[i].slice(0, position);
-                }
-            }*/
-
-
-
-
-            //console.log(reduction[i]);
-
-            //Se dividen en tres parte la cadena para insertar los valores segun las nuevas fechas
-            if(diner[0]!="" || diner[1]!="" || diner[2]!="" || diner[3]!=""){
-                if(fech_c===true){
+             //Se dividen en tres parte la cadena para insertar los valores segun las nuevas fechas
+        if(diner[0]!="" || diner[1]!="" || diner[2]!="" || diner[3]!=""){
+            if(fech_c===true){
                     //Iterar en los servicios
-                    for (let e=0;e<reduction.length;e++){
+                for (let e=0;e<reduction.length;e++){
                         //Para saber si hay espacios vacios
-                        if(reduction[e]===""){
-                            reduction.length=reduction.length-1;
-                            break
+                   if(reduction[e]===""){
+                      reduction.length=reduction.length-1;
+                       break
                         }
                         reduction[e]=reduction[e].split(" ");
                         //Saber cuantas divisiones hay segun "rango"
@@ -79,30 +48,10 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                         }
                     }
 
-
-
-                   /* for (let e=2;e<ffcha+1;e++){
-                        corrige2[cont]+=reduction[i][e]+" ";
-                    }
-                    for (let e=0;e<2;e++){
-                        corrige[cont]+=reduction[i][e]+" ";
-                    }
-                    reduction[cont]="";
-                    reduction[cont].length=0;
-                    for (let s=0;s<4;s++){
-                        corrige1[cont]+=reduct[cont][1]+" ";
-                    }
-                    reduction[i]=corrige[cont]+corrige1[cont]+corrige2[cont];
-
-                    pto=reduction[i].lastIndexOf(" ");
-                    reduction[i]=reduction[i].slice(0,pto);
-                    reduction[i]=reduction[i].split(" ");
-                    cont++;*/
                 }
             }
 
-       // }
-        cont=0;
+
         //Se empieza a tomar los valores de reduccion por fechas y calcularlos con las habitaciones.
         for (let ii = 0; ii < ffcha; ii++) {
             reduc[ii]="";
@@ -160,9 +109,9 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                                                     reducc_s[ii]+=0+" ";
                                                 }else{
                                                     //Para Cost
-                                                    reduc[ii]+=(((ser*reduct[i]/100)+(parseInt(diner[cont1]))))+" ";
+                                                    reduc[ii]+=((ser*reduct[i]/100)+(parseInt(diner[cont1])))*(ish*iva)+parseInt(iss)+" ";
                                                     //Para Sell
-                                                    reducc[ii]+=Math.round(((ser*reduct[i]/100)+(parseInt(diner[cont1])))*(1+mups))+" ";
+                                                    reducc[ii]+=Math.round(((ser*reduct[i]/100)+(parseInt(diner[cont1])))*(1+mups)*(ish*iva)+parseInt(iss))+" ";
 
                                                 }
 
@@ -179,133 +128,97 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                                                 //Para Cost x Pax
                                                 //reduc[ii] += Math.round(((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+(parseInt(diner24_ad))+" ";
                                                 //Para Sell
-                                                reducc[ii]+=Math.round(((((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+(parseInt(diner[cont+4])))*(1+mups))+" ";
+                                                reducc[ii]+=Math.round(((((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+(parseInt(diner[cont+4])))*(1+mups)*(ish*iva)+parseInt(iss))+" ";
 
                                                 //Para Cost x habitacion
                                                 let temp=((ser * 3) - ((reduct[i] * ser) / 100))+(parseInt(diner[cont+4]));
-                                                reduc[ii]+=temp+" ";
+                                                reduc[ii]+=temp*(ish*iva)+parseInt(iss)+" ";
                                                 //Para Cost-Sell
-                                                reducc_s[ii]+=Math.round((temp*(1+mups)+parseInt(diner[cont+4]))/3.0)*3 +" ";
+                                                reducc_s[ii]+=Math.round(temp*(1+mups)*(ish*iva)+parseInt(iss)/3.0)*3+" ";
                                             }
 
                                         }
                                         saber=true;
                                     }else{
                                         //Para el dia 31/12
-                                        /*if (ii===4){
-                                            if (cont===0){
-                                                //Para las cenas de los niños
-                                                if (reduct[i]==="100"||reduct[i]==="100.00"){
-                                                    //Si el niño es free no se calcula
-                                                    reduc[ii]+=0+" ";
-                                                    reducc[ii] +="Free ";
-                                                    reducc_s[ii]+=0+" ";
+
+                                        switch (reduct[i]){
+                                            case "100.00":
+                                                reducc[ii]+="Free ";
+                                                reduc[ii]+=0+" ";
+                                                break;
+                                            case "100":
+                                                reducc[ii]+="Free ";
+                                                reduc[ii]+=0+" ";
+                                                break;
+                                            case "50.00":
+                                                //Para Sell x pax
+                                                reducc[ii]+=Math.round((ser*reduct[i]/100)*(1+mups)*(ish*iva)+parseInt(iss))+" ";
+                                                //Para Cost x Habitacion
+                                                //Para niños
+                                                if(cont===0){
+                                                    reduc[ii]+= ((ser*reduct[i]/100)*(ish*iva)+parseInt(iss))+" ";
                                                 }else{
-                                                    //Cuando no esta disponible la reduccion
-                                                    if (reduct[i]==="N/A"){
-                                                        reduc[ii] += 0+" ";
-                                                        reducc[ii]+="N/A ";
-                                                        reducc_s[ii]+=0+" ";
-                                                    }else{
-                                                        //Para Cost
-                                                        reduc[ii]+=((ser*reduct[i]/100)+(parseInt(diner31)))+" ";
-                                                        //Para Sell
-                                                        reducc[ii]+=Math.round(((ser*reduct[i]/100)+(parseInt(diner31)))*(1+mups))+" ";
-
-                                                    }
-
-
-                                                }
-                                            }else{
-                                                //Para las cenas de los adultos
-                                                //Cuando no esta disponible la reduccion
-                                                if (reduct[i]==="N/A"){
-                                                    reduc[ii] += 0+" ";
-                                                    reducc[ii] +="N/A ";
-                                                }else{
-
-                                                    //Para Cost x Pax
-                                                    //reduc[ii] += Math.round(((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+(parseInt(diner31_ad))+" ";
-                                                    //Para Sell
-                                                    reducc[ii]+=Math.round(((((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+(parseInt(diner31_ad)))*(1+mups))+" ";
-                                                    //Para Cost x habitacion
-                                                    let temp=((ser * 3) - ((reduct[i] * ser) / 100))+(parseInt(diner31_ad));
-                                                    reduc[ii]+=temp+" ";
-                                                    //Para Cost-Sell
-                                                    reducc_s[ii]+=Math.round((temp*(1+mups)+parseInt(diner31_ad))/3.0)*3 +" ";
-                                                }
-                                            }
-
-                                        }else{*/
-                                            switch (reduct[i]){
-                                                case "100.00":
-                                                    reducc[ii]+="Free ";
-                                                    reduc[ii]+=0+" ";
-                                                    break;
-                                                case "100":
-                                                    reducc[ii]+="Free ";
-                                                    reduc[ii]+=0+" ";
-                                                    break;
-                                                case "50.00":
-                                                    //Para Sell x pax
-                                                    reducc[ii]+=Math.round((ser*reduct[i]/100)*(1+mups))+" ";
-                                                    //Para Cost x Habitacion
-                                                    //Para niños
-                                                    if(cont===0){
-                                                        reduc[ii]+= ((ser*reduct[i]/100))+" ";
-                                                    }else{
-                                                        //Para Cost x habitacion
-                                                        let temp=((ser * 3) - ((reduct[i] * ser) / 100));
-                                                        reduc[ii]+=temp+" ";
-                                                        //Para Cost-Sell
-                                                        reducc_s[ii]+=Math.round(temp*(1+mups)/3.0)*3 +" ";
-                                                    }
-
-                                                    //Para Cost x Pax
-                                                    //reduc[ii] += Math.round(((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+" ";
-                                                    break;
-                                                case "50":
-                                                    //Para Sell x Habitacion
-                                                    reducc[ii]+=Math.round((ser*reduct[i]/100)*(1+mups))+" ";
                                                     //Para Cost x habitacion
                                                     let temp=((ser * 3) - ((reduct[i] * ser) / 100));
-                                                    reduc[ii]+=temp+" ";
-                                                    //Para Cost x Pax
-                                                    //reduc[ii] += Math.round(((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+" ";
+                                                    reduc[ii]+=temp*(ish*iva)+parseInt(iss)+" ";
                                                     //Para Cost-Sell
-                                                    reducc_s[ii]+=Math.round(temp*(1+mups)/3.0)*3 +" ";
-                                                    break;
-                                                case "N/A":
-                                                    reducc[ii]+="N/A ";
-                                                    reduc[ii]+=0+" ";
-                                                    break;
-                                                default:
-                                                    //Para los niños
-                                                    if(cont===0){
-                                                        //Para Cost
-                                                        reduc[ii]+= ((ser*parseInt(reduct[i])/100))+" ";
-                                                        //reduc[ii]+=Math.round((ser * 3) - ((reduct[i] * ser) / 100))+" ";
-                                                        //Para Sell x pax
-                                                        reducc[ii]+=Math.round((ser*parseInt(reduct[i])/100)*(1+mups))+" ";
-                                                    }else{
-                                                        //Para adultos
-                                                        //Para Cost x habitacion
-                                                        let temp=((ser * 3) - ((reduct[i] * ser) / 100));
-                                                        reduc[ii]+=temp+" ";
-                                                        //Para Cost x pax
-                                                        //reduc[ii] += Math.round(((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+" ";
-                                                        //Para Cost-Sell
-                                                        reducc_s[ii]+=Math.round(temp*(1+mups)/3.0)*3+" ";
-                                                        //Para Sell x pax
-                                                        reducc[ii]+=Math.round((((ser * 2) + (ser - (reduct[i] * ser) / 100)) *(1+mups))/ 3)+" ";
+                                                    temp=parseFloat(temp.toFixed(2));
+                                                    reducc_s[ii]+=Math.round(temp*(1+mups)*(ish*iva)+parseInt(iss)/3.0)*3 +" ";
+                                                }
 
-                                                    }
+                                                //Para Cost x Pax
+                                                //reduc[ii] += Math.round(((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+" ";
+                                                break;
+                                            case "50":
+                                                //Para Sell x pax
+                                                reducc[ii]+=Math.round((ser*reduct[i]/100)*(1+mups)*(ish*iva)+parseInt(iss))+" ";
+                                                //Para Cost x Habitacion
+                                                //Para niños
+                                                if(cont===0){
+                                                    reduc[ii]+= ((ser*reduct[i]/100)*(ish*iva)+parseInt(iss))+" ";
+                                                }else{
+                                                    //Para Cost x habitacion
+                                                    let temp=((ser * 3) - ((reduct[i] * ser) / 100));
+                                                    reduc[ii]+=temp*(ish*iva)+parseInt(iss)+" ";
+                                                    //Para Cost-Sell
+                                                    temp=parseFloat(temp.toFixed(2));
+                                                    reducc_s[ii]+=Math.round(temp*(1+mups)*(ish*iva)+parseInt(iss)/3.0)*3 +" ";
+                                                }
+                                                break;
+                                            case "N/A":
+                                                reducc[ii]+="N/A ";
+                                                reduc[ii]+=0+" ";
+                                                break;
+                                            default:
+                                                //Para los niños
+                                                if(cont===0){
+                                                    //Para Cost
+                                                    let red=reduct[i];
+                                                    reduc[ii]+= (ser*red/100)*(ish*iva)+parseInt(iss)+" ";
+                                                    //reduc[ii]+=Math.round((ser * 3) - ((reduct[i] * ser) / 100))+" ";
+                                                    //Para Sell x pax
+                                                    reducc[ii]+=Math.round((ser*reduct[i]/100)*(1+mups)*(ish*iva)+parseInt(iss))+" ";
+                                                }else{
+                                                    //Para adultos
+                                                    //Para Cost x habitacion
+                                                    let temp=((ser * 3) - ((reduct[i] * ser) / 100));
+                                                    reduc[ii]+=temp*(ish*iva)+parseInt(iss)+" ";
+                                                    //Para Cost x pax
+                                                    //reduc[ii] += Math.round(((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+" ";
+                                                    //Para Cost-sell
+                                                    temp=parseFloat(temp.toFixed(2));
+                                                    reducc_s[ii]+=Math.round(temp*(1+mups)*(ish*iva)+parseInt(iss)/3.0)*3+" ";
+                                                    //Para Sell x pax
+                                                    reducc[ii]+=Math.round(((((ser * 2) + (ser - (reduct[i] * ser) / 100)) *(1+mups))/ 3)*(ish*iva)+parseInt(iss))+" ";
 
-                                            }
+                                                }
+
+                                        }
                                         saber=false;
-                                       // }
+                                        //}
                                     }
-                                    cont1++;
+
                                 }
                                 else{
                                     //No hay cena y NO es MAP
@@ -322,30 +235,31 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                                                 reducc_s[ii]+="Free ";
                                             }else{
                                                 //Para Cost x Pax
-                                                reduc[ii]+=(ser*reduct[i]/100)+" ";
+                                                reduc[ii]+=(ser*reduct[i]/100)*(ish*iva)+parseInt(iss)+" ";
                                                 //Para Cost x Habitacion
                                                 //reduc[ii]+=Math.round((ser * 3) - ((reduct[i] * ser) / 100))+" ";
                                                 //Para Sell x pax
-                                                reducc[ii]+=Math.round(((ser*reduct[i]/100))*(1+mups))+" ";
+                                                reducc[ii]+=Math.round(((ser*reduct[i]/100))*(1+mups)*(ish*iva)+parseInt(iss))+" ";
                                             }
 
 
                                         }else {
                                             //Para las cenas de los adultos
                                             //Para Sell x pax
-                                            reducc[ii]+=Math.round((((ser * 2) + (ser - (reduct[i] * ser) / 100)) *(1+mups))/ 3)+" ";
+                                            reducc[ii]+=Math.round(((((ser * 2) + (ser - (reduct[i] * ser) / 100)) *(1+mups))/ 3)*(ish*iva)+parseInt(iss))+" ";
                                             //Para Cost x pax
                                             //reduc[ii] += Math.round(((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+" ";
                                             //Para Cost x habitacion
                                             let temp=(ser * 3) - ((reduct[i] * ser) / 100);
-                                            reduc[ii]+=temp+" ";
+                                            reduc[ii]+=temp*(ish*iva)+parseInt(iss)+" ";
                                             //Para Cost-Sell
-                                            reducc_s[ii]+=Math.round(temp*(1+mups)/3.0)*3+" ";
+                                            temp=parseFloat(temp.toFixed(2));
+                                            reducc_s[ii]+=Math.round(temp*(1+mups)*(ish*iva)+parseInt(iss)/3.0)*3+" ";
                                         }
 
 
                                     }
-
+                                    saber=false;
                                 }
                             }
                             else {
@@ -355,34 +269,37 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                                     reducc[ii]+="N/A ";
                                     reducc_s[ii]+=0+" ";
                                 }else {
+
                                     //La primera vez que entra es para las cenas de los niños
                                     if (cont===0){
-                                        if(reduct[i]==="100"){
+
+                                        if (reduct[i]==="100"){
                                             reduc[ii]+=0+" ";
                                             reducc[ii]+="Free ";
                                             reducc_s[ii]+="Free ";
                                         }else{
                                             //Para Cost
-                                            reduc[ii]+=(ser*reduct[i]/100)+" ";
+                                            reduc[ii]+=(ser*reduct[i]/100)*(ish*iva)+parseInt(iss)+" ";
                                             //Para Sell x pax
-                                            reducc[ii]+=Math.round(((ser*reduct[i]/100))*(1+mups))+" ";
+                                            reducc[ii]+=Math.round(((ser*reduct[i]/100))*(1+mups)*(ish*iva)+parseInt(iss))+" ";
                                         }
 
 
                                     }else {
                                         //Para las cenas de los adultos
                                         //Para Sell
-                                        reducc[ii]+=Math.round((((ser * 2) + (ser - (reduct[i] * ser) / 100)) *(1+mups))/ 3)+" ";
+                                        reducc[ii]+=Math.round(((((ser * 2) + (ser - (reduct[i] * ser) / 100)) *(1+mups))/ 3)*(ish*iva)+parseInt(iss))+" ";
                                         //Para Cost x habitacion
                                         let temp=(ser * 3) - ((reduct[i] * ser) / 100);
-                                        reduc[ii]+=temp+" ";
+                                        reduc[ii]+=temp*(ish*iva)+parseInt(iss)+" ";
                                         //Para Cost-Sell
-                                        reducc_s[ii]+=Math.round(temp*(1+mups)/3.0)*3+" ";
+                                        temp=parseFloat(temp.toFixed(2));
+                                        reducc_s[ii]+=Math.round(temp*(1+mups)*(ish*iva)+parseInt(iss)/3.0)*3+" ";
                                     }
 
 
                                 }
-
+                                saber=false;
                             }
                         }
                     }
@@ -411,9 +328,9 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                                                 reducc_s[ii]+=0+" ";
                                             }else{
                                                 //Para Cost
-                                                reduc[ii]+=(((ser*reduct[i]/100)+(parseInt(diner[cont1]))))+" ";
+                                                reduc[ii]+=((ser*reduct[i]/100)+(parseInt(diner[cont1])))*(ish*iva)+parseInt(iss)+" ";
                                                 //Para Sell
-                                                reducc[ii]+=Math.round(((ser*reduct[i]/100)+(parseInt(diner[cont1])))*(1+mups))+" ";
+                                                reducc[ii]+=Math.round(((ser*reduct[i]/100)+(parseInt(diner[cont1])))*(1+mups)*(ish*iva)+parseInt(iss))+" ";
 
                                             }
 
@@ -430,65 +347,20 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                                             //Para Cost x Pax
                                             //reduc[ii] += Math.round(((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+(parseInt(diner24_ad))+" ";
                                             //Para Sell
-                                            reducc[ii]+=Math.round(((((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+(parseInt(diner[cont+4])))*(1+mups))+" ";
+                                            reducc[ii]+=Math.round(((((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+(parseInt(diner[cont+4])))*(1+mups)*(ish*iva)+parseInt(iss))+" ";
 
                                             //Para Cost x habitacion
                                             let temp=((ser * 3) - ((reduct[i] * ser) / 100))+(parseInt(diner[cont+4]));
-                                            reduc[ii]+=temp+" ";
+                                            reduc[ii]+=temp*(ish*iva)+parseInt(iss)+" ";
                                             //Para Cost-Sell
-                                            reducc_s[ii]+=Math.round(temp*(1+mups)/3.0)*3+" ";
+                                            reducc_s[ii]+=Math.round(temp*(1+mups)*(ish*iva)+parseInt(iss)/3.0)*3+" ";
                                         }
 
                                     }
                                     saber=true;
                                 }else{
                                     //Para el dia 31/12
-                                    /*if (ii===4){
-                                        if (cont===0){
-                                            //Para las cenas de los niños
-                                            if (reduct[i]==="100"||reduct[i]==="100.00"){
-                                                //Si el niño es free no se calcula
-                                                reduc[ii]+=0+" ";
-                                                reducc[ii] +="Free ";
-                                                reducc_s[ii]+=0+" ";
-                                            }else{
-                                                //Cuando no esta disponible la reduccion
-                                                if (reduct[i]==="N/A"){
-                                                    reduc[ii] += 0+" ";
-                                                    reducc[ii]+="N/A ";
-                                                    reducc_s[ii]+=0+" ";
-                                                }else{
-                                                    //Para Cost
-                                                    reduc[ii]+=((ser*reduct[i]/100)+(parseInt(diner31)))+" ";
-                                                    //Para Sell
-                                                    reducc[ii]+=Math.round(((ser*reduct[i]/100)+(parseInt(diner31)))*(1+mups))+" ";
 
-                                                }
-
-
-                                            }
-                                        }else{
-                                            //Para las cenas de los adultos
-                                            //Cuando no esta disponible la reduccion
-                                            if (reduct[i]==="N/A"){
-                                                reduc[ii] += 0+" ";
-                                                reducc[ii] +="N/A ";
-                                            }else{
-
-                                                //Para Cost x Pax
-                                                //reduc[ii] += Math.round(((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+(parseInt(diner31_ad))+" ";
-                                                //Para Sell
-                                                reducc[ii]+=Math.round(((((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+(parseInt(diner31_ad)))*(1+mups))+" ";
-                                                //Para Cost x habitacion
-                                                let temp=((ser * 3) - ((reduct[i] * ser) / 100))+(parseInt(diner31_ad));
-                                                reduc[ii]+=temp+" ";
-                                                temp=parseFloat(temp.toFixed(2));
-                                                //Para Cost-Sell
-                                                reducc_s[ii]+=Math.round((temp*(1+mups)+parseInt(diner31_ad))/3.0)*3 +" ";
-                                            }
-                                        }
-
-                                    }else{*/
                                         switch (reduct[i]){
                                             case "100.00":
                                                 reducc[ii]+="Free ";
@@ -500,18 +372,18 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                                                 break;
                                             case "50.00":
                                                 //Para Sell x pax
-                                                reducc[ii]+=Math.round((ser*reduct[i]/100)*(1+mups))+" ";
+                                                reducc[ii]+=Math.round((ser*reduct[i]/100)*(1+mups)*(ish*iva)+parseInt(iss))+" ";
                                                 //Para Cost x Habitacion
                                                 //Para niños
                                                 if(cont===0){
-                                                    reduc[ii]+= ((ser*reduct[i]/100))+" ";
+                                                    reduc[ii]+= ((ser*reduct[i]/100)*(ish*iva)+parseInt(iss))+" ";
                                                 }else{
                                                     //Para Cost x habitacion
                                                     let temp=((ser * 3) - ((reduct[i] * ser) / 100));
-                                                    reduc[ii]+=temp+" ";
+                                                    reduc[ii]+=temp*(ish*iva)+parseInt(iss)+" ";
                                                     //Para Cost-Sell
                                                     temp=parseFloat(temp.toFixed(2));
-                                                    reducc_s[ii]+=Math.round(temp*(1+mups)/3.0)*3 +" ";
+                                                    reducc_s[ii]+=Math.round(temp*(1+mups)*(ish*iva)+parseInt(iss)/3.0)*3 +" ";
                                                 }
 
                                                 //Para Cost x Pax
@@ -519,18 +391,18 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                                                 break;
                                             case "50":
                                                 //Para Sell x pax
-                                                reducc[ii]+=Math.round((ser*reduct[i]/100)*(1+mups))+" ";
+                                                reducc[ii]+=Math.round((ser*reduct[i]/100)*(1+mups)*(ish*iva)+parseInt(iss))+" ";
                                                 //Para Cost x Habitacion
                                                 //Para niños
                                                 if(cont===0){
-                                                    reduc[ii]+= ((ser*reduct[i]/100))+" ";
+                                                    reduc[ii]+= ((ser*reduct[i]/100)*(ish*iva)+parseInt(iss))+" ";
                                                 }else{
                                                     //Para Cost x habitacion
                                                     let temp=((ser * 3) - ((reduct[i] * ser) / 100));
-                                                    reduc[ii]+=temp+" ";
+                                                    reduc[ii]+=temp*(ish*iva)+parseInt(iss)+" ";
                                                     //Para Cost-Sell
                                                     temp=parseFloat(temp.toFixed(2));
-                                                    reducc_s[ii]+=Math.round(temp*(1+mups)/3.0)*3 +" ";
+                                                    reducc_s[ii]+=Math.round(temp*(1+mups)*(ish*iva)+parseInt(iss)/3.0)*3 +" ";
                                                 }
                                                 break;
                                             case "N/A":
@@ -542,22 +414,22 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                                                 if(cont===0){
                                                     //Para Cost
                                                     let red=reduct[i];
-                                                    reduc[ii]+= (ser*red/100)+" ";
+                                                    reduc[ii]+= (ser*red/100)*(ish*iva)+parseInt(iss)+" ";
                                                     //reduc[ii]+=Math.round((ser * 3) - ((reduct[i] * ser) / 100))+" ";
                                                     //Para Sell x pax
-                                                    reducc[ii]+=Math.round((ser*reduct[i]/100)*(1+mups))+" ";
+                                                    reducc[ii]+=Math.round((ser*reduct[i]/100)*(1+mups)*(ish*iva)+parseInt(iss))+" ";
                                                 }else{
                                                     //Para adultos
                                                     //Para Cost x habitacion
                                                     let temp=((ser * 3) - ((reduct[i] * ser) / 100));
-                                                    reduc[ii]+=temp+" ";
+                                                    reduc[ii]+=temp*(ish*iva)+parseInt(iss)+" ";
                                                     //Para Cost x pax
                                                     //reduc[ii] += Math.round(((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+" ";
                                                     //Para Cost-sell
                                                     temp=parseFloat(temp.toFixed(2));
-                                                    reducc_s[ii]+=Math.round(temp*(1+mups)/3.0)*3+" ";
+                                                    reducc_s[ii]+=Math.round(temp*(1+mups)*(ish*iva)+parseInt(iss)/3.0)*3+" ";
                                                     //Para Sell x pax
-                                                    reducc[ii]+=Math.round((((ser * 2) + (ser - (reduct[i] * ser) / 100)) *(1+mups))/ 3)+" ";
+                                                    reducc[ii]+=Math.round(((((ser * 2) + (ser - (reduct[i] * ser) / 100)) *(1+mups))/ 3)*(ish*iva)+parseInt(iss))+" ";
 
                                                 }
 
@@ -565,7 +437,7 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                                     saber=false;
                                     //}
                                 }
-                                cont1++;
+
                             }
                             else{
                                 //No hay cena y NO es MAP
@@ -582,31 +454,31 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                                             reducc_s[ii]+="Free ";
                                         }else{
                                             //Para Cost x Pax
-                                            reduc[ii]+=ser*reduct[i]/100+" ";
+                                            reduc[ii]+=(ser*reduct[i]/100)*(ish*iva)+parseInt(iss)+" ";
                                             //Para Cost x Habitacion
                                             //reduc[ii]+=Math.round((ser * 3) - ((reduct[i] * ser) / 100))+" ";
                                             //Para Sell x pax
-                                            reducc[ii]+=Math.round(((ser*reduct[i]/100))*(1+mups))+" ";
+                                            reducc[ii]+=Math.round(((ser*reduct[i]/100))*(1+mups)*(ish*iva)+parseInt(iss))+" ";
                                         }
 
 
                                     }else {
                                         //Para las cenas de los adultos
                                         //Para Sell x pax
-                                        reducc[ii]+=Math.round((((ser * 2) + (ser - (reduct[i] * ser) / 100)) *(1+mups))/ 3)+" ";
+                                        reducc[ii]+=Math.round(((((ser * 2) + (ser - (reduct[i] * ser) / 100)) *(1+mups))/ 3)*(ish*iva)+parseInt(iss))+" ";
                                         //Para Cost x pax
                                         //reduc[ii] += Math.round(((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+" ";
                                         //Para Cost x habitacion
                                         let temp=(ser * 3) - ((reduct[i] * ser) / 100);
-                                        reduc[ii]+=temp+" ";
+                                        reduc[ii]+=temp*(ish*iva)+parseInt(iss)+" ";
                                         //Para Cost-Sell
                                         temp=parseFloat(temp.toFixed(2));
-                                        reducc_s[ii]+=Math.round(temp*(1+mups)/3.0)*3+" ";
+                                        reducc_s[ii]+=Math.round(temp*(1+mups)*(ish*iva)+parseInt(iss)/3.0)*3+" ";
                                     }
 
 
                                 }
-
+                                saber=false;
                             }
                         }
                         else {
@@ -626,38 +498,35 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                                         reducc_s[ii]+="Free ";
                                     }else{
                                         //Para Cost
-                                        reduc[ii]+=(ser*reduct[i]/100)+" ";
+                                        reduc[ii]+=(ser*reduct[i]/100)*(ish*iva)+parseInt(iss)+" ";
                                         //Para Sell x pax
-                                        reducc[ii]+=Math.round(((ser*reduct[i]/100))*(1+mups))+" ";
+                                        reducc[ii]+=Math.round(((ser*reduct[i]/100))*(1+mups)*(ish*iva)+parseInt(iss))+" ";
                                     }
 
 
                                 }else {
                                     //Para las cenas de los adultos
                                     //Para Sell
-                                    reducc[ii]+=Math.round((((ser * 2) + (ser - (reduct[i] * ser) / 100)) *(1+mups))/ 3)+" ";
+                                    reducc[ii]+=Math.round(((((ser * 2) + (ser - (reduct[i] * ser) / 100)) *(1+mups))/ 3)*(ish*iva)+parseInt(iss))+" ";
                                     //Para Cost x habitacion
                                     let temp=(ser * 3) - ((reduct[i] * ser) / 100);
-                                    reduc[ii]+=temp+" ";
+                                    reduc[ii]+=temp*(ish*iva)+parseInt(iss)+" ";
                                     //Para Cost-Sell
                                     temp=parseFloat(temp.toFixed(2));
-                                    reducc_s[ii]+=Math.round(temp*(1+mups)/3.0)*3+" ";
+                                    reducc_s[ii]+=Math.round(temp*(1+mups)*(ish*iva)+parseInt(iss)/3.0)*3+" ";
                                 }
 
 
                             }
-
+                            saber=false;
                         }
-
-
-
-                        //reducc[ii] += Math.round((((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+(reemp*mups))+" ";
 
                     }
 
                 }
-
-
+                if (cont===1 && saber===true){
+                    cont1++;
+                }
                 if (cont===0){
                     child[ii]=reducc[ii];
                     child_cost[ii]=reduc[ii];

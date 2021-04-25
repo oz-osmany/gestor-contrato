@@ -261,7 +261,7 @@ router.post("/new",(req,resp)=> {
 
   }
   if (single!=""){
-    my_singles=misingles.singles(single,fech_c,ffcha,mups,service,total_resul_sup,rango,diner);
+    my_singles=misingles.singles(single,fech_c,ffcha,mups,service,total_resul_sup,rango,diner,map_saber,ish,iss,iva);
     supls=my_singles.supls;
     supls_cs=my_singles.supls_cs;
     supl_mup=my_singles.supl_mup;
