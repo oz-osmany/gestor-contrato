@@ -34,6 +34,9 @@ let services=(service,cont_fecha,diner,mups,fech_c,ffcha,rango,ish,iss,iva)=>{
 
 
             }
+        }else{
+            for (let i = 0; i < service.length; i++)
+                service[i]=service[i].split(" ");
         }
 
     //Para recoger las habitaciones de forma vertical H*

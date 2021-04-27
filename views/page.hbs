@@ -56,11 +56,16 @@
                     <div class="popup"><a class="icon-help-circled-alt" href="#" id="id_fecha"></a>
                         <span class="popuptext" id="myPopup"></span>
                     </div>
-                </div><textarea name="fechas" id="fechas" cols="110" rows="3" required></textarea></div>
+                </div>
+                <div class="mar-container">
+                    <textarea name="fechas" id="fechas" cols="110" rows="3" required></textarea>
+                </div>
+
+            </div>
 
         </div>
         <!--xxxxxxxxxxxxxxxxxxxxxxxxxx Aqui estan los planes y el MUP xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
-        <div class="linea linea__flex mar-top">
+        <div class="linea linea__flex mar-top mar-container radio_plan">
             <div class="encabezado-iz"></div>
             <div class="encabezado-dr linea__flex">
                 <div class="bloque-iz">
@@ -165,7 +170,8 @@
                             <a class="icon-help-circled-alt" href="#" id="id_stay_v"></a>
                             <span class="popuptext" id="stay_n"></span>
                         </div>
-                    </div><textarea name="servicios" id="servicios" cols="110" rows="15" required></textarea>
+                    </div>
+                    <textarea name="servicios" id="servicios" cols="110" rows="15" required></textarea>
                 </div>
                 <div class="encabezado-dr">
 
@@ -278,16 +284,16 @@
                     </div>
                 </div>
                 <div class="title__name">
-                    <h6 id="t-adult" class="encabezado margen-dr-title">Adults(mm/yy)</h6>
-                    <h6 id="t-ch" class="encabezado">Children(mm/yy)</h6>
+                    <h6 id="t-adult" class="encabezado margen-dr-title">Adults(dd/mm/yy)</h6>
+                    <h6 id="t-ch" class="encabezado">Children(dd/mm/yy)</h6>
                 </div>
                 <div class="linea__flex">
                     <div id="cen_adult" class="margen-dr">
                         <div class="linea">
-                            <input type="text" size="1" name="ac1"  id="ac1" class="fecha-cena" contenteditable="true">
-                            <input type="text" size="1"  name="ac2" id="ac2" class="fecha-cena" contenteditable="true">
-                            <input type="text" size="1"  name="ac3" id="ac3" class="fecha-cena" contenteditable="true">
-                            <input type="text" size="1"  name="ac4" id="ac4" class="fecha-cena" contenteditable="true">
+                            <input type="text" size="1" name="ac1"  id="ac1" class="fecha-cena" contenteditable="true" value="24/12/21">
+                            <input type="text" size="1"  name="ac2" id="ac2" class="fecha-cena" contenteditable="true" value="31/12/21">
+                            <input type="text" size="1"  name="ac3" id="ac3" class="fecha-cena" contenteditable="true" >
+                            <input type="text" size="1"  name="ac4" id="ac4" class="fecha-cena" contenteditable="true" >
                         </div>
                         <div class="linea">
                             <input type="text" size="1" name="av1" class="valor-cena" id="av1">
@@ -298,8 +304,8 @@
                     </div>
                     <div id="cen_ch">
                         <div class="linea">
-                            <input type="text" size="1" name="nc1"  id="cc1" class="fecha-cena" contenteditable="true">
-                            <input type="text" size="1" name="nc2"  id="cc2" class="fecha-cena" contenteditable="true">
+                            <input type="text" size="1" name="nc1"  id="cc1" class="fecha-cena" contenteditable="true" value="24/12/21">
+                            <input type="text" size="1" name="nc2"  id="cc2" class="fecha-cena" contenteditable="true" value="31/12/21">
                             <input type="text" size="1" name="nc3"  id="cc3" class="fecha-cena" contenteditable="true">
                             <input type="text" size="1" name="nc4" id="cc4" class="fecha-cena" contenteditable="true">
                         </div>
@@ -315,6 +321,23 @@
 
 
         </div>
+        <!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Aqui las explicaciones de las reducciones xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+        <div class="linea linea__flex">
+            <div class="encabezado-iz"></div>
+            <div class="encabezado-dr">
+                <div class="mar-top">
+
+                    <input type="radio" id="red_expl"
+                           name="reducc" value="Values" class="mar-iz" checked>
+                    <label for="red_expl" >Explanations</label>
+                    <input type="radio" id="red_val"
+                           name="reducc" value="Values" class="mar-iz">
+                    <label for="red_val" >Values</label>
+                </div>
+            </div>
+
+        </div>
+        <!--xxxxxxxxxxxxxxxxxxxxxx Aqui las excepciones de las reducciones xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
         <div class="linea linea__flex">
             <div class="encabezado-iz">
                 <div class="title__name title__name-dercha">
@@ -329,24 +352,64 @@
             </div>
             <!--xxxxxxxxxxxxxx Aqui estan las reducciones xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
             <div class="encabezado-dr">
-                <div class="title__name"><input type="checkbox" id="rad_reduccion" class="rad_izquierda"><h6 class="titulo-start">Reducciones / Reductions</h6>
+                <div class="title__name">
+                    <input type="checkbox" id="rad_reduccion" class="rad_izquierda">
+                    <div class="muestra_expl" id="muestra_expl">
+                        <h6 class="titulo-start"> Explicaciones para reducciones/ Explanation for reductions</h6>
+                    </div>
+
+                    <div class="muestra_val" id="muestra_val">
+                        <h6 class="titulo-start">Valores para reducciones/ Values for Reductions</h6>
+                    </div>
                     <div class="popup"><a class="icon-help-circled-alt" href="#" id="id_red_ayuda"></a>
                         <span class="popuptext" id="red_ayuda"></span>
                     </div>
-                </div><textarea name="reduccion" id="reduccion" cols="110" rows="1" disabled></textarea></div>
+                </div>
+                <div class="red_expl">
+                    <textarea name="reduccion" id="reduccion_expl" cols="110" rows="1" disabled></textarea>
+                </div>
+                <div class="red_val">
+                    <textarea name="reduccion_val" id="reduccion_val" cols="110" rows="1" ></textarea>
+                </div>
+
+            </div>
+        </div>
+        <!--xxxxxxxxxxxxxxxxxxxxxx Aqui va las explicacionnes y valores de EB xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+        <div class="linea linea__flex">
+            <div class="encabezado-iz"></div>
+            <div class="encabezado-dr">
+                <div class="mar-top">
+
+                    <input type="radio" id="eb_expl"
+                           name="ebook" value="Values" class="mar-iz" checked>
+                    <label for="eb_expl" >Explanations</label>
+                    <input type="radio" id="eb_val"
+                           name="ebook" value="Values" class="mar-iz">
+                    <label for="eb_val" >Values</label>
+                </div>
+            </div>
+
         </div>
         <!--xxxxxxxxxxxxxxxxxxxxxx Aqui estan los EB xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
         <div class="linea linea__flex">
             <div class="encabezado-iz"></div>
             <div class="encabezado-dr">
                 <div class="title__name">
-                    <input type="checkbox" id="rad_ventas"><h6 class="encabezado">Ventas anticipadas / Advanced Offer</h6>
+                    <input type="checkbox" id="rad_ventas">
+                    <div class="muestra_eb_expl" id="muestra_eb_expl">
+                        <h6 class="encabezado">Explicaciones para EB/ Explanations for EB </h6>
+                    </div>
+                    <div class="muestra_eb_val" id="muestra_eb_val">
+                        <h6 class="encabezado"> Explicaciones para EB/ Values for EB</h6>
+                    </div>
                     <div class="popup"><a class="icon-help-circled-alt mueve-derecha" href="#" id="id_venta"></a>
                         <span class="popuptext" id="venta"></span>
                     </div>
                 </div>
                 <div class="linea">
-                    <textarea name="ventas" id="ventas" cols="110" rows="1" disabled></textarea>
+
+                    <textarea name="ventas" id="ventas_expl" cols="110" rows="1" disabled></textarea>
+                    <textarea name="ventas" id="ventas_val" cols="110" rows="1" ></textarea>
 
                 </div>
             </div>

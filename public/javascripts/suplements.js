@@ -35,6 +35,9 @@ let singles=(single,fech_c,ffcha,mups,service,total_resul_sup,rango,diner,map,is
 
 
         }
+    }else{
+        for (let i = 0; i < single.length; i++)
+            single[i]=single[i].split(" ");
     }
 
 
@@ -156,6 +159,9 @@ let suplements=(suplements,diner,resul_sup,service,mups,fech_c,
                             }
 
                         }
+                    }else{
+                        for (let i = 0; i < suplements.length; i++)
+                            suplements[i]=suplements[i].split(" ");
                     }
 
                // }

@@ -198,6 +198,18 @@
     margin-right: -15px;
     margin-left: -15px;
 }
+#reduccion_val{
+    display:none;
+}
+#muestra_val{
+    display: none;
+}
+#ventas_val{
+    display: none;
+}
+#muestra_eb_val{
+    display: none;
+}
 .bloque-iz{
     width: 143px;
     height: 100px;

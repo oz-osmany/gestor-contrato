@@ -346,7 +346,7 @@ check_cena.addEventListener("change", ()=>{
 const check_red=document.querySelector("#rad_reduccion");
 check_red.addEventListener("change", ()=>{
 
-    let reducction=document.querySelector("#reduccion");
+    let reducction=document.querySelector("#reduccion_expl");
     if (check_red.checked==true){
         reducction.disabled=false;
         reducction.setAttribute("rows" ,"5");
@@ -365,15 +365,18 @@ check_red.addEventListener("change", ()=>{
 const check_venta=document.querySelector("#rad_ventas");
 check_venta.addEventListener("change", ()=>{
 
-    let ventas=document.querySelector("#ventas");
+    let ventas=document.querySelector("#ventas_expl");
+    let ventas_val=document.querySelector("#ventas_val");
     if (check_venta.checked==true){
         ventas.disabled=false;
-        ventas.setAttribute("rows" ,"4");
+        ventas.setAttribute("rows" ,"5");
+        ventas_val.setAttribute("rows" ,"5");
     }
     else {
         ventas.disabled=true;
         ventas.value="";
         ventas.setAttribute("rows" ,"1");
+        ventas_val.setAttribute("rows" ,"1");
     }
 
 });
@@ -503,7 +506,83 @@ rad_val.addEventListener("change",()=>{
         st_v.style.display="block";
     }
 })
+//Para cambiar entre explanation and values de reduccion
+const rad_expl=document.querySelector("#red_expl");
+rad_expl.addEventListener("change",()=>{
+    if (rad_expl.checked===true){
+        let t_expl=document.getElementById("reduccion_expl");
+        let t_val=document.getElementById("reduccion_val");
+        let ex=document.getElementById("red_select");
+        let rad_reduc=document.getElementById("rad_reduccion");
+        let muestra_expl=document.getElementById("muestra_expl");
+        let muestra_val=document.getElementById("muestra_val");
 
+        t_val.style.display="none";
+        t_expl.style.display="block";
+        muestra_expl.style.display="block";
+        muestra_val.style.display="none";
+        ex.style.display="block";
+
+    }
+});
+const rad_vall=document.getElementById("red_val");
+rad_vall.addEventListener("change",()=>{
+    if (rad_vall.checked===true){
+        let t_expl=document.getElementById("reduccion_expl");
+        let t_val=document.getElementById("reduccion_val");
+        let ex=document.getElementById("red_select");
+        let muestra_expl=document.getElementById("muestra_expl");
+        let muestra_val=document.getElementById("muestra_val");
+
+        t_val.style.display="block";
+
+        t_val.setAttribute("rows" ,"5");
+        t_expl.style.display="none";
+        ex.style.display="none";
+        muestra_expl.style.display="none";
+        muestra_val.style.display="block";
+
+    }
+});
+//Para cambiar entre explanation and values de EB
+const rad_eb_ex=document.querySelector("#eb_expl");
+rad_eb_ex.addEventListener("change",()=>{
+    if (rad_eb_ex.checked===true){
+        let t_expl=document.getElementById("ventas_expl");
+        let t_val=document.getElementById("ventas_val");
+        //let ex=document.getElementById("red_select");
+        let rad_reduc=document.getElementById("rad_reduccion");
+        let muestra_expl=document.getElementById("muestra_eb_expl");
+        let muestra_val=document.getElementById("muestra_eb_val");
+
+        t_val.style.display="none";
+        t_expl.style.display="block";
+        muestra_expl.style.display="block";
+        muestra_val.style.display="none";
+        t_expl.setAttribute("rows" ,"5");
+        //ex.style.display="block";
+
+    }
+});
+const rad_eb_val=document.querySelector("#eb_val");
+rad_eb_val.addEventListener("change",()=>{
+    if (rad_eb_val.checked===true){
+        let t_expl=document.getElementById("ventas_expl");
+        let t_val=document.getElementById("ventas_val");
+        //let ex=document.getElementById("red_select");
+        let rad_reduc=document.getElementById("rad_reduccion");
+        let muestra_expl=document.getElementById("muestra_eb_expl");
+        let muestra_val=document.getElementById("muestra_eb_val");
+
+        t_val.style.display="block";
+        t_expl.style.display="none";
+        muestra_expl.style.display="none";
+        muestra_val.style.display="block";
+        t_val.setAttribute("rows" ,"5");
+        //ex.style.display="block";
+
+    }
+});
 //Habilitar y deshabilitar Impuestos IVA
 const check_iva=document.querySelector("#rad_iva");
 check_iva.addEventListener("change", ()=>{

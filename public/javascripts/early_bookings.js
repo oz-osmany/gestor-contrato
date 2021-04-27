@@ -55,6 +55,9 @@ let ventas=(mups,service,red_3,red_4,supls,supl_mup,supls_cs,venta,rango,
                         }
                     }
                 }
+            }else{
+                for (let i = 0; i < venta.length; i++)
+                    venta[i]=venta[i].split(" ");
             }
 
         for (let ii = 0; ii < ffcha; ii++) {

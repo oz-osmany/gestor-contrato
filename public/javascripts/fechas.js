@@ -546,6 +546,7 @@ let fecha_ini=function (fechas,diner,fd,map_saber,sup_fb){
             //console.log(f[a]);
         }
     }*/
+    ffcha=piezas.length;
             f=piezas;
             t=piez;
 

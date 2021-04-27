@@ -49,7 +49,10 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                     }
 
                 }
-            }
+            }else{
+            for (let i = 0; i < reduction.length; i++)
+                reduction[i]=reduction[i].split(" ");
+        }
 
 
         //Se empieza a tomar los valores de reduccion por fechas y calcularlos con las habitaciones.
@@ -77,7 +80,7 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                     let ser=parseInt(service[e][ii]);
 
                     //Saber si es la reduccion con excepcion
-                    if(resul_sel[i]===i){
+                    if(resul_sel[i]===i && resul_red[e]===e){
                         //Para los que fueron seleccionados
                         if (resul_red[e]===e){
                             reduc[ii]+=0+" ";
@@ -85,7 +88,7 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                             reducc_s[ii]+=0+" ";
 
                         }
-                        else{
+                       /* else{
                             //Para los que no se seleccionaron y tienen que calcularse
 
                          if (map_saber===0 && sup_fb===0){
@@ -102,8 +105,8 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                                                 reducc[ii]+="Free ";
                                                 reducc_s[ii]+=0+" ";
                                             }else{
-                                                /* Si no hay reducciones disponibles para los niños,
-                                                ***para costo se pone 0 y para venta se pone N/A*/
+                                                /!* Si no hay reducciones disponibles para los niños,
+                                                ***para costo se pone 0 y para venta se pone N/A*!/
                                                 if (reduct[i]==="N/A"){
                                                     reduc[ii] += 0+" ";
                                                     reducc[ii]+="N/A ";
@@ -302,7 +305,7 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                                 }
                                 saber=false;
                             }
-                        }
+                        }*/
                     }else {
                         //Aqui terminan las excepciones
                         //Saber si hubo MAP para saber si se le suma la cena al valor de la habitacion
