@@ -49,10 +49,10 @@ let fecha_ini=function (fechas,diner,fd,map_saber,sup_fb){
             piez[e]=piez[e].replace(".","-");
             piez[e]=piez[e].replace(".","-");
         }
-        if (piezas[e].match("-")){
+       /* if (piezas[e].match("-")){
             p = piezas[e].split("-");
             pi = piez[e].split("-");
-        }
+        }*/
         if (piezas[e].match("-")){
             p = piezas[e].split("-");
             pi = piez[e].split("-");
@@ -245,20 +245,7 @@ let fecha_ini=function (fechas,diner,fd,map_saber,sup_fb){
 
                             }
                         }
-                        /*if ((ac<=anT || mc<=meT ||  dc<diaT)&&(ac>=an || mc>=me ||  dc>dia) ){
-                            //Saber si la fecha de la cena es del mismo mes
 
-
-
-                        }
-                        else{
-                            //Sino esta en el rango de fechas con cenas
-                            f[fch] = dia + "-" + me + "-" + an;
-                            t[fch]= diaT+"-"+meT+"-"+anT;
-                            fbd[fch] = an + "-" + me + "-" + dia;
-                            fch++;
-
-                        }*/
                         cont_fecha = fch;
                         ffcha=piezas.length;
                     }
@@ -268,7 +255,8 @@ let fecha_ini=function (fechas,diner,fd,map_saber,sup_fb){
             }
         }else{
             //Hay planes opcionales, no se dividen la fechas
-            for (let a = 0; a < piezas.length; a++) {
+            ffcha=piezas.length;
+           /* for (let a = 0; a < piezas.length; a++) {
                 if (piezas[a].match("/")){
                     p = piezas[a].split("/");
                     pi = piez[a].split("/");
@@ -335,8 +323,8 @@ let fecha_ini=function (fechas,diner,fd,map_saber,sup_fb){
                             break;
                     }
                 }
-                /*let rango=new Array(4);//Para saber cual fecha se uso para cortar
-                let cont=0;//Sirve de iteracion para el rango*/
+                /!*let rango=new Array(4);//Para saber cual fecha se uso para cortar
+                let cont=0;//Sirve de iteracion para el rango*!/
                 f[fch] = dia + "-" + me + "-" + an;
                 fbd[fch] = an + "-" + me + "-" + dia;
                 fch++;
@@ -344,10 +332,10 @@ let fecha_ini=function (fechas,diner,fd,map_saber,sup_fb){
                 ffcha=a;
 
 
-                /* let mc="";//Es para el mes de las cenas
-                 let dc="";//Para los dias de las cenas*/
+                /!* let mc="";//Es para el mes de las cenas
+                 let dc="";//Para los dias de las cenas*!/
                 //Si no hay MAP entonces la base es CP y no se dividen las fechas
-                /* if (map_saber===0 && sup_fb===0){
+                /!* if (map_saber===0 && sup_fb===0){
                      if (diner[0]!="" || diner[1]!="" ||diner[2]!="" || diner[3]!=""){
                          //Saber cuales tienen fecha
                          for (let i=0;i<4;i++){
@@ -402,18 +390,18 @@ let fecha_ini=function (fechas,diner,fd,map_saber,sup_fb){
                      fch++;
                      cont_fecha = fch;
                      ffcha=a;
-                 }*/
-                /*else{
+                 }*!/
+                /!*else{
                     f_ini+=f[fch];
                     fch++;
-                }*/
+                }*!/
 
 
                 //console.log(f[a]);
-            }
+            }*/
        }
     fech_c=true;
-    }else {
+    }/*else {
         for (let a = 0; a < piezas.length; a++) {
             if (piezas[a].match("/")){
                 p = piezas[a].split("/");
@@ -481,8 +469,8 @@ let fecha_ini=function (fechas,diner,fd,map_saber,sup_fb){
                         break;
                 }
             }
-            /*let rango=new Array(4);//Para saber cual fecha se uso para cortar
-            let cont=0;//Sirve de iteracion para el rango*/
+            /!*let rango=new Array(4);//Para saber cual fecha se uso para cortar
+            let cont=0;//Sirve de iteracion para el rango*!/
             f[fch] = dia + "-" + me + "-" + an;
             fbd[fch] = an + "-" + me + "-" + dia;
             fch++;
@@ -490,10 +478,10 @@ let fecha_ini=function (fechas,diner,fd,map_saber,sup_fb){
             ffcha=a;
 
 
-            /* let mc="";//Es para el mes de las cenas
-             let dc="";//Para los dias de las cenas*/
+            /!* let mc="";//Es para el mes de las cenas
+             let dc="";//Para los dias de las cenas*!/
             //Si no hay MAP entonces la base es CP y no se dividen las fechas
-           /* if (map_saber===0 && sup_fb===0){
+           /!* if (map_saber===0 && sup_fb===0){
                 if (diner[0]!="" || diner[1]!="" ||diner[2]!="" || diner[3]!=""){
                     //Saber cuales tienen fecha
                     for (let i=0;i<4;i++){
@@ -548,16 +536,16 @@ let fecha_ini=function (fechas,diner,fd,map_saber,sup_fb){
                 fch++;
                 cont_fecha = fch;
                 ffcha=a;
-            }*/
-            /*else{
+            }*!/
+            /!*else{
                 f_ini+=f[fch];
                 fch++;
-            }*/
+            }*!/
 
 
             //console.log(f[a]);
         }
-    }
+    }*/
             f=piezas;
             t=piez;
 

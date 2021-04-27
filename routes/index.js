@@ -678,8 +678,8 @@ router.post("/new",(req,resp)=> {
 
     //Para las cenas
     if(map_saber===1){
-      json_sell.cena.push({"map_adult_cena":diner31_ad*(1+mups),"map_child_cena":diner31*(1+mups)});
-      json_cost.cena.push({"map_adult_cena":diner31_ad,"map_child_cena":diner31});
+      json_sell.cena.push({"map_adult_cena":diner[4]*(1+mups),"map_child_cena":diner[0]*(1+mups)});
+      json_cost.cena.push({"map_adult_cena":diner[4],"map_child_cena":diner[0]});
     }
 
     //guardar pelicula

@@ -87,7 +87,8 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                         }
                         else{
                             //Para los que no se seleccionaron y tienen que calcularse
-                            if (map_saber===0 && sup_fb===0){
+
+                         if (map_saber===0 && sup_fb===0){
                                 //Como no hay MAP se dividen las fechas y se suma la cena a su fecha correspondiente
                                 if(diner[0]!="" || diner[1]!="" || diner[2]!="" || diner[3]!=""){
                                     //Hay cena para el 24/12
@@ -302,9 +303,8 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                                 saber=false;
                             }
                         }
-                    }
-                    //Aqui terminan las excepciones
-                    else{
+                    }else {
+                        //Aqui terminan las excepciones
                         //Saber si hubo MAP para saber si se le suma la cena al valor de la habitacion
                         if (map_saber===0 && sup_fb===0){
                             //Como no hay MAP se dividen las fechas y se suma la cena a su fecha correspondiente

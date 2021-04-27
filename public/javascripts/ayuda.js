@@ -125,7 +125,7 @@ pop_eventos.onmouseout=function (){
 //Para las cenas
 const pop_diner=document.querySelector("#id_diner");
 const din=document.getElementById("diner");
-let p_diner=document.createTextNode("Seleccionar las cenas obligatorias for fecha según el contrato.");
+let p_diner=document.createTextNode("Seleccionar las cenas obligatorias en orden ascendente por fecha según el contrato. Puede agregar otras fechas o editar las que están predefinidas.");
 
 pop_diner.onmouseover=function (){
     din.appendChild(p_diner);
