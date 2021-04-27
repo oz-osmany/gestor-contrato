@@ -353,7 +353,7 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                                             let temp=((ser * 3) - ((reduct[i] * ser) / 100))+(parseInt(diner[cont+4]));
                                             reduc[ii]+=temp*(ish*iva)+parseInt(iss)+" ";
                                             //Para Cost-Sell
-                                            reducc_s[ii]+=Math.round(temp*(1+mups)*(ish*iva)+parseInt(iss)/3.0)*3+" ";
+                                            reducc_s[ii]+=Math.round((temp*(1+mups)*(ish*iva)+parseInt(iss))/3.0)*3+" ";
                                         }
 
                                     }
@@ -383,7 +383,7 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                                                     reduc[ii]+=temp*(ish*iva)+parseInt(iss)+" ";
                                                     //Para Cost-Sell
                                                     temp=parseFloat(temp.toFixed(2));
-                                                    reducc_s[ii]+=Math.round(temp*(1+mups)*(ish*iva)+parseInt(iss)/3.0)*3 +" ";
+                                                    reducc_s[ii]+=Math.round((temp*(1+mups)*(ish*iva)+parseInt(iss))/3.0)*3 +" ";
                                                 }
 
                                                 //Para Cost x Pax
@@ -402,7 +402,7 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                                                     reduc[ii]+=temp*(ish*iva)+parseInt(iss)+" ";
                                                     //Para Cost-Sell
                                                     temp=parseFloat(temp.toFixed(2));
-                                                    reducc_s[ii]+=Math.round(temp*(1+mups)*(ish*iva)+parseInt(iss)/3.0)*3 +" ";
+                                                    reducc_s[ii]+=Math.round((temp*(1+mups)*(ish*iva)+parseInt(iss))/3.0)*3 +" ";
                                                 }
                                                 break;
                                             case "N/A":
@@ -427,7 +427,7 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                                                     //reduc[ii] += Math.round(((ser * 2) + (ser - (reduct[i] * ser) / 100)) / 3)+" ";
                                                     //Para Cost-sell
                                                     temp=parseFloat(temp.toFixed(2));
-                                                    reducc_s[ii]+=Math.round(temp*(1+mups)*(ish*iva)+parseInt(iss)/3.0)*3+" ";
+                                                    reducc_s[ii]+=Math.round((temp*(1+mups)*(ish*iva)+parseInt(iss))/3.0)*3+" ";
                                                     //Para Sell x pax
                                                     reducc[ii]+=Math.round(((((ser * 2) + (ser - (reduct[i] * ser) / 100)) *(1+mups))/ 3)*(ish*iva)+parseInt(iss))+" ";
 
@@ -473,7 +473,7 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                                         reduc[ii]+=temp*(ish*iva)+parseInt(iss)+" ";
                                         //Para Cost-Sell
                                         temp=parseFloat(temp.toFixed(2));
-                                        reducc_s[ii]+=Math.round(temp*(1+mups)*(ish*iva)+parseInt(iss)/3.0)*3+" ";
+                                        reducc_s[ii]+=Math.round((temp*(1+mups)*(ish*iva)+parseInt(iss))/3.0)*3+" ";
                                     }
 
 
@@ -513,7 +513,7 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                                     reduc[ii]+=temp*(ish*iva)+parseInt(iss)+" ";
                                     //Para Cost-Sell
                                     temp=parseFloat(temp.toFixed(2));
-                                    reducc_s[ii]+=Math.round(temp*(1+mups)*(ish*iva)+parseInt(iss)/3.0)*3+" ";
+                                    reducc_s[ii]+=Math.round((temp*(1+mups)*(ish*iva)+parseInt(iss))/3.0)*3+" ";
                                 }
 
 

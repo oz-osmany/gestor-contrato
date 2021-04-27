@@ -200,30 +200,7 @@
             </div>
 
         </div>
-        <!--xxxxxxxxxxxxxxxxxxxxxxxxxx Aqui estas los descuentos para las familias o grupos xxxxxxxxxxxxxxxxxxxxx-->
-        <div class="linea linea__flex" id="cont_family">
-            <div class="encabezado-iz"></div>
-            <div class="encabezado-dr lef115">
-                <div class="title__name">
-                    <input type="checkbox" id="rad_grupos"><h6 class="encabezado">Grupos o Familia con descuentos</h6>
-                    <div class="popup">
-                        <a class="icon-help-circled-alt mueve-derecha" href="#" id="id_grupo"></a>
-                        <span class="popuptext" id="grupo"></span>
-                    </div>
-                </div>
-                <div id="todo">
-                    <div class="linea">
-                        <input type="text" size="1" value="3" id="cap_3"><input type="text" size="1" value="4" id="cap_4"><input type="text" size="1" value="5" id="cap_5"><input type="text" size="1" value="6" id="cap_6">
-                    </div>
-                    <div class="linea">
-                        <input type="text" size="1" id="red_3"><input type="text" size="1" id="red_4"><input type="text" size="1" id="red_5"><input type="text" size="1" id="red_6">
-                    </div>
-                </div>
-            </div>
 
-
-
-        </div>
         <!--xxxxxxxxxxxxxxxxxxxx Aqui estan los suplementos de alojamiento xxxxxxxxxxxxxxxxxxxx-->
         <div class="linea linea__flex">
             <div class="encabezado-iz"></div>
@@ -266,6 +243,30 @@
             </div>
 
         </div>
+        <!--xxxxxxxxxxxxxxxxxxxxxxxxxx Aqui estas los descuentos para las familias o grupos xxxxxxxxxxxxxxxxxxxxx-->
+        <div class="linea linea__flex" id="cont_family">
+            <div class="encabezado-iz"></div>
+            <div class="encabezado-dr lef115">
+                <div class="title__name">
+                    <input type="checkbox" id="rad_grupos"><h6 class="encabezado">Grupos o Familia con descuentos</h6>
+                    <div class="popup">
+                        <a class="icon-help-circled-alt mueve-derecha" href="#" id="id_grupo"></a>
+                        <span class="popuptext" id="grupo"></span>
+                    </div>
+                </div>
+                <div id="todo">
+                    <div class="linea">
+                        <input type="text" size="1" value="3" id="cap_3"><input type="text" size="1" value="4" id="cap_4"><input type="text" size="1" value="5" id="cap_5"><input type="text" size="1" value="6" id="cap_6">
+                    </div>
+                    <div class="linea">
+                        <input type="text" size="1" id="red_3"><input type="text" size="1" id="red_4"><input type="text" size="1" id="red_5"><input type="text" size="1" id="red_6">
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
         <!--xxxxxxxxxxxx Aqui estan los suplementos de alimentacion xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
         <div class="linea linea__flex" id="cont_cena">
             <div class="encabezado-iz"></div>
@@ -277,24 +278,36 @@
                     </div>
                 </div>
                 <div class="title__name">
-                    <h6 id="t-adult" class="encabezado margen-dr-title">Adults</h6>
-                    <h6 id="t-ch" class="encabezado">Children</h6>
+                    <h6 id="t-adult" class="encabezado margen-dr-title">Adults(mm/yy)</h6>
+                    <h6 id="t-ch" class="encabezado">Children(mm/yy)</h6>
                 </div>
                 <div class="linea__flex">
                     <div id="cen_adult" class="margen-dr">
                         <div class="linea">
-                            <input type="text" size="1" name="ac24" value="24/12" id="ac24" disabled><input type="text" size="1" value="31/12" name="c31" id="ac31" disabled>
+                            <input type="text" size="1" name="ac1"  id="ac1" class="fecha-cena" contenteditable="true">
+                            <input type="text" size="1"  name="ac2" id="ac2" class="fecha-cena" contenteditable="true">
+                            <input type="text" size="1"  name="ac3" id="ac3" class="fecha-cena" contenteditable="true">
+                            <input type="text" size="1"  name="ac4" id="ac4" class="fecha-cena" contenteditable="true">
                         </div>
                         <div class="linea">
-                            <input type="text" size="1" name="av24" id="av24"><input type="text" size="1" name="v31" id="av31">
+                            <input type="text" size="1" name="av1" class="valor-cena" id="av1">
+                            <input type="text" size="1" name="av2" class="valor-cena" id="av2">
+                            <input type="text" size="1" name="av3" class="valor-cena" id="av3">
+                            <input type="text" size="1" name="av4"class="valor-cena" id="av4">
                         </div>
                     </div>
                     <div id="cen_ch">
                         <div class="linea">
-                            <input type="text" size="1" name="c24" value="24/12" id="c24" disabled><input type="text" size="1" value="31/12" name="c31" id="c31" disabled>
+                            <input type="text" size="1" name="nc1"  id="cc1" class="fecha-cena" contenteditable="true">
+                            <input type="text" size="1" name="nc2"  id="cc2" class="fecha-cena" contenteditable="true">
+                            <input type="text" size="1" name="nc3"  id="cc3" class="fecha-cena" contenteditable="true">
+                            <input type="text" size="1" name="nc4" id="cc4" class="fecha-cena" contenteditable="true">
                         </div>
                         <div class="linea">
-                            <input type="text" size="1" name="v24" id="v24"><input type="text" size="1" name="v31" id="v31">
+                            <input type="text" size="1" name="nv1" class="valor-cena"id="v1">
+                            <input type="text" size="1" name="nv2" class="valor-cena"id="v2">
+                            <input type="text" size="1" name="nv3" class="valor-cena"id="v3">
+                            <input type="text" size="1" name="nv4" class="valor-cena"id="v4">
                         </div>
                     </div>
                 </div>
@@ -327,7 +340,7 @@
             <div class="encabezado-iz"></div>
             <div class="encabezado-dr">
                 <div class="title__name">
-                    <input type="checkbox" id="rad_ventas"><h6 class="encabezado">Venta anticipada1 / Advanced Offer</h6>
+                    <input type="checkbox" id="rad_ventas"><h6 class="encabezado">Ventas anticipadas / Advanced Offer</h6>
                     <div class="popup"><a class="icon-help-circled-alt mueve-derecha" href="#" id="id_venta"></a>
                         <span class="popuptext" id="venta"></span>
                     </div>
@@ -482,12 +495,13 @@
         <td  align="left" valign=bottom sdnum="3082;0;@" colspan="20"  id="notes"><font face="Trebuchet MS" size=3><br></font></td>
         
     </tr>
-    <tr>
+    <tr id="eb">
         <td  height="31" align="left" valign=bottom ><b><font face="Trebuchet MS" size=3>  </font></b></td>
         <td  align="left" valign=bottom><font face="Arial" size=3 id="pos_eb">EB<br></font></td>
-        <td  align="left" valign=bottom sdnum="3082;0;@" colspan="20"  id="descripcion"><font face="Trebuchet MS" size=3><br></font></td>
+        <td  align="left" valign=bottom sdnum="3082;0;@"  id="descripcion"><font face="Trebuchet MS" size=3><br></font></td>
 
     </tr>
+
 
 </table>
 

@@ -62,10 +62,6 @@ let ventas=(mups,service,red_3,red_4,supls,supl_mup,supls_cs,venta,rango,
             let c_s=ffcha;//Para saber la cantidad de habitacines
             for (let v = 0; v < venta.length; v++) {
 
-
-
-
-
                 ventas_st[cont+ii]="";
                 ventas_st_sell[cont+ii]="";
                 ventas_st_cs[cont+ii]="";

@@ -368,7 +368,7 @@ check_venta.addEventListener("change", ()=>{
     let ventas=document.querySelector("#ventas");
     if (check_venta.checked==true){
         ventas.disabled=false;
-        ventas.setAttribute("rows" ,"3");
+        ventas.setAttribute("rows" ,"4");
     }
     else {
         ventas.disabled=true;
