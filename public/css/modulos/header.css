@@ -10,7 +10,7 @@ body {
     line-height: 1.5;
     color: #212529;
     text-align: left;
-    background-image: url("/images/luz.jpg") ;
+    /*background-image: url("/images/luz.jpg") ;*/
 }
 .index {
     width: 100vw;

@@ -100,6 +100,8 @@ router.post("/new",(req,resp)=> {
   let description=req.body.description;
   let calculo=req.body.calculo;
   let exporta=req.body.exporta;
+  let name_reduction=req.body.name_reduction;
+  let name_ventas=req.body.name_ventas;
 
 
 
@@ -597,7 +599,7 @@ router.post("/new",(req,resp)=> {
 
 
 
-    let datos={nombres:[], servicios:[],habitaciones: [],seasons: [],maps:[],cena:[],mups:[],ventas:[],description:[]};
+    let datos={nombres:[], servicios:[],habitaciones: [],seasons: [],maps:[],cena:[],mups:[],ventas:[],earlyb:[],info_reduction:[]};
     let datos_eb={nombres:[], servicios:[],habitaciones: [],mups:[],ventas:[]};
     let datos_eb1={nombres:[], servicios:[],habitaciones: [],mups:[],ventas:[]};
     let datos_eb2={nombres:[], servicios:[],habitaciones: [],mups:[],ventas:[]};
@@ -671,11 +673,17 @@ router.post("/new",(req,resp)=> {
     json_cost.maps.push({"map_adult":Math.round(half),"map_child":Math.round(half/2)});
 
     //Para las descripciones
-   for (let i=0;i<description.length;i++){
+  /* for (let i=0;i<description.length;i++){
       json_sell.description.push({"description":description[i]});
+    }*/
+    //Para guardar la info de EB
+    for (let i=0;i<name_ventas.length;i++){
+      json_sell.earlyb.push({"early":name_ventas[i]});
     }
-
-
+    //Para guardar la info de las reducciones
+    for (let i=0;i<name_reduction.length;i++){
+      json_sell.info_reduction.push({"info_reduction":name_reduction[i]});
+    }
     //Para las cenas
     if(map_saber===1){
       json_sell.cena.push({"map_adult_cena":diner[4]*(1+mups),"map_child_cena":diner[0]*(1+mups)});

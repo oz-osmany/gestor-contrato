@@ -1,5 +1,5 @@
-let ocultar=document.getElementById("tabla_sell");
-ocultar.style.display="none";
+/*let ocultar=document.getElementById("tabla_sell");
+ocultar.style.display="none";*/
 let ocultar_cost=document.getElementById("tabla_cost");
 ocultar_cost.style.display="none";
 let ocultar_eb1=document.getElementById("tabla_eb1");
@@ -281,25 +281,10 @@ submit.addEventListener("click",()=>{
             fd[i+4]=document.getElementById("ac"+(i+1)).value;
         }
 
-        /*let diner1=document.querySelector("#v24").value;
-        let diner2=document.querySelector("#v31").value;
-        let diner3=document.querySelector("#v12").value;
-        let diner4=document.querySelector("#v21").value;
-        let diner5=document.querySelector("#av24").value;
-        let diner6=document.querySelector("#av31").value;
-        let diner7=document.querySelector("#av12").value;
-        let diner8=document.querySelector("#av21").value;
-
-        let fd1=document.querySelector("#c24").value;
-        let fd2=document.querySelector("#c31").value;
-        let fd3=document.querySelector("#c12").value;
-        let fd4=document.querySelector("#c21").value;
-        let fd5=document.querySelector("#ac24").value;
-        let fd6=document.querySelector("#ac31").value;
-        let fd7=document.querySelector("#ac12").value;
-        let fd8=document.querySelector("#ac21").value;*/
-        let reduction=document.querySelector("#reduccion").value;
-        let ventas=document.querySelector("#ventas").value;
+        let name_reduction=document.querySelector("#reduccion_expl").value;
+        let name_ventas=document.querySelector("#ventas_expl").value;
+        let reduction=document.querySelector("#reduccion_val").value;
+        let ventas=document.querySelector("#ventas_val").value;
         let eventos=document.querySelector("#eventos").value;
         let cupo=document.querySelector("#cupos").value;
         let mups=document.querySelector("#mup").value;
@@ -328,7 +313,9 @@ submit.addEventListener("click",()=>{
         ventas3=ventas3.split("\n");*/
         eventos=eventos.split("\n");
         cupo=cupo.split("\n");
-        description=description.split("\n")
+        description=description.split("\n");
+        name_reduction=name_reduction.split("\n");
+        name_ventas=name_ventas.split("\n");
 
         const calculo=sessionStorage.getItem('calculo');
         const exporta=sessionStorage.getItem('export');
@@ -342,7 +329,7 @@ submit.addEventListener("click",()=>{
                 ,suplements,fd,diner,
                 reduction,ventas,supl_num,red_num,red_sel_num,eventos,cupo,mups,rates,singles
                 ,red_3,red_4,red_5,red_6,map,fb,sup_map,sup_fb,plan,iva,ish,iss,description
-                ,calculo,exporta})
+                ,calculo,exporta,name_ventas,name_reduction})
         })
             .then(resp =>resp.text())
             .then(data =>{
@@ -387,8 +374,10 @@ function cargartabla(){
             const usd=document.querySelector("#usd_1");
             const half=document.querySelector("#half");
             const notes=document.querySelector("#notes");
-            const descrip=document.querySelector("#eb");
-
+            const early_b=document.querySelector("#eb");
+            const descrip=document.querySelector("#descripcion_eb");
+            const children=document.querySelector("#children");
+            const info_children=document.querySelector("#info_children");
 
 
             let et_notes="";
@@ -401,32 +390,62 @@ function cargartabla(){
                 }
             })
             notes.innerHTML=et_notes;
+             conteo=0;
+             //Para poner informacion de los EB
+            data.earlyb.forEach(earlys=>{
 
-            data.description.forEach(descriptions=>{
+                if (earlys.early){
 
-                if (descriptions.description){
+                    let eb_note1=document.createTextNode(earlys.early);
+                    if (conteo===0){
+                        descrip.appendChild(eb_note1);
+                        conteo++;
+                    }else{
+                        let eb_fila=document.createElement("tr");
+                        let eb1=document.createElement("td");
+                        eb1.setAttribute("colspan","20");
+                        let eb3=document.createElement("td");
+                        let eb2=document.createElement("td");
+                        eb1.appendChild(eb_note1);
+                        eb_fila.appendChild(eb2);
+                        eb_fila.appendChild(eb3);
+                        eb_fila.appendChild(eb1);
+                        early_b.after(eb_fila);
 
-                   // let eb_fila=document.createElement("tr");
-                    let eb1=document.createElement("td");
-                    let eb2=document.createElement("td");
-                    let eb3=document.createElement("td");
-                    let eb_note1=document.createTextNode(descriptions.description);
+                    }
 
-                    eb3.appendChild(eb_note1);
-                    descrip.appendChild(eb1);
-                    descrip.appendChild(eb2);
-                    descrip.appendChild(eb3);
-                    let eb_fila=document.createElement("tr");
-
-                   // eb_notes+=`<div>  ${descriptions.description }</div><br>`;
-
-                   descrip.appendChild(eb_fila);
                 }
-                //${description.description[cont] }
+
             })
+            conteo=0;
             //descrip.innerHTML=eb_notes;
+            //Para poner informacion de los niños
+            data.info_reduction.forEach(info=>{
 
+                if (info.info_reduction){
 
+                    let eb_note1=document.createTextNode(info.info_reduction);
+                    if (conteo===0){
+                        children.appendChild(eb_note1);
+                        conteo++;
+                    }else{
+                        let eb_fila=document.createElement("tr");
+                        let eb1=document.createElement("td");
+                        eb1.setAttribute("colspan","20");
+                        let eb3=document.createElement("td");
+                        let eb2=document.createElement("td");
+                        eb1.appendChild(eb_note1);
+                        eb_fila.appendChild(eb2);
+                        eb_fila.appendChild(eb3);
+                        eb_fila.appendChild(eb1);
+                        info_children.after(eb_fila);
+
+                    }
+
+                }
+
+            });
+            conteo=0;
 
             let html="";
             let html1="";
