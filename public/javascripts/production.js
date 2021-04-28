@@ -300,6 +300,14 @@ submit.addEventListener("click",()=>{
         let ish=document.querySelector("#ish").value;
         let iss=document.querySelector("#is").value;
         let description=document.querySelector("#descriptions").value;
+        let pax=document.getElementById("pax");
+        let hab=document.getElementById("habi");
+
+        let price=true;//Para que empiece con PAX
+        if (hab.checked===true){
+            price=false;
+        }
+
 
 
         fechas=fechas.split("\n");
@@ -329,7 +337,7 @@ submit.addEventListener("click",()=>{
                 ,suplements,fd,diner,
                 reduction,ventas,supl_num,red_num,red_sel_num,eventos,cupo,mups,rates,singles
                 ,red_3,red_4,red_5,red_6,map,fb,sup_map,sup_fb,plan,iva,ish,iss,description
-                ,calculo,exporta,name_ventas,name_reduction})
+                ,calculo,exporta,name_ventas,name_reduction,price})
         })
             .then(resp =>resp.text())
             .then(data =>{

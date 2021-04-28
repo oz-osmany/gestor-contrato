@@ -102,6 +102,7 @@ router.post("/new",(req,resp)=> {
   let exporta=req.body.exporta;
   let name_reduction=req.body.name_reduction;
   let name_ventas=req.body.name_ventas;
+  let price=req.body.price;
 
 
 
@@ -217,13 +218,35 @@ router.post("/new",(req,resp)=> {
   const miserv_name=require("../public/javascripts/services") ;
   let my_ser_nam=miserv_name.nombres(serv_name);
   let name_habit=my_ser_nam.name_habit;
-  //Aqui se recogen los nombres y valores de los servicios
-  const miservice=require("../public/javascripts/services") ;
-  let my_service= miservice.services(service,cont_fecha,diner,mups,fech_c,ffcha,rango,ish,iss,iva);
-  //console.log(the_service.st);
-  let st=my_service.st;
-  let st_mup=my_service.st_mup;
-  let st_mup_cost=my_service.st_mup_cost;
+
+  //Saber si el precio es por habitacion
+  if (price===false){
+    //por habitacion
+    const habitacion=require("../public/javascripts/habitacion");
+    let my_habitacion=habitacion.habitacion(service,ffcha,mups,diner,fech_c,rango,ish,iss,iva);
+    let st=my_habitacion.st;
+    let st_mup=my_habitacion.st_mup;
+    let st_mup_cost=my_habitacion.st_mup_cost;
+    let supls=my_habitacion.supls;
+    let supls_cs=my_habitacion.supls_cs;
+    let supl_mup=my_habitacion.supl_mup;
+    //valor[2]=my_habitacion.valor;
+    let no_suple=my_habitacion.no_suple;
+    let adult_cost=my_habitacion.adult_cost;
+    let adult=my_habitacion.adult;
+    let adult_cs=my_habitacion.adult_cs;
+
+  }else {
+    //Aqui se recogen los valores de los servicios por pax
+    const miservice=require("../public/javascripts/services") ;
+    let my_service= miservice.services(service,cont_fecha,diner,mups,fech_c,ffcha,rango,ish,iss,iva);
+    //console.log(the_service.st);
+    let st=my_service.st;
+    let st_mup=my_service.st_mup;
+    let st_mup_cost=my_service.st_mup_cost;
+  }
+
+
   //let plan=my_service.plan;
   //Para saber si hay FB en los planes
   let fb=2;
