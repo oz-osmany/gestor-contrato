@@ -106,7 +106,29 @@ router.post("/new",(req,resp)=> {
 
 
 
+//Declaracion de variables globales
 
+  let supls_cs;
+  let supl_mup;
+  let supls;
+  let reductions;
+  let child_cost;
+  let child;
+  let adult_cost;
+  let adult;
+  let adult_cs;
+  let st;
+  let st_mup;
+  let st_mup_cost;
+  let ventas_sup;
+  let ventas_sup_cs;
+  let ventas_red_ad;
+  let ventas_red_ch;
+  let ventas_red_ad_sell;
+  let ventas_red_ch_sell;
+  let ventas_st;
+  let ventas_st_cs;//Para los servicios
+  let no_suple;
 
   red_3=red_3/100;
   red_4=red_4/100;
@@ -223,27 +245,29 @@ router.post("/new",(req,resp)=> {
   if (price===false){
     //por habitacion
     const habitacion=require("../public/javascripts/habitacion");
-    let my_habitacion=habitacion.habitacion(service,ffcha,mups,diner,fech_c,rango,ish,iss,iva);
-    let st=my_habitacion.st;
-    let st_mup=my_habitacion.st_mup;
-    let st_mup_cost=my_habitacion.st_mup_cost;
-    let supls=my_habitacion.supls;
-    let supls_cs=my_habitacion.supls_cs;
-    let supl_mup=my_habitacion.supl_mup;
+    let my_habitacion=habitacion.habitacion(service,ffcha,mups,diner,fech_c,rango,resul_red,ish,iss,iva);
+    st=my_habitacion.st;
+    st_mup=my_habitacion.st_mup;
+    st_mup_cost=my_habitacion.st_mup_cost;
+    supls=my_habitacion.supls;
+    supls_cs=my_habitacion.supls_cs;
+    supl_mup=my_habitacion.supl_mup;
     //valor[2]=my_habitacion.valor;
-    let no_suple=my_habitacion.no_suple;
-    let adult_cost=my_habitacion.adult_cost;
-    let adult=my_habitacion.adult;
-    let adult_cs=my_habitacion.adult_cs;
+     no_suple=my_habitacion.no_suple;
+    adult_cost=my_habitacion.adult_cost;
+     adult=my_habitacion.adult;
+    adult_cs=my_habitacion.adult_cs;
+     child_cost=my_habitacion.child_cost;
+     child=my_habitacion.child;
 
   }else {
     //Aqui se recogen los valores de los servicios por pax
     const miservice=require("../public/javascripts/services") ;
     let my_service= miservice.services(service,cont_fecha,diner,mups,fech_c,ffcha,rango,ish,iss,iva);
     //console.log(the_service.st);
-    let st=my_service.st;
-    let st_mup=my_service.st_mup;
-    let st_mup_cost=my_service.st_mup_cost;
+     st=my_service.st;
+     st_mup=my_service.st_mup;
+     st_mup_cost=my_service.st_mup_cost;
   }
 
 
@@ -264,17 +288,13 @@ router.post("/new",(req,resp)=> {
 
   //Para recoger los suplementos verticalmente S*
   pos=suplements.indexOf(null);
-  if (pos>0){
+  if (pos>=0){
     suplements=suplements.slice(0,pos);
   }
   const misuplements=require("../public/javascripts/suplements");
   const misingles=require("../public/javascripts/suplements");
   let my_suplements;
   let my_singles;
-  let supls_cs;
-  let supl_mup;
-  let supls;
-  let no_suple;
   if (suplements!=""){
     my_suplements=misuplements.suplements(suplements,diner,resul_sup,service,mups,
         fech_c,ffcha,map_saber,sup_fb,total_resul_sup,rango,ish,iss,iva);
@@ -304,16 +324,19 @@ router.post("/new",(req,resp)=> {
 
   cont = 0;
   //Para recoger las reducciones R*
-  const mireduction=require("../public/javascripts/reductions");
-  let my_reduction=mireduction.reduccion(reduction,fech_c,mups,
-      ffcha,service,diner,map_saber,sup_fb,resul_red,resul_sel,rango,ish,iss,iva);
-  let reductions=my_reduction.reductions;
-  let child_cost=my_reduction.child_cost;
-  let child=my_reduction.child;
-  let adult_cost=my_reduction.adult_cost;
-  let adult=my_reduction.adult;
-  let adult_cs=my_reduction.adult_cs;
-  valor[5]=my_reduction.valor;
+    if (reduction!=""){
+      const mireduction=require("../public/javascripts/reductions");
+      let my_reduction=mireduction.reduccion(reduction,fech_c,mups,
+          ffcha,service,diner,map_saber,sup_fb,resul_red,resul_sel,rango,ish,iss,iva);
+      reductions=my_reduction.reductions;
+       child_cost=my_reduction.child_cost;
+       child=my_reduction.child;
+       adult_cost=my_reduction.adult_cost;
+       adult=my_reduction.adult;
+       adult_cs=my_reduction.adult_cs;
+      valor[5]=my_reduction.valor;
+    }
+
   //console.log(my_reduction.reduc);
   //Para habitaciones por grupos o familias
   let child_cs=child;
@@ -347,23 +370,23 @@ router.post("/new",(req,resp)=> {
     st,st_mup_cost,st_cs,suplements,single,resul_sup,resul_red,resul_sel,
     adult_cost,adult,adult_cs,child,child_cost,child_cs,reduction,diner,fech_c,ffcha];
   let my_ventas=miventa.ventas(...args);
-  let ventas_sup=my_ventas.ventas_sup;
-  let ventas_sup_cs=my_ventas.ventas_sup_cs;
-  let ventas_red_ad=my_ventas.ventas_red_ad;
-  let ventas_red_ch=my_ventas.ventas_red_ch;
-  let ventas_red_ad_sell=my_ventas.ventas_red_ad_sell;
-  let ventas_red_ch_sell=my_ventas.ventas_red_ch_sell;
+   ventas_sup=my_ventas.ventas_sup;
+   ventas_sup_cs=my_ventas.ventas_sup_cs;
+   ventas_red_ad=my_ventas.ventas_red_ad;
+   ventas_red_ch=my_ventas.ventas_red_ch;
+   ventas_red_ad_sell=my_ventas.ventas_red_ad_sell;
+   ventas_red_ch_sell=my_ventas.ventas_red_ch_sell;
   //let ventas_calc_event=my_ventas.ventas_calc_event;
-  let ventas_st=my_ventas.ventas_st;
-  let ventas_st_cs=my_ventas.ventas_st_cs;//Para los servicios
+   ventas_st=my_ventas.ventas_st;
+   ventas_st_cs=my_ventas.ventas_st_cs;//Para los servicios
 //}
 
 
 
-  valor[6]=my_ventas.valor6;
+ /* valor[6]=my_ventas.valor6;
   valor[7]=my_ventas.valor7;
   valor[8]=my_ventas.valor8;
-  valor[9]=my_ventas.valor9;
+  valor[9]=my_ventas.valor9;*/
   //console.log(my_ventas.ventas_calc);
   //Se recogen todos los nombres para los campos
   let fecha_ini_campo = "";

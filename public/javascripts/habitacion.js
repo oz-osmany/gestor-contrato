@@ -1,4 +1,4 @@
-let habitacion=(service,ffcha,mups,diner,fech_c,rango,ish,iss,iva)=>{
+let habitacion=(service,ffcha,mups,diner,fech_c,rango,resul_red,ish,iss,iva)=>{
 
     if(diner[0]!="" || diner[1]!="" || diner[2]!="" || diner[3]!=""){
 
@@ -41,6 +41,7 @@ let habitacion=(service,ffcha,mups,diner,fech_c,rango,ish,iss,iva)=>{
     let supls=new Array(10);
     let adult = new Array(40);
     let child= new Array(40);
+    let child_cost= new Array(40);
     let adult_cost = new Array(40);
     let adult_cs = new Array(40);
     let reducc = new Array(40);//
@@ -61,6 +62,8 @@ let habitacion=(service,ffcha,mups,diner,fech_c,rango,ish,iss,iva)=>{
         reducc[ii]="";
         reduc[ii]="";
         reducc_s[ii]="";
+        child[ii]="";
+        child_cost[ii]="";
         for (let i = 0; i < service.length; i++) {
             //Si hay algun espacio lo elimine
             if(service[i].length===0){
@@ -122,7 +125,7 @@ let habitacion=(service,ffcha,mups,diner,fech_c,rango,ish,iss,iva)=>{
                 //Para los manuales de Sell
                 st_mup[ii]+=Math.round((parseInt(service[i][ii])*(1+mups)/2)*(ish*iva)+parseInt(iss))+" ";
                 //Para Cost-Sell
-                st_mup_cost[ii]+=Math.round((parseInt(service[i][ii])*(1+mups))*((ish*iva)+parseInt(iss))/2.0)*2 +" ";
+                st_mup_cost[ii]+=Math.round((parseInt(service[i][ii])*(1+mups))*((ish*iva)+parseInt(iss))/4.0)*2 +" ";
 
                 //Se multiplica por 2 para Cost
                 st[ii]+=(service[i][ii]) *(ish*iva)+parseInt(iss)+" ";
@@ -136,14 +139,30 @@ let habitacion=(service,ffcha,mups,diner,fech_c,rango,ish,iss,iva)=>{
                 supls_cs[ii]+=Math.round((parseInt(service[i][ii])* (1 + mups))*(ish*iva)+parseInt(iss))+ " ";
 
                 //Se toman los valores de los triples
-                //Para Sell x pax
-                reducc[ii]+=Math.round((parseInt(service[i][ii])*(1+mups)/ 3)*(ish*iva)+parseInt(iss))+" ";
-                //Para Cost x pax
-                // temp=(ser * 3) - ((reduct[i] * ser) / 100);
-                reduc[ii]+=parseInt(service[i][ii])*(ish*iva)+parseInt(iss)+" ";
-                //Para Cost-Sell
-                //temp=parseFloat(temp.toFixed(2));
-                reducc_s[ii]+=Math.round((parseInt(service[i][ii])*(1+mups)*(ish*iva)+parseInt(iss))/3.0)*3+" ";
+                //Saber si es la reduccion con excepcion
+                if(resul_red[i]===i){
+                    //Para los que fueron seleccionados
+                   // if (resul_red[e]===e){
+                        reduc[ii]+=0+" ";
+                        reducc[ii]+="N/A ";
+                        reducc_s[ii]+=0+" ";
+                         child[ii]+="Free ";
+                         child_cost[ii]+=0+" ";
+                    //}
+
+                }else{
+                    //Para Sell x pax
+                    reducc[ii]+=Math.round((parseInt(service[i][ii])*(1+mups)/ 3)*(ish*iva)+parseInt(iss))+" ";
+                    //Para Cost x pax
+                    // temp=(ser * 3) - ((reduct[i] * ser) / 100);
+                    reduc[ii]+=parseInt(service[i][ii])/3*(ish*iva)+parseInt(iss)+" ";
+                    //Para Cost-Sell
+                    //temp=parseFloat(temp.toFixed(2));
+                    reducc_s[ii]+=Math.round((parseInt(service[i][ii])*(1+mups)*(ish*iva)+parseInt(iss))/9.0)*3+" ";
+                    child[ii]+="Free ";
+                    child_cost[ii]+=0+" ";
+                }
+
                 saber=false;
             }
 
@@ -151,6 +170,10 @@ let habitacion=(service,ffcha,mups,diner,fech_c,rango,ish,iss,iva)=>{
         if(saber===true){
             cont++;
         }
+        adult[ii]=reducc[ii];
+        adult_cost[ii]=reduc[ii];
+        adult_cs[ii]=reducc_s[ii];
+
         let find=st[ii].lastIndexOf(" ");
         st[ii]=st[ii].slice(0,find);
         st[ii]=st[ii].split(" ");
@@ -186,9 +209,16 @@ let habitacion=(service,ffcha,mups,diner,fech_c,rango,ish,iss,iva)=>{
         position=adult[ii].lastIndexOf(" ");
         adult[ii]=adult[ii].slice(0,position);
         adult[ii]=adult[ii].split(" ");
+        position=child_cost[ii].lastIndexOf(" ");
+        child_cost[ii]=child_cost[ii].slice(0,position);
+        child_cost[ii]=child_cost[ii].split(" ");
+
+        position=child[ii].lastIndexOf(" ");
+        child[ii]=child[ii].slice(0,position);
+        child[ii]=child[ii].split(" ");
     }
-    let no_suple=false;
-    return {st,st_mup,st_mup_cost,adult,adult_cost,adult_cs,supl_mup,supls_cs,supls,no_suple}
+    let no_suple=1;
+    return {st,st_mup,st_mup_cost,adult,adult_cost,adult_cs,supl_mup,supls_cs,supls,no_suple,child,child_cost}
 
 
 

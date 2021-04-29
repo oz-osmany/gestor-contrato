@@ -318,7 +318,8 @@ let reduccion=(reduction,fech_c,mups,ffcha,service,diner,map_saber,sup_fb,resul_
                     child_cost[ii]=reduc[ii];
 
                 }
-                if (cont===1){                    adult[ii]=reducc[ii];
+                if (cont===1){
+                    adult[ii]=reducc[ii];
                     adult_cost[ii]=reduc[ii];
                     adult_cs[ii]=reducc_s[ii];
 

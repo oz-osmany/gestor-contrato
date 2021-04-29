@@ -173,12 +173,14 @@ let ventas=(mups,service,red_3,red_4,supls,supl_mup,supls_cs,venta,rango,
 
 
                 //Para las reducciones
-                if(reduction!=""){
-                    for (let i = 0; i < service.length; i++) {
+              //  if(reduction!=""){
 
-                        if(reduction[i]===""){
-                            reduction.length=reduction.length-1;
-                            break;
+                    for (let i = 0; i < service.length; i++) {
+                        if(reduction!=""){
+                            if(reduction[i]===""){
+                                reduction.length=reduction.length-1;
+                                break;
+                            }
                         }
 
                         //Para Cost children
@@ -226,13 +228,13 @@ let ventas=(mups,service,red_3,red_4,supls,supl_mup,supls_cs,venta,rango,
                     ventas_red_ch_sell[cont+ii]=ventas_red_ch_sell[cont+ii].slice(0,position);
                     ventas_red_ch_sell[cont+ii]=ventas_red_ch_sell[cont+ii].split(" ");
 
-                }
+              /*  }
                 else{
                     ventas_red_ch[cont+ii]+=0+" ";
                     position=ventas_red_ch[cont+ii].lastIndexOf(" ");
                     ventas_red_ch[cont+ii]=ventas_red_ch[cont+ii].slice(0,position);
                     ventas_red_ch[cont+ii]=ventas_red_ch[cont+ii].split(" ");
-                }
+                }*/
 
                 cont+=c_s;
 
